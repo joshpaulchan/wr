@@ -1,0 +1,532 @@
+/*
+ * -- HELPER STYLES --
+ * Over-riding some of the .pure-button styles to make my buttons look unique
+ */
+
+.primary-button, .secondary-button {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    border-radius: 20px;
+}
+.primary-button {
+    color: #fff;
+    background: #1b98f8;
+    margin: 1em 0;
+}
+.secondary-button {
+    background: #fff;
+    border: 1px solid #ddd;
+    color: #666;
+    padding: 0.5em 2em;
+    font-size: 80%;
+}
+
+/*
+ * -- LAYOUT STYLES --
+ * This layout consists of three main elements, `#nav` (navigation bar), `#list` (message list), and `#main` (message content). All 3 elements are within `#layout`
+ */
+
+#layout, #header, #nav, #list, #main {
+    margin: 0;
+    padding: 0;
+}
+
+#list, #main {
+	background-color: #f9f9f9;
+}
+
+#layout {
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Make the navigation 100% width on phones */
+
+#nav {
+    width: 100%;
+    position: relative;
+    text-align: center;
+}
+
+/* Show the "Menu" button on phones */
+
+/*#nav .nav-menu-button {
+    display: block;
+    top: 0.5em;
+    right: 0.5em;
+    position: absolute;
+}*/
+
+/* When "Menu" is clicked, the navbar should be 80% height */
+
+/*#nav.active {
+    height: 80%;
+}*/
+
+/* Don't show the navigation items... */
+
+/*.nav-inner {
+    display: none;
+}*/
+
+/* ...until the "Menu" button is clicked */
+
+/*#nav.active .nav-inner {
+    display: block;
+    padding: 2em 0;
+}*/
+
+#main {
+    height: calc(100vh - 40px - 40px - 104px);
+    background: #5f6a72;
+}
+
+#list .message-list {
+	/*LMAO DANGEROUS AF but it works*/
+	height: calc(100vh - 102px - 40px - 40px - 88px);
+}
+
+#main, #list .message-list {
+    overflow-y: auto;
+}
+
+#main .reply-from-box {
+  width: 100%;
+	height: 50px;
+	margin: 0;
+	padding: 0;
+	background: inherit;
+}
+
+#main .reply-from-container {
+  position: inherit;
+	padding: 0;
+	background: inherit;
+	width: 100%;
+	height: 100%;
+
+	font-size: 18px;
+	line-height: 27px;
+}
+
+#main .reply-from-input {
+  position: inherit;
+
+  border: 0;
+  padding: 0;
+  margin: 0;
+
+  background: transparent;
+
+  width: 100%;
+  height: 40px;
+
+  -webkit-box-shadow: 0;
+  -moz-box-shadow: 0;
+  box-shadow: 0;
+
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+
+  text-indent: 1em;
+  color: black;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: normal;
+
+  transition: 0.2s background-color;
+  overflow-y: auto;
+}
+
+#main .reply-body-input {
+  position: relative;
+
+	border: 0;
+	padding: 0;
+  margin: 0;
+
+	background: transparent;
+
+	width: 100%;
+	height: 200px;
+
+	-webkit-box-shadow: 0;
+	-moz-box-shadow: 0;
+	box-shadow: 0;
+
+	-webkit-appearance: textfield;
+	-moz-appearance: textfield;
+
+	text-indent: 1em;
+	color: #777;
+	font-size: inherit;
+	line-height: normal;
+
+	transition: 0.2s background-color;
+}
+
+/*
+ * -- HEADER BAR STYLES --
+ *
+ */
+
+#header {
+    width: 100%;
+    /*height: 40px;*/
+    position: relative;
+    /*text-align: center;*/
+}
+
+#header .title {
+    color: white;
+}
+
+
+/*
+ * -- NAV BAR STYLES --
+ * Styling the default .pure-menu to look a little more unique.
+ */
+
+#nav .pure-menu {
+    background: transparent;
+    border: none;
+    height: 40px;
+    margin: 0;
+    text-align: left;
+}
+
+#nav .nav-inner-bottom {
+	/*box-shadow: inset 0 10px 30px -30px #333;*/
+	box-shadow: inset 0 10px 18px -15px #333;
+    background: rgba(0, 0, 0, 0.10);
+}
+
+#nav .admin-controls li {
+    float: right;
+}
+
+#nav .pure-menu-link:hover, #nav .pure-menu-link:focus {
+    background: inherit;
+	color: rgba(255, 255, 255, 0.9);
+	/*text-shadow: 0 0 2px #333;*/
+    /*border-bottom: 3px solid rgba(255, 255, 255, 0.87);*/
+}
+#nav .pure-menu-link {
+    color: #fff;
+    margin-left: 0.5em;
+    cursor: pointer;
+}
+#nav .pure-menu-selected:after {
+	content: "";
+	display: block;
+	position: absolute;
+	left: calc(50% - 5px);
+	border: 0;
+	border-bottom: 10px solid rgba(0, 0, 0, 0.25);
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	/*box-shadow: 0 0 10px 1px #333;*/
+	/*box-shadow: 0 1px 15px -8px #333;*/
+}
+#nav .pure-menu-heading {
+    border-bottom: none;
+    font-size: 110%;
+    color: rgb(75, 113, 151);
+}
+
+/*
+ * -- list STYLES --
+ * Styles relevant to the list.
+ */
+
+#list .message-list-controls {
+	/*padding: 8px 16px 0 16px;*/
+	background-color: #eee;
+  padding-left: 5px;
+    /*background-color: rgba(0, 0, 0, 0.10);*/
+    /*border-bottom: 1px solid #ddd;*/
+	/*box-shadow: 0 0 10px 1px #333;*/
+	/*box-shadow: 0 10px 18px -18px #333;*/
+}
+
+#list .pure-menu-link, .pure-menu-children, .pure-menu-disabled {
+  width: 60px;
+  text-align: center;
+}
+
+#list .pure-menu-link {
+  cursor: pointer;
+}
+
+#list .pure-menu-disabled {
+  padding-top: 0;
+  padding-bottom: 2px;
+}
+
+#list .pure-menu-list {
+  width: 98%;
+  text-align: right;
+}
+
+.search-bar {
+	width: 100%;
+	height: 50px;
+	margin: 0;
+	padding: 0;
+	background: inherit;
+}
+
+.search-container {
+	position: relative;
+	padding: 0;
+	background: inherit;
+	width: 100%;
+	height: 100%;
+
+	font-size: 18px;
+	line-height: 27px;
+}
+
+.search-icon {
+	position: absolute;
+	left: 1em;
+	top: 0.9em;
+}
+
+input[type="search"].search-input {
+	position: relative;
+	/*right: 16px;*/
+
+	border: 0;
+	padding: 0;
+
+	background: transparent;
+
+	width: 100%;
+	height: 100%;
+
+	-webkit-box-shadow: 0;
+	-moz-box-shadow: 0;
+	box-shadow: none;
+
+	-webkit-appearance: textfield;
+	-moz-appearance: textfield;
+
+	text-indent: 2.75em;
+	color: #777;
+	font-size: inherit;
+	line-height: inherit;
+
+	transition: 0.2s background-color;
+}
+
+input[type="search"].search-input::-webkit-input-placeholder {
+	/*text-transform: ;*/
+	/*font-style: italic;*/
+	color: #999;
+	color: rgba(119, 119, 119, 0.4);
+}
+
+input[type="search"].search-input::-moz-placeholder {
+	/*text-transform: ;*/
+	/*font-style: italic;*/
+	color: #999;
+	color: rgba(119, 119, 119, 0.4);
+}
+
+input[type="search"].search-input:ms-input-placeholder {
+	/*text-transform: ;*/
+	/*font-style: italic;*/
+	color: #999;
+	color: rgba(119, 119, 119, 0.4);
+}
+
+input[type="search"].search-input:focus {
+	background-color: #eee;
+	background-color: rgba(255, 255, 255, 0.5);
+	box-shadow: none;
+	outline: none;
+}
+
+/*
+ * -- message STYLES --
+ * Styles relevant to the message messages, labels, counts, and more.
+ */
+
+.message-count {
+    color: rgb(75, 113, 151);
+}
+.message-label-personal, .message-label-work, .message-label-travel {
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    margin-right: 0.5em;
+    border-radius: 3px;
+}
+.message-label-personal {
+    background: #ffc94c;
+}
+.message-label-work {
+    background: #41ccb4;
+}
+.message-label-travel {
+    background: #40c365;
+}
+
+/* message Item Styles */
+.select {
+    margin: 0;
+}
+.message-item {
+	color: black;
+    padding: 0.9em 1em;
+    border-bottom: 1px solid #ddd;
+    border-left: 6px solid transparent;
+	transition: 0.2s background-color;
+}
+.message-item:hover {
+	background: #ddd;
+}
+.message-email, .message-subject, .message-date {
+    margin: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.message-email {
+    color: #777;
+}
+.message-date {
+    /*color: #6666ff;  */
+	font-style: normal;
+}
+.message-desc {
+    font-size: 80%;
+    margin: 0.4em 0;
+}
+.message-item-selected {
+    background: #ddd;
+}
+.message-item-open {
+    background: #F1A9A0;
+    background: rgba(241, 169, 160, 1);
+    border-bottom: 1px solid #f09386;
+}
+.message-item-open:hover {
+    background: #f09386;
+	background: rgb(240, 147, 134);
+}
+.message-item-unread {
+    border-left: 6px solid #cc0033;
+}
+
+/* Conversation Content Styles */
+
+.convo-content {
+  /*border: 1px solid #333;*/
+  font-family: Open Sans;
+}
+
+/*CONVERSATION HEADER STYLE*/
+
+.convo-content > .header {
+    padding: 1em;
+    margin-bottom: 1em;
+    color: white;
+    font-family: Open Sans;
+    background: linear-gradient(to top, transparent, rgba(0, 0, 0, 0.4));
+}
+
+.header .title {
+  display: block;
+  margin: 0;
+  text-shadow: 0 1px 2px #333;
+}
+
+.meta-info {
+  font-size: 14px;
+}
+
+.meta-info .time {
+  color: #22A7F0;
+}
+
+.convo-content > .list {
+  padding: 0 1em;
+  width: calc(100% - 2em - 2px);
+}
+
+/* message Content Styles */
+
+.message-content-header, .message-content-footer {
+    padding: 1em 2em;
+}
+.message-content-title {
+    margin: 0.5em 0 0;
+}
+.message-content-subtitle {
+    font-size: 1em;
+    margin: 0;
+    font-weight: normal;
+}
+.message-content-subtitle span {
+    color: #999;
+}
+.message-content-controls {
+    margin-top: 2em;
+}
+.message-content-controls .secondary-button {
+    margin-bottom: 0.3em;
+}
+.message-response-controls, .message-response-body {
+    padding: 1em 2em;
+}
+.message-response-body textarea {
+    border: 2px solid #ddd;
+    margin-bottom: 100px;
+    width: 100%;
+    min-height: 150px;
+    text-indent: 5px;
+}
+
+.email-label {
+  display: inline-block;
+  margin: 0 1px;
+  padding: 0.5em;
+  background-color: #2ECC71;
+  border: 1px solid #29b362;
+  font-size: 10px;
+  border-radius: 4px;
+
+  cursor: pointer;
+  -webkit-user-select: none; /* Chrome/Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+ */
+  pointer-events: none;
+  user-select: none;
+  vertical-align: middle;
+}
+
+.email-label:after {
+  content: "x";
+  margin-left: 5px;
+}
+
+/*
+ * -- TABLET (AND UP) MEDIA QUERIES --
+ * On tablets and other medium-sized devices, we want to customize some
+ * of the mobile styles.
+ */
+
+@media (min-width: 40em) {
+}
+
+/*
+ * -- DESKTOP (AND UP) MEDIA QUERIES --
+ * On desktops and other large-sized devices, we want to customize some
+ * of the mobile styles.
+ */
+
+@media (min-width: 60em) {
+}

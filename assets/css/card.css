@@ -1,0 +1,266 @@
+/*
+ *	CARD BASICS
+ */
+
+.card {
+    margin: 0 auto;
+    position: relative;
+    font-family: Open Sans, Tahoma, Arial, sans-serif;
+    /*background: -webkit-linear-gradient(to bottom, #eee, #dedede 90%);*/
+    /*background: linear-gradient(to bottom, #eee , #dedede 90%); */
+}
+.login-card {
+    background: #eee;
+    width: 300px;
+}
+.convo-card {
+    width: 100%;
+    margin-bottom: 2em;
+    background: white;
+    color: black;
+}
+.card-shadow {
+    box-shadow: 0 10px 25px -10px #333;
+}
+.card-round {
+    border-radius: 5px;
+}
+.card a {
+    padding: 0;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #1b98f8;
+}
+
+/*
+ *	CARD STRUCTURES
+ */
+
+.card-header {
+    display: block;
+    position: relative;
+    padding: 1em;
+    border-bottom: 1px solid #eee;
+    width: calc(100% - 2em);
+    font-size: 13.333px;
+}
+.card-header .title {
+    position: relative;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+.card-header .note {
+    position: absolute;
+    right: 1em;
+    color: #777;
+}
+.card-header-input {
+    display: flex;
+}
+.card-header-input > * {
+    vertical-align: top;
+}
+.card-header-input > label {
+    padding-right: 1em;
+}
+.card-header-input div[contenteditable] {
+    margin: 0;
+    padding: 0;
+    /*   border: 0; */
+    outline: 0;
+    font: inherit;
+    font-weight: 700;
+    width: 100%;
+    overflow: hidden;
+    white-space: pre-wrap;
+}
+
+.search-results {
+  position: absolute;
+  margin: 0 1em;
+  padding: 0;
+  background: #eee;
+  list-style: none;
+  /*width: 100%;*/
+}
+
+.search-results li {
+    position: relative;
+    display: block;
+    padding: 0 1em;
+    font-size: 16px;
+    line-height: 36px;
+    z-index: 999;
+}
+
+.search-results li:hover, .search-results li:active {
+  background: #6BB9F0;
+  color: white;
+}
+
+.card-body {
+    display: block;
+    padding: 1em 2em;
+    font-family: Cabin;
+    font-weight: 500;
+    line-height: 1.5em;
+    overflow: hidden;
+    white-space: pre-wrap;
+    text-overflow: clip;
+}
+.card-body * {
+    margin-bottom: 1em;
+}
+.card-body-input {
+    outline: 0;
+    -webkit-appearance: none;
+    background: transparent;
+    font-family: Cabin;
+}
+.card-footer {
+    display: block;
+    position: relative;
+    border-top: 1px solid #eee;
+    width: 100%;
+    overflow: hidden;
+}
+.card-message-form {
+    padding: 1em;
+}
+.card-message-form * {
+    margin-bottom: 0em;
+}
+
+/*
+ * CARD FOOTER BUTTONS
+ */
+
+.card-footer a {
+    display: block;
+    padding: 1em 0;
+    font-weight: 600;
+}
+.card-footer .card-button {
+    padding: 0 1em;
+    height: 50px;
+    border: 0;
+    /*border-left: 2px solid #bbb;*/
+    outline: 0;
+    background: transparent;
+    line-height: 50px;
+    text-transform: uppercase;
+    text-align: center;
+    font: initial;
+    font-family: Open Sans;
+    font-weight: 600;
+    font-size: 13.33px;
+    transition: 0.2s color, 0.2s background-color;
+}
+.card-footer .card-button:focus {
+    background-color: rgba(255, 0, 0, .2);
+}
+.card-footer .button-group {
+    display: block;
+}
+.card-footer .card-button:hover {
+    color: #ff0040;
+    /*color: #eee;*/
+    /*background: #ff0040; */
+}
+.card-footer .card-button:active {
+    color: #b3002d;
+    /*background: #b3002d; */
+}
+
+/*
+ * CARD FORMS
+ */
+
+.card form {
+    width: 100%;
+}
+.card-form > * {
+    margin: 0 auto;
+    padding: 0;
+    width: calc(100% - 0px);
+    height: 48px;
+    line-height: 48px;
+    font-size: 16px;
+}
+.card-form .error {
+    display: block;
+    color: #cc0033;
+    text-align: center;
+}
+.card-form input[type] {
+    border: 0;
+    border-bottom: 1px solid #ddd;
+    text-indent: 1em;
+}
+.card-form button {
+    margin-top: 1em;
+    background: #cc0033;
+    border: 0;
+    color: #eee;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 600;
+    -moz-box-shadow: 0;
+    -webkit-box-shadow: 0;
+    box-shadow: 0;
+    outline: none;
+}
+.card-form button:hover {
+    transition: background 0.2s linear;
+    background: #ff0040;
+}
+.card-form button:active {
+    background: #b3002d;
+}
+
+/*
+ * TAPESTRY
+ */
+
+.tapestry {
+    display: block;
+    position: relative;
+    width: calc(100% - 2em);
+    margin: 0 auto;
+    margin-bottom: 2em;
+    padding: 2em 0;
+    background: #cc0033;
+    background: -webkit-linear-gradient(to top, #cc0033, #bf0030);
+    background: linear-gradient(to top, #cc0033, #bf0030);
+}
+.tapestry:after {
+    display: block;
+    content: "";
+    position: absolute;
+    bottom: -1.95em;
+    width: 0;
+    height: 0;
+    background: transparent;
+    border-left: 134px solid transparent;
+    border-right: 134px solid transparent;
+    border-top: 32px solid #cc0033;
+    border-bottom: 0;
+}
+.tapestry-logo {
+    display: block;
+    width: calc(100% - 2em);
+    margin: 0 auto;
+}
+.tapestry-title {
+    margin: 0;
+    width: 100%;
+    text-align: center;
+    color: #eee;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-family: Titillium Web;
+    text-shadow: 0px 0px 20px rgba(0, 0, 0, 0.33);
+    font-size: 32px;
+}

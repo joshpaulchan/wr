@@ -1,0 +1,195 @@
+/*
+ * MODALS
+ */
+.modal-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.3);
+    text-align: center;
+    opacity: 0;
+    transition: 0.5s display;
+}
+
+.modal {
+    display: inline-block;
+    position: relative;
+    top: 50vh;
+    transform: translateY(-50%);
+    text-align: initial;
+    width: 50%;
+    max-height: 80vh;
+    max-width: 50vw;
+}
+
+.modal-active {
+    opacity: 1;
+}
+
+.modal-card, .card-shadow {
+    padding: 0;
+    width: 100%;
+    background: white;
+    color: black;
+}
+
+/* LAYOUT */
+
+#modal .card-body {
+    padding: 0;
+    height: 475px;
+    white-space: normal;
+    background-color: whitesmoke;
+}
+
+#modal .card-body * {
+    margin: 0;
+}
+
+.menu-bar, .menu-options {
+    box-sizing: border-box;
+    display: inline-block;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.menu-bar {
+    width: 25%;
+    background-color: #CC0033;
+}
+
+.menu-options {
+    width: calc(100% - 25.6%);
+}
+
+/*MENU LIST*/
+#modal .menu-list {
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+#modal .modal-menu-item {
+    display: block;
+    height: 50px;
+    padding-left: 1em;
+    margin-top: 1em;
+    cursor: pointer;
+    transition: 0.1s background-color, 0.3s height;
+    overflow: hidden;
+}
+
+#modal .option-header {
+    color: white;
+    font-size: 13.333px;
+    line-height: 50px;
+    font-weight: 600;
+    font-family: Open Sans;
+    text-transform: uppercase;
+    text-overflow: clip;
+    transition: 0.3s display, 0.3s color;
+}
+
+#modal .modal-menu-item:hover {
+    background-color: #B8002E;
+}
+
+#modal .bar-icon {
+    width: 0;
+    transition: 0.3s width;
+}
+#modal .modal-menu-item.active {
+    background-color: #AF002C;
+}
+
+#modal .config-data {
+    font-family: Myriad Pro;
+    font-size: 17px;
+    text-align: right;
+    font-style: oblique;
+}
+
+/*MENU OPTIONS*/
+
+#modal .menu-options {
+    font-size: 14px;
+}
+
+#modal .config-title {
+    font-size: 27px;
+    padding-left: 11px;
+    margin: 8px 0 15px 0;
+    font-family: Myriad Pro Light;
+}
+
+#modal .child {
+    color: inherit;
+    list-style: none;
+    width: 107%;
+    margin: 0 0 0 -59px;
+}
+
+#modal .child li {
+    background-color: transparent !important;
+    height: 20px;
+    padding: 2px 19px 10px !important;
+}
+
+#modal .data-input {
+    width: 88%;
+    height: 30px;
+    padding: 0;
+    margin: 0;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border: 1px solid #CCC;
+    text-indent: 5px;
+}
+
+#modal .option-config-list {
+    list-style: none;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    font-family: Lucida Sans Unicode;
+    font-size: 13.5px;
+    color: #4A4A4A;
+}
+
+#modal .option-config-list li {
+    padding: 9px 19px;
+    margin: 0;
+}
+
+#modal .option-config-list li:nth-child(odd) {
+    background-color: #ECECEC;
+    padding: 9px 19px;
+}
+
+#modal .option-config-list li:hover {
+    background-color: #DEDEDE;
+    transition: .2s;
+}
+
+@media (max-width: 1200px) {
+    #modal .menu-bar {
+        width: 20%;
+    }
+
+    #modal .modal-menu-item {
+        padding: 10px 13px;
+    }
+
+    #modal .option-header {
+        display: none;
+    }
+
+    #modal .bar-icon {
+        width: 48px;
+        margin: 0;
+    }
+
+}

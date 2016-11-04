@@ -1,0 +1,14 @@
+### Angular ### 
+
+logs/*
+!.gitkeep
+node_modules/
+tmp
+.DS_Store
+.ide
+
+### Bower ###
+bower_components
+.bower-cache
+.bower-registry
+.bower-tmp
