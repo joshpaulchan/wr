@@ -1,0 +1,41 @@
+<div class="list-pane">
+    <div class="list-header">
+        <form class="search-bar" ng-submit="searchConvos()">
+            <i class="fa fa-search fa-2x" aria-hidden="true"></i>
+            <input type="search" placeholder="Search for messages..." ng-model="query" />
+        </form>
+        <div class="list-actions">
+            <select ng-model="curFilter">
+              <option
+              ng-repeat="option in Object.keys(filters)"
+              value="{{filters[option]}}"
+              >{{option}}</option>
+            </select>
+            <div class="button-group">
+                <button
+                class="button-clear"
+                ng-click="openMarkModal()"
+                ng-disabled="disableListButtons()">MARK AS</button>
+                <button
+                class="button-clear"
+                ng-click="openMarkModal()"
+                ng-disabled="disableListButtons()">MOVE TO</button>
+            </div>
+        </div>
+    </div>
+    <ul class="list-items">
+        <li
+        ng-repeat="convo in convos | filter:byStatus track by convo.id"
+        class="list-item"
+        ng-class="{'unread' : convo.status.unread, 'unreplied': convo.status.unreplied, 'selected': convo.is_selected}"
+        ng-click="viewConvo(convo.id)"
+        ng-selected>
+            <label>
+              <input type="checkbox" value="i" ng-click="toggleSelect()"/>
+            </label>
+            <span class="email">{{convo.emailFrom}}</span>
+            <span class="title">{{convo.subject}}</span>
+            <span class="date">{{convo.createdAt}}</span>
+        </li>
+    </ul>
+</div>
