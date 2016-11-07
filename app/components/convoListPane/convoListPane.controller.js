@@ -23,14 +23,41 @@
 // @attr    : selectedConvos    : String[]          : the ids of currently
 // selected conversation objects
 //
-
-// FIXME: `loadConversations(pg)`
-// Loads the conversations from the server using the conersation service.
-
-// FIXME: `byStatus(convo)`
-// Works with `ng-repeat | filter` to filter the shown conversations in the
-// list.
-
+// @method: loadConversations(pg)               : Loads the conversations from
+// the server using the conersation service.
+// @method: searchConvos()                      : Loads the conversations from
+// the server using the conersation service.
+// @method: loadNextPage()                      : Load the next page of
+// conversation items (either during regular browsing or search).
+// @method: byStatus(convo)                     : Works with `ng-repeat |
+// filter` to filter the shown conversations in the list.
+// @method: toggleSelect(convoId)               : Selects (or de-selects) an
+// item depending on whether it is currently being selected.
+// @method: selectAll()                         : Selects all the current
+// conversations in scope.
+// @method: deselectAll()                       : De-Selects all the
+// conversations currently selected.
+// @method: listButtonsDisabled()               : Checks whether the
+// conversation list items shoudl be disabled or not.
+// @method: openMarkModal()                     : Opens the 'Mark As' modal for
+// marking a conversation/several conversations as a certain status (i.e. read,
+// replied).
+// @method: closeMarkModal()                    : Closes the 'Mark As' modal for
+// marking a conversation/several conversations as a certain status (i.e. read,
+// replied).
+// @method: markConvos(convoIds, status)        : Uses the conversation list
+// service to mark the given conversations (convoIds) with the given status
+// (i.e. read/unread, unreplied/replied).
+// @method: openMoveModal()                     : Opens the 'Move To' modal for
+// selecting a folder (i.e inbox, trash, etc.) to move a conversation/several
+// conversations to.
+// @method: closeMoveModal()                    : Closes the 'Move To' modal for
+// selecting a folder (i.e inbox, trash, etc.) to move a conversation/several
+// conversations to.
+// @method: moveConvos(convoIds, dest)          : Uses the conversation list
+// service to move the given conversations to the specified destination folder.
+// @method: viewConvo(convoId)                  : Use stateProvider to show the
+// given conversation on screen
 angular.module('wrControllers')
 .controller('convoListPane', function($scope, $stateProvider, convoListService, notificationService) {
     $scope.query = "";
@@ -107,7 +134,7 @@ angular.module('wrControllers')
 
     // TODO: `loadNextPage()`
     // Load the next page of conversation items (either during regular browsing
-    // or search)
+    // or search).
     //
     // @pre     : the conversation list service must be initialized
     // @pre     : [success] Either a search through the conversations or a
@@ -152,7 +179,7 @@ angular.module('wrControllers')
         return flag;
     };
 
-    // SELECTING CONVERSATIONS
+    ///////////////////////// SELECTING CONVERSATIONS /////////////////////////
 
     // TODO: `toggleSelect(convoId)`
     // Selects (or de-selects) an item depending on whether it is currently
@@ -314,7 +341,7 @@ angular.module('wrControllers')
     ////////////////////////// VIEWING CONVERSATIONS ///////////////////////////
 
     // TODO: `viewConvo(convoId)`
-    // Use stateProvider to show the given conversation on screen
+    // Use stateProvider to show the given conversation on screen.
     //
     // @pre     : a valid conversation id must be given
     // @post    : [success] the conversation will be shown on screen via the
