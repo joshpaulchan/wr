@@ -3,8 +3,8 @@
 "use strict";
 
 // `convoListPane`
-// Controls the convo-list (conversation list pane) in displaying the
-// conversations and do bulk/singular book-keeping operations.
+// Controls the convo-list (conversation list pane), allowing for display of the
+// conversations and bulk/singular book-keeping operations upon conversations.
 //
 // @pre     : the user must be logged-in
 //
@@ -24,13 +24,15 @@
 // selected conversation objects
 //
 
-// @method  : loadConversations : null              : loads the conversations
-// from the server using the conersation service
+// FIXME: `loadConversations(pg)`
+// Loads the conversations from the server using the conersation service.
 
-// @method  : markAs            : null              : mark conversations as
+// FIXME: `byStatus(convo)`
+// Works with `ng-repeat | filter` to filter the shown conversations in the
+// list.
 
 angular.module('wrControllers')
-.controller('convoListPane', function($scope, $stateProvider, convoService, notificationService) {
+.controller('convoListPane', function($scope, $stateProvider, convoListService, notificationService) {
     $scope.query = "";
     $scope.isSearch = false;
     $scope.filters = {
@@ -45,20 +47,21 @@ angular.module('wrControllers')
     $scope.selectedConvos = [];
 
     // Load messages when initialized
-    $scope.$on(convoService.isReady, () => {
+    $scope.$on(convoListService.isReady, () => {
         $scope.$apply(() => {
             $scope.loadConversations($scope.curPage);
         });
     });
 
-    ////////////////// FILTERING AND SEARCHING CONVERSATIONS //////////////////
+    ///////////////////////// DISPLAYING CONVERSATIONS /////////////////////////
 
     // FIXME: `loadConversations(pg)`
     // Loads the conversations from the server using the conersation service.
     //
-    // @pre     : the conversation service must be initialized
-    // @pre     : pg must be a non-negative integer
-    // @post    : [success] the numItemsPerPage will saved to the service,
+    // @pre     : the conversation list service must be initialized
+    // @pre     : `pg` must be a non-negative integer
+    // @pre     : `numItemsPerPage` must be a positive integer
+    // @post    : [success] the `numItemsPerPage` will saved to the service,
     // allowing `loadNextPage` to be used instead
     // @post    : [success] the conversations will replace the current convos
     // @post    : [error] if no more items (pg > LAST_PAGE), do nothing
@@ -68,8 +71,8 @@ angular.module('wrControllers')
     // @param   : pg    : Number    : the page number of the converations to get
     // @return  : null
     $scope.loadConversations = (pg) => {
-        convoService
-            .loadConvos($scope.curPage, $scope.numItemsPerPage)
+        convoListService
+            .loadConvos(pg, $scope.numItemsPerPage)
             .then(
                 (conversations) => {
                     $scope.convos = conversations;
@@ -78,6 +81,50 @@ angular.module('wrControllers')
                     // TODO: notification service + error notification directive
                     console.error(err);
                 });
+    };
+
+    // TODO: `searchConvos()`
+    // Loads the conversations from the server using the conersation service.
+    //
+    // @pre     : the conversation list service must be initialized
+    // @pre     : `ev` must be a valid event object
+    // @pre     : `query` must be a non-empty String
+    // @pre     : `numItemsPerPage` must be a positive integer
+    // @post    : [success] the search results (if any) will replace the current
+    // items in the list
+    // @post    : [success] the `query` and`numItemsPerPage` will saved to the
+    // service, allowing `loadNextPage` to be used instead for the next few
+    // results
+    // @post    : [error] if other error, error will be sent to error service to
+    // display on page and log for analytics
+    //
+    // @param   : query : String    : the term(s) to search for in the conversations
+    // @param   : ev    : Event     : the event that triggered this function
+    // @return  : null
+    $scope.searchConvos = (query, ev) => {
+        // CODE IN HERE
+    };
+
+    // TODO: `loadNextPage()`
+    // Load the next page of conversation items (either during regular browsing
+    // or search)
+    //
+    // @pre     : the conversation list service must be initialized
+    // @pre     : [success] Either a search through the conversations or a
+    // conversation page load must have been completed previously (to save the
+    // default number of pages and current page in the conversation list
+    // service)
+    // @post    : [success] the next page of conversations will be appended to
+    // the current list of conversations
+    // @post    : [error] the current conversation list will not be mutated in
+    // any way
+    // @post    : [error] if other error, error will be sent to error service to
+    // display on page and log for analytics
+    //
+    // @param   : null
+    // @return  : null
+    $scope.loadNextPage = () => {
+        // CODE IN HERE
     };
 
     // FIXME: `byStatus(convo)`
@@ -105,24 +152,6 @@ angular.module('wrControllers')
         return flag;
     };
 
-    // FIXME: `loadConversations(pg)`
-    // Loads the conversations from the server using the conersation service.
-    //
-    // @pre     : the conversation service must be initialized
-    // @pre     : pg must be a non-negative integer
-    // @post    : [success] the numItemsPerPage will saved to the service,
-    // allowing `loadNextPage` to be used instead
-    // @post    : [success] the conversations will replace the current convos
-    // @post    : [error] if no more items (pg > LAST_PAGE), do nothing
-    // @post    : [error] if other error, error will be sent to error service to
-    // display on page and log for analytics
-    //
-    // @param   : pg    : Number    : the page number of the converations to get
-    // @return  : null
-    $scope.searchConvos = () => {
-
-    };
-
     // SELECTING CONVERSATIONS
 
     // TODO: `toggleSelect(convoId)`
@@ -138,7 +167,7 @@ angular.module('wrControllers')
     //
     // @param   : convoId   : the id of the conversation to select
     // @param   : ev        : event object that triggered this
-    // @return  :
+    // @return  : null
     $scope.toggleSelect = (convoId, ev) => {
         ev.stopPropagation();
         // CODE IN HERE
@@ -214,8 +243,8 @@ angular.module('wrControllers')
     };
 
     // TODO: `markConvos(convoIds, status)`
-    // Uses convoService to mark the given conversations (convoIds) with the
-    // given status (i.e. read/unread, unreplied/replied).
+    // Uses the conversation list service to mark the given conversations
+    // (convoIds) with the given status (i.e. read/unread, unreplied/replied).
     //
     // @pre     : `convoIds` must be an array of valid conversation ids
     // @pre     : `status` must be a valid string corresponding to a status a
@@ -262,8 +291,8 @@ angular.module('wrControllers')
     };
 
     // TODO: `moveConvos(convoIds, dest)`
-    // Uses convoService to move the given conversations to the specified
-    // destination folder.
+    // Uses the conversation list service to move the given conversations to the
+    // specified destination folder.
     //
     // @pre     : `convoIds` must be an array of valid conversation ids
     // @pre     : `dest` must be a valid string corresponding to a destination
