@@ -59,7 +59,7 @@
 // @method: viewConvo(convoId)                  : Use stateProvider to show the
 // given conversation on screen
 angular.module('wr.controllers')
-.controller('convoListPane', function($scope, $stateProvider, $convoListService) {
+.controller('convoListPane', function($scope, $state, $convoListService) {
     // .controller('convoListPane', function($scope, $stateProvider, $convoListService, $notificationService) {
     $scope.query = "";
     $scope.isSearch = false;

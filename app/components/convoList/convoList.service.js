@@ -4,7 +4,7 @@
 
 // `convoListService`
 //
-app.module('wr.services')
+angular.module('wr.services')
 .service('convoListService', function($http) {
 
 });
