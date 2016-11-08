@@ -8,19 +8,19 @@
 //
 // @pre     : the user must be logged-in
 //
-// @attr    : query             : String            : the search query
+// @attr    : query             : String            : the search query [default: '']
 // @attr    : isSearch          : Boolean           : whether a search is being
-// performed or not
+// performed or not [default: false]
 // @attr    : filters           : Object            : the list of conversation
 // filters
 // @attr    : curFilter         : String            : the current filter being
 // used [ default : the first defined filter in `filters` ]
 // @attr    : curPage           : Number            : the current page being
-// displayed up to in the conversation list
+// displayed up to in the conversation list [default: 0]
 // @attr    : numItemsPerPage   : Number            : the number of
-// conversations to display per page
-// @attr    : convos            : Conversation[]    : the conversation objects
-// @attr    : selectedConvos    : String[]          : the ids of currently
+// conversations to display per page [default: 25]
+// @attr    : convos            : Conversation[]    : the conversation objects [default: []]
+// @attr    : selectedConvos    : String[]          : the ids of currently [default: []]
 // selected conversation objects
 //
 // @method: loadConversations(pg)               : Loads the conversations from
