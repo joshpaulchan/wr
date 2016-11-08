@@ -1,0 +1,56 @@
+div.list-pane {
+/*   position: relative; */
+  width: 640px;
+  margin: 0 auto;
+  padding: 0 2px;
+/*   background: #c8c8c8; */
+
+  height: 100%;
+  overflow: hidden;
+}
+
+div.list-header {
+  margin: 0;
+  padding: 16px;
+  background: white;
+  overflow: hidden;
+}
+
+form.search-bar {
+  display: flex;
+}
+
+form.search-bar > i {
+  margin-right: 16px;
+}
+
+form.search-bar > input[type="search"]{
+  flex: 1;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  height: 32px;
+  line-height: 32px;
+}
+
+div.list-actions {
+  margin-top: 1em;
+  box-sizing: border-box;
+  position: relative;
+  height: 16px;
+  line-height: 16px;
+  width: 100%;
+}
+
+div.list-actions > *{
+  position: absolute;
+}
+
+div.list-actions > select {
+  left: 0;
+}
+
+div.list-actions > div.button-group {
+  right: 0;
+}
