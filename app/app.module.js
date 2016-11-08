@@ -1,40 +1,19 @@
+// Written by Joshua Paul A. Chan
 (function() {
-    "use strict";
+"use strict";
 
-    angular.module('wrApp', ['ngRoute', 'wrControllers', 'wrServices', 'wrDirectives'])
-        .config(['$routeProvider', function($routeProvider) {
-            $routeProvider.
-            when('/messages', {
-                templateUrl: 'partials/messages.html',
-                controller: 'MessageCtrl'
-            }).
-            when('/messages/:messageId', {
-                templateUrl: 'partials/messages.html',
-                controller: 'MessageCtrl'
-            }).
-            when('/login', {
-                templateUrl: 'partials/login.html',
-                controller: 'LoginCtrl'
-            }).
-            otherwise({
-                redirectTo: '/login'
-            });
-        }])
-        .run(['$route', '$rootScope', '$location', 'authService', function($route, $rootScope, $location, authService) {
-            // $rootScope.$on('$routeChangeStart', (event) => {
-            //     if (!authService.isLoggedIn()) { $location.path('/login', true); }
-            // });
+// Initialize app
+angular.module('wr', ['ui-router', 'wr.controllers', 'wr.services', 'wr.directives'])
+.config(function($urlRouterProvider) {
+    $urlRouterProvider.otherwise('/login');
 
-            // var original = $location.path;
-            // $location.path = function (path, reload) {
-            //     if (reload === false) {
-            //         var lastRoute = $route.current;
-            //         var un = $rootScope.$on('$locationChangeSuccess', function () {
-            //             $route.current = lastRoute;
-            //             un();
-            //         });
-            //     }
-            //     return original.apply($location, [path]);
-            // };
-        }]);
+})
+.run(['$rootScope', 'authService', function($rootScope, authService) {
+
+}]);
+
+// Initialize modules
+angular.module('wr.controllers', []);
+angular.module('wr.services', []);
+angular.module('wr.directives', []);
 }());
