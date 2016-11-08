@@ -1,0 +1,18 @@
+<div class='card login-card card-round card-shadow vertical-center'>
+	<div class='tapestry'>
+		<img class='tapestry-logo' src='img/logo.png' alt='Rutgers University' />
+		<h1 class='tapestry-title'>Web Response</h1>
+	</div>
+	<form class='card-form'>
+		<span class='error'>{{errorMsg}}</span>
+		<input type='text' placeholder='username' ng-model="username"/>
+		<input type='password' placeholder='password' ng-model="pw"/>
+		<button ng-click="logIn()">Login</button>
+	</form>
+	<div class='card-footer text-center'>
+		<a href='#'>Apply For Access</a>
+	</div>
+</div>
+<div class='body-footer'>
+	Unauthorized use prohibited.<br>&copy; 2015 Rutgers, The State University of New Jersey. All rights reserved.
+</div>

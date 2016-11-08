@@ -1,0 +1,36 @@
+<div id="modal" class="card modal-card card-shadow" ng-controller="OptionsCtrl">
+    <card-header>
+        <div class='title'>Options</div>
+    </card-header>
+    <card-body>
+        <div class="menu-bar">
+            <ul class="menu-list">
+                <li class="modal-menu-item" ng-repeat="option in optionItems track by $index" ng-class="{active: isSelected(option.panelNum)}" ng-click="selectPanel(option.panelNum)">
+                    <img class="bar-icon" ng-src="{{option.icon}}" /><span class="option-header">{{option.header}}</span>
+                </li>
+            </ul>
+        </div>
+        <div class="menu-options">
+            <div class="menu-options-item" ng-repeat="option in optionItems" ng-show="isSelected(option.panelNum)">
+                <h2 class="config-title">{{option.header}}</h2>
+                <ul class="option-config-list">
+                    <li class="option-config-item" ng-repeat="config in option.config" ng-click="setChildActive(config)">
+                        {{config.title}}
+                        <span class="config-data">{{config.data}}</span>
+                        <ul class="child" ng-show="config.isActive">
+                            <li class="child-item" ng-click="setChildActive(config)">
+                                <input class="data-input" placeholder="{{config.setting}}" />
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </card-body>
+    <card-footer>
+        <div class="button-group float-right">
+            <button class="card-button">Cancel</button>
+            <button class="card-button">Save</button>
+        </div>
+    </card-footer>
+</div>

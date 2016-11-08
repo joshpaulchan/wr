@@ -1,0 +1,222 @@
+<div id='layout' class='content pure-g'>
+	<!-- HEADER -->
+	<div id='header' class='pure-u-1-1'>
+		<div class='pure-menu pure-menu-horizontal'>
+			<div class='pure-menu-heading'>
+				<img class='heading-logo' src='img/logo.png' />
+				<h1 class='title'>Web Response</h1>
+			</div>
+		</div>
+	</div>
+
+	<!-- NAVIGATION -->
+	<div id='nav' class='pure-u-1-1' ng-controller="MessageNavBarCtrl">
+		<div class='pure-g'>
+			<div class='pure-u-1-1'>
+				<div class='nav-inner-top'>
+					<div class='pure-g'>
+						<div class='pure-u-1-2'>
+							<ul class='pure-menu pure-menu-horizontal'>
+								<li class='pure-menu-item'>
+									<a href='#' class='pure-menu-link pure-menu-selected'>
+										Folders
+									</a>
+								</li>
+								<li class='pure-menu-item'>
+									<a href='#' class='pure-menu-link'>
+										Categories
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class='pure-u-1-2'>
+							<ul class='pure-menu pure-menu-horizontal admin-controls'>
+								<li class='pure-menu-item'>
+									<a class='pure-menu-link' ng-click="showOptionsModal()">
+										Options
+									</a>
+								</li>
+								<li class='pure-menu-item'>
+									<a class='pure-menu-link' ng-click="logOut()">
+										Logout
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class='nav-inner-bottom'>
+					<ul class='pure-menu pure-menu-horizontal'>
+						<li class='pure-menu-item'>
+							<div ng-click="setFolder('inbox')" class='pure-menu-link'>
+								Inbox
+							</div>
+						</li>
+						<li class='pure-menu-item'>
+							<div ng-click="setFolder('spam')" class='pure-menu-link'>
+								Spam
+							</div>
+						</li>
+						<li class='pure-menu-item'>
+							<div ng-click="setFolder('trash')" class='pure-menu-link'>
+								Trash
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- MESSAGE LISTING -->
+	<div id='list' ng-controller="MessageListCtrl" class='pure-u-12-24'>
+		<div class='message-list-controls'>
+			<div class='search-bar'>
+				<form class='search-container'>
+					<input ng-model="query" type="search" class='search-input' placeholder="Search messages..." />
+					<span class='fa fa-search search-icon'></span>
+				</form>
+			</div>
+			<div class='pure-menu pure-menu-horizontal'>
+				<ul class='pure-menu-list'>
+					<li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
+						<div class="pure-menu-link">
+							Filter
+						</div>
+						<ul class="pure-menu-children">
+							<li class="pure-menu-item" ng-click="setListFilter('All')">
+								<div class="pure-menu-link">All</div>
+							</li>
+							<li class="pure-menu-item" ng-click="setListFilter('Read')" >
+								<div href="#" class="pure-menu-link">Read</div>
+							</li>
+							<li class="pure-menu-item" ng-click="setListFilter('Unread')" >
+								<div href="#" class="pure-menu-link">Unread</div>
+							</li>
+							<li class="pure-menu-item" ng-click="setListFilter('Unreplied')">
+								<div href="#" class="pure-menu-link">Unreplied</div>
+							</li>
+						</ul>
+					</li>
+					<li class="pure-menu-item pure-menu-disabled" ng-show="disableDropdown()">Action &nbsp▾</li>
+					<li class="pure-menu-item pure-menu-disabled" ng-show="disableDropdown()">Mark &nbsp▾</li>
+					<li class="pure-menu-item pure-menu-disabled" ng-show="disableDropdown()">Move To &nbsp▾</li>
+					<li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover" ng-show="!disableDropdown()">
+						<div class="pure-menu-link">
+							Action
+						</div>
+						<ul class="pure-menu-children">
+							<li class="pure-menu-item">
+								<div class="pure-menu-link">Reply</div>
+							</li>
+							<li class="pure-menu-item">
+								<div href="#" class="pure-menu-link">Forward</div>
+							</li>
+						</ul>
+					</li>
+					<li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover" ng-show="!disableDropdown()">
+						<div class="pure-menu-link">
+							Mark
+						</div>
+						<ul class="pure-menu-children">
+							<li class="pure-menu-item" ng-click="setMessagesUnread(false)">
+								<div class="pure-menu-link">Read</div>
+							</li>
+							<li class="pure-menu-item" ng-click="setMessagesUnread(true)" >
+								<div href="#" class="pure-menu-link">Unread</div>
+							</li>
+						</ul>
+					</li>
+					<li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover" ng-show="!disableDropdown()">
+						<div class="pure-menu-link">
+							Move To
+						</div>
+						<ul class="pure-menu-children">
+							<li class="pure-menu-item" ng-click="moveMessageTo(message, 'spam')" >
+								<div href="#" class="pure-menu-link">Spam</div>
+							</li>
+							<li class="pure-menu-item" ng-click="moveMessageTo(message, 'trash')" >
+								<div href="#" class="pure-menu-link">Trash</div>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class='message-list'>
+
+			<div class='message-item pure-g'
+				ng-repeat="msg in messages | filter:statusFilter"
+				ng-class="{'message-item-unread': msg.status.unread, 'message-item-selected': msg.status.selected, 'message-item-open': msg.status.open}"
+				ng-click="viewMessage(msg)">
+				<div class='pure-u-1-24'>
+					<input type='checkbox' class='select' ng-model="msg.status.selected" />
+				</div>
+				<div class='pure-u-9-24'>
+					<h5 class='message-email'>{{msg.createdBy}}</h5>
+				</div>
+				<div class='pure-u-10-24'>
+					<h5 class='message-subject'>{{msg.subject}}</h5>
+				</div>
+				<div class='pure-u-4-24'>
+					<h5 class='message-date'>{{msg.createdAt | date:'mediumDate'}}</h5>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+	<!-- MESSAGE CONTENT -->
+	<div id='main' ng-controller="MessageViewCtrl" class='pure-u-12-24'>
+	<div ng-show="(curMessage != null)" class='convo-content'>
+		<div class='header'>
+			<h1 class="title">{{curMessage.subject}}</h1>
+			<span class="meta-info">
+				created on <span class="time">{{curMessage.createdAt | date:'medium'}}</span>
+			</span>
+			<div class="technical-info">
+				<ul>
+					<li>Browser:</li>
+					<li>something:</li>
+				</ul>
+			</div>
+		</div>
+		<div class='list'>
+			<div ng-repeat="resp in curMessage.thread">
+				<convo-card>
+					<card-header>
+						from <span class="title">{{resp.sentBy}}</span>
+						<span class="note">{{resp.createdAt | date:"mediumDate"}}</span>
+					</card-header>
+					<card-header>
+						to <span class="title">{{resp.sentTo}}</span>
+					</card-header>
+					<card-body>{{resp.content}}</card-body>
+					<card-footer>
+						<div class="button-group float-right">
+							<button class="card-button" ng-click="forward(resp)">Forward</button>
+						</div>
+					</card-footer>
+				</convo-card>
+				<convo-card ng-if="$last">
+					<div>
+						<card-header-input label="to" ng-model="replyForm.targetStr"></card-header-input>
+						<!-- <ol class="search-results">
+							<li ng-repeat="s in replyForm.targetSuggestions" ng-click="chooseSuggestion(s)">{{s.username}}</li>
+						</ol> -->
+						<!-- <card-header-input label="CC" ng-model="replyForm.targetStr"></card-header-input> -->
+					</div>
+					<card-body-input v-resizeable="true" ng-model="replyForm.content"></card-body-input>
+					<card-footer>
+						<div class="button-group float-right">
+							<button class="card-button" ng-click="reply(curMessage)">Send</button>
+						</div>
+					</card-footer>
+				</convo-card>
+			</div>
+		</div>
+	</div>
+	<modal show="showOptions" template-url="partials/options.html" to-hide="hideOptionsModal"></modal>
+</div>
