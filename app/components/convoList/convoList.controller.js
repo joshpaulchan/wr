@@ -83,7 +83,7 @@ angular.module('wr.controllers')
 
     ///////////////////////// DISPLAYING CONVERSATIONS /////////////////////////
 
-    // FIXME: `loadConversations(pg)`
+    // `loadConversations(pg)`
     // Loads the conversations from the server using the conersation service.
     //
     // @pre     : the conversation list service must be initialized
@@ -106,8 +106,12 @@ angular.module('wr.controllers')
                     $scope.convos = conversations;
                 },
                 (err) => {
-                    // TODO: notification service + error notification directive
                     console.error(err);
+                    // FIXME: uncomment when notification service is implemented
+                    // $notificationService.notify({
+                    //     type: "error",
+                    //     text: "There was an error loading the conversations from the server."
+                    // });
                 });
     };
 
@@ -182,7 +186,7 @@ angular.module('wr.controllers')
 
     ///////////////////////// SELECTING CONVERSATIONS /////////////////////////
 
-    // TODO: `toggleSelect(convoId)`
+    // `toggleSelect(convoId)`
     // Selects (or de-selects) an item depending on whether it is currently
     // being selected.
     //
@@ -197,12 +201,24 @@ angular.module('wr.controllers')
     // @param   : ev        : event object that triggered this
     // @return  : null
     $scope.toggleSelect = (convoId, ev) => {
+        // prevent other event handlers on item from activating
         ev.stopPropagation();
-        // CODE IN HERE
         // FIXME: how to save selected convos between conversation view?
+        // A: possibly save them in the convoListService - that should persist
+        var pos = -1;
+        for (var i = 0; i < $scope.selectedConvos.length; i++) {
+            if ($scope.selectedConvos[i] === convoId) { pos = i; break; }
+        }
+        if (pos === -1) {
+            // add it if doesn't exist
+            return $scope.selectedConvos.push(convoId);
+        } else {
+            // remove it if it exists
+            $scope.selectedConvos.splice(pos, 1);
+        }
     };
 
-    // TODO: `selectAll()`
+    // `selectAll()`
     // Selects all the current conversations in scope.
     //
     // @pre     : null
@@ -211,10 +227,10 @@ angular.module('wr.controllers')
     // @param   : null
     // @return  : null
     $scope.selectAll = () => {
-        // CODE IN HERE
+        $scope.selectedConvos = $scope.convos;
     };
 
-    // TODO: `deselectAll()`
+    // `deselectAll()`
     // De-Selects all the conversations currently selected.
     //
     // @pre     : null
@@ -223,14 +239,14 @@ angular.module('wr.controllers')
     // @param   : null
     // @return  : null
     $scope.deselectAll = () => {
-        // CODE IN HERE
+        $scope.selectedConvos = [];
     };
 
-    // TODO: `listButtonsDisabled()`
-    // Checks whether the conversation list items shoudl be disabled or not.
+    // `listButtonsDisabled()`
+    // Checks whether the conversation list items should be disabled or not.
     //
     // @pre     : null
-    // @post    : to be true, at least one conversation should be view or
+    // @post    : to be true, at least one conversation should be in view or
     // selected
     // @post    : to be false, not a single conversation must be "open" or
     // selected
@@ -238,7 +254,7 @@ angular.module('wr.controllers')
     // @param   : null
     // @return  : Boolean   : whether the list buttons should be active or not
     $scope.enableListButtons = () => {
-        // CODE IN HERE
+        return ($scope.selectedConvos.length > 0);
     };
 
     ////////////////////////// MARKING CONVERSATIONS //////////////////////////
@@ -270,7 +286,7 @@ angular.module('wr.controllers')
         // CODE IN HERE
     };
 
-    // TODO: `markConvos(convoIds, status)`
+    // `markConvos(convoIds, status)`
     // Uses the conversation list service to mark the given conversations
     // (convoIds) with the given status (i.e. read/unread, unreplied/replied).
     //
@@ -287,7 +303,24 @@ angular.module('wr.controllers')
     // conversation(s) to
     // @return  : null
     var markConvos = (convoIds, status) => {
-        // CODE IN HERE
+        $convoListService
+            .updateConversations(convoIds, { status : status })
+            .then((data) => {
+                // update view
+                $scope.convos = $scope.convos.map((convo) => {
+                    if ($scope.selectedConvos.indexOf(convo.id) !== -1) {
+                        convo.status = status;
+                    }
+                });
+            }, (err) => {
+                // log error and
+                console.error(err);
+                // FIXME: uncomment this when notificaiton service is implemented
+                // $notificationService.notify({
+                //     type: "error",
+                //     text: `There was an error marking the conversation(s) as ${status}`
+                // });
+            });
     };
 
     /////////////////////////// MOVING CONVERSATIONS ///////////////////////////
@@ -318,7 +351,7 @@ angular.module('wr.controllers')
         // CODE IN HERE
     };
 
-    // TODO: `moveConvos(convoIds, dest)`
+    // `moveConvos(convoIds, dest)`
     // Uses the conversation list service to move the given conversations to the
     // specified destination folder.
     //
@@ -336,17 +369,35 @@ angular.module('wr.controllers')
     // conversations(s) to
     // @return  : null
     var moveConvos = (convoIds, dest) => {
-        // CODE IN HERE
+        $convoListService
+            .updateConversations(convoIds, { location : dest })
+            .then((data) => {
+                // update view
+                $scope.convos = $scope.convos.map((convo) => {
+                    if ($scope.selectedConvos.indexOf(convo.id) !== -1) {
+                        convo.location = dest;
+                    }
+                });
+            }, (err) => {
+                // log error and
+                console.error(err);
+                // FIXME: uncomment this when notificaiton service is implemented
+                // $notificationService.notify({
+                //     type: "error",
+                //     text: `There was an error moving the conversation(s) to ${dest}`
+                // });
+            });
     };
 
     ////////////////////////// VIEWING CONVERSATIONS ///////////////////////////
 
-    // TODO: `viewConvo(convoId)`
+    // `viewConvo(convoId)`
     // Use stateProvider to show the given conversation on screen.
     //
     // @pre     : a valid conversation id must be given
     // @post    : [success] the conversation will be shown on screen via the
     // convoPane
+    // @post    : [success] the conversation will be 'selected'
     // @post    : [error] the currently viewed conversation will not change (if
     // any)
     // @post    : [error] an error notification will be logged and shown to the
@@ -355,6 +406,10 @@ angular.module('wr.controllers')
     // @param   : convoId   : String    : the id of the conversation to view
     // @return  : null
     $scope.viewConvo = (convoId) => {
+        // add to selected convos
+        $scope.selectedConvos.push(convoId);
+        // navigate to view
+        $state.go('app.conversation', { convoId : convoId });
     };
 });
 }());
