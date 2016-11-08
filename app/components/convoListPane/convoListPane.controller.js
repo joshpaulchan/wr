@@ -2,7 +2,7 @@
 (function() {
 "use strict";
 
-// `convoListPane`
+// `convoList`
 // Controls the convo-list (conversation list pane), allowing for display of the
 // conversations and bulk/singular book-keeping operations upon conversations.
 //
@@ -58,8 +58,9 @@
 // service to move the given conversations to the specified destination folder.
 // @method: viewConvo(convoId)                  : Use stateProvider to show the
 // given conversation on screen
-angular.module('wrControllers')
-.controller('convoListPane', function($scope, $stateProvider, convoListService, notificationService) {
+angular.module('wr.controllers')
+.controller('convoListPane', function($scope, $stateProvider, $convoListService) {
+    // .controller('convoListPane', function($scope, $stateProvider, $convoListService, $notificationService) {
     $scope.query = "";
     $scope.isSearch = false;
     $scope.filters = {
@@ -74,7 +75,7 @@ angular.module('wrControllers')
     $scope.selectedConvos = [];
 
     // Load messages when initialized
-    $scope.$on(convoListService.isReady, () => {
+    $scope.$on($convoListService.isReady, () => {
         $scope.$apply(() => {
             $scope.loadConversations($scope.curPage);
         });
@@ -98,7 +99,7 @@ angular.module('wrControllers')
     // @param   : pg    : Number    : the page number of the converations to get
     // @return  : null
     $scope.loadConversations = (pg) => {
-        convoListService
+        $convoListService
             .loadConvos(pg, $scope.numItemsPerPage)
             .then(
                 (conversations) => {
