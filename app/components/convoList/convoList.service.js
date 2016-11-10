@@ -2,10 +2,10 @@
 (function() {
 "use strict";
 
-// `convoListService`
+// `$convoListService`
 //
 angular.module('wr.services')
-.service('convoListService', function($http) {
+.service('$convoListService', function($http) {
 
 });
 }());
