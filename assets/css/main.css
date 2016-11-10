@@ -95,14 +95,6 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
-html {
-	background-color: #cc0033;
-}
-
-body {
-    color: #333;
-}
-
 a {
     text-decoration: none;
     color: #1b98f8;
