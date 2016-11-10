@@ -4,15 +4,26 @@
 
 // Initialize app
 angular.module('wr', ['ui.router', 'wr.controllers', 'wr.services', 'wr.directives'])
-.config(function($locationProvider, $stateProvider) {
-    $locationProvider.html5Mode(true);
+.config(function($locationProvider, $stateProvider, $urlMatcherFactoryProvider) {
+    // FIXME: $locationProvider.html5Mode(true);
+
+    // make trailing slashes optional
+    $urlMatcherFactoryProvider.strictMode(false);
 
     $stateProvider
-        .state('app', { url: "/", abstract: true })
-        .state('app.conversations', {
-            url: "",
-            templateUrl: "app/templates/conversations.html",
-            controller: "convoListController"
+        .state('conversations', {
+            url: "/conversations",
+            templateUrl: "client/app/templates/conversations.html",
+            deepStateRedirect: true
+        })
+        .state('conversations.conversation', {
+            url: "/{convoId}",
+            views: {
+                convo: {
+                    templateUrl: "client/app/components/convo/convo.view.html",
+                    controller: "convo"
+                }
+            }
         });
 });
 
