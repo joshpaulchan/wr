@@ -2,7 +2,7 @@
 (function() {
 "use strict";
 
-// `convoList`
+// `convoList` CONTROLLER
 // Controls the convo-list (conversation list pane), allowing for display of the
 // conversations and bulk/singular book-keeping operations upon conversations.
 //
@@ -169,16 +169,13 @@ angular.module('wr.controllers')
     // @param   : convo     : Conversation  : the conversation item to judge
     // @return  : Boolean   : whether or not `convo` should be shown
     $scope.byStatus = (convo) => {
-        var flag = true;
-        switch ($scope.show) {
-            case "Unread":
-                flag = convo.status.unread;
-                break;
-            case "unreplied":
-                flag = !convo.status.repliedTo;
-                break;
-            case "All":
-                break;
+        switch ($scope.curFilter) {
+            case $scope.filters.Unread:
+                return convo.status.unread;
+            case  $scope.filters.Unreplied:
+                return !convo.status.repliedTo;
+            case $scope.filters.All:
+                return true;
         }
         return flag;
     };
@@ -208,12 +205,10 @@ angular.module('wr.controllers')
         for (var i = 0; i < $scope.selectedConvos.length; i++) {
             if ($scope.selectedConvos[i] === convoId) { pos = i; break; }
         }
-        if (pos === -1) {
-            // add it if doesn't exist
-            return $scope.selectedConvos.push(convoId);
-        } else {
-            // remove it if it exists
-            $scope.selectedConvos.splice(pos, 1);
+        if (pos === -1) {   // add it if doesn't exist
+            $scope.selectedConvos.push(convoId);
+        } else {            // remove it if it does
+            $scope.selectedConvos = $scope.selectedConvos.splice(pos, 1);
         }
     };
 
@@ -408,7 +403,7 @@ angular.module('wr.controllers')
         // add to selected convos
         $scope.selectedConvos.push(convoId);
         // navigate to view
-        $state.go('app.conversation', { convoId : convoId });
+        // $state.go('convos.convo', { convoId : convoId });
     };
 });
 }());
