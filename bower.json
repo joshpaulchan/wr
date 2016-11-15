@@ -8,7 +8,11 @@
   "dependencies": {
     "angular-ui-router": "^0.3.2",
     "overpass": "*",
-    "font-awesome": "^4.7.0"
+    "font-awesome": "^4.7.0",
+    "angular-mocks": "^1.5.8"
+  },
+  "devDependencies": {
+    "angular-mocks": "latest"
   },
   "resolutions": {
     "angular": "^1.5.8"

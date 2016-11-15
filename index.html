@@ -8,9 +8,10 @@
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 
     <!-- external libs -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" rel="stylesheet" type="text/css" />
-    <link href="http://overpass-30e2.kxcdn.com/overpass.css" rel="stylesheet" type="text/css"/>
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <!-- <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" rel="stylesheet" type="text/css" /> -->
+    <link href="assets/bower_components/font-roboto/dist/styles/roboto.min.css" rel="stylesheet" type="text/css" media="none" onload="this.media='all';"/>
+    <link href="assets/bower_components/overpass/Webfonts/recommended.css" rel="stylesheet" type="text/css" media="none" onload="this.media='all';"/>
+    <link href="assets/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" media="none" onload="this.media='all';"/>
 
     <script src="assets/bower_components/angular/angular.js"></script>
     <script src="assets/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
@@ -37,10 +38,10 @@
     <script src="app/shared/modal/modal.directive.js"></script>
 
     <!-- header -->
-    <!-- <script src="app/shared/header/header.controller.js"></script> -->
+    <script src="app/shared/header/header.directive.js"></script>
 
     <!-- footer -->
-    <!-- <script src="app/shared/footer/footer.directive.js"></script> -->
+    <script src="app/shared/footer/footer.directive.js"></script>
 
     <!-- convo-list-item -->
     <!-- <script src="app/shared/convo-list-item/convo-list-item.directive.js"></script> -->
@@ -60,16 +61,18 @@
     <!-- convo-list-pane -->
     <script src="app/components/convoList/convoList.service.js"></script>
     <script src="app/components/convoList/convoList.controller.js"></script>
+    <script src="app/components/convoList/convoList.component.js"></script>
 
     <!-- convo-pane -->
     <!-- <script src="app/components/convo/convo.service.js"></script> -->
-    <!-- <script src="app/components/convo/convo.controller.js"></script> -->
+    <script src="app/components/convo/convo.controller.js"></script>
+    <script src="app/components/convo/convo.component.js"></script>
 
-    <base href="/">
+    <base href="/client">
 </head>
 
-<body>
-    <div class="app" ng-app="wr"></div>
+<body ng-app="wr">
+    <div ui-view class="app"></div>
 </body>
 
 </html>
