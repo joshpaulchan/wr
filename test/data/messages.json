@@ -1,0 +1,194 @@
+[
+    {
+        "id": 0,
+		"subject": "Aerospace Engineering",
+		"createdAt": "Jan 5, 2016",
+        "createdBy": "khushbudarji@rocketmail.com",
+		"folder": "inbox",
+		"status": {
+			"selected": false,
+			"unread" : false,
+			"repliedTo": true
+		},
+        "thread": [
+            {
+                "email": "khushbudarji@rocketmail.com",
+                "createdAt": "Jan 5, 2016",
+                "content": "Hello ,\r\nI want to get some information about course at your university .\r\n\r\nI'm from India and studying last semester of master degree in communication and system.\r\nSo , can I apply there for aerospace engineering course\r\nAnd can you please guide me some about it .\r\nI hope you will reply positively\r\n\r\nThank you\r\nGave a nice day\r\n\r\n"
+            },
+            {
+                "email": "person@example.com",
+                "createdAt": "later on 13 AM",
+                "content": "Ah,\r\nyes."
+            }
+        ]
+    },
+    {
+        "id": 1,
+		"subject": "tax document for 2015",
+		"createdAt": "Jan 2, 2016",
+        "createdBy": "shirleydale658@yahoo.com",
+		"folder": "inbox",
+		"status": {
+			"selected": false,
+			"unread" : false,
+			"repliedTo": true
+		},
+        "thread": [
+            {
+        		"email": "shirleydale658@yahoo.com",
+                "createdAt": "Jan 2, 2016",
+        		"content": "Hello, World!"
+            },
+            {
+                "email": "person@example.com",
+                "createdAt": "later on 13 AM",
+                "content": "Ah"
+            },
+            {
+                "email": "person@example.com",
+                "createdAt": "later on 13 AM",
+                "content": "yes."
+            }
+        ]
+    },
+    {
+        "id": 2,
+		"subject": "E-mail fraud and spam",
+		"createdAt": "Dec 30, 2015",
+        "createdBy": "ken.nielson@gmail.com",
+		"folder": "inbox",
+		"status": {
+			"selected": false,
+			"unread" : true,
+			"repliedTo": true
+		},
+        "thread": [
+            {
+        		"email": "ken.nielson@gmail.com",
+                "createdAt": "Dec 30, 2015",
+        		"content": "Hello, World!"
+            }
+        ]
+    },
+    {
+        "id": 3,
+		"subject": "Technical Issue",
+		"createdAt": "Dec 25, 2015",
+        "createdBy": "ZhouJy_seu0622@163.com",
+		"folder": "inbox",
+		"status": {
+			"selected": false,
+			"unread" : true,
+			"repliedTo": true
+		},
+        "thread": [
+            {
+        		"email": "ZhouJy_seu0622@163.com",
+                "createdAt": "Dec 25, 2015",
+        		"content": "Hello, World!"
+            },
+            {
+                "email": "person@example.com",
+                "createdAt": "later on 13 AM",
+                "content": "Ah,\r\nyes."
+            }
+        ]
+    },
+    {
+        "id": 4,
+		"subject": "Link that seems to be to the wrong place",
+		"createdAt": "Dec 17, 2015",
+        "createdBy": "szatrows@rci.rutgers.edu",
+		"folder": "inbox",
+		"status": {
+			"selected": false,
+			"unread" : false,
+			"repliedTo": true
+		},
+        "thread": [
+            {
+        		"email": "szatrows@rci.rutgers.edu",
+                "createdAt": "Dec 17, 2015",
+        		"content": "Hello, World!"
+            },
+            {
+                "email": "person@example.com",
+                "createdAt": "later on 13 AM",
+                "content": "Ah,\r\nyes."
+            }
+        ]
+    },
+    {
+        "id": 5,
+		"subject": "outdated contact information",
+		"createdAt": "Dec 16, 2015",
+        "createdBy": "bbuckley@eohsi.rutgers.edu",
+		"folder": "inbox",
+		"status": {
+			"selected": false,
+			"unread" : false,
+			"repliedTo": true
+		},
+        "thread": [
+            {
+        		"email": "bbuckley@eohsi.rutgers.edu",
+                "createdAt": "Dec 16, 2015",
+        		"content": "Hello, World!"
+            },
+            {
+                "email": "person@example.com",
+                "createdAt": "later on 13 AM",
+                "content": "Ah,\r\nyes."
+            }
+        ]
+    },
+    {
+        "id": 6,
+		"subject": "Small issue with Rutgers site in IE",
+		"createdAt": "Dec 11, 2015",
+        "createdBy": "anna.witek@rutgers.edu",
+		"folder": "inbox",
+		"status": {
+			"selected": false,
+			"unread" : false,
+			"repliedTo": true
+		},
+        "thread": [
+            {
+                "email": "anna.witek@rutgers.edu",
+                "createdAt": "Dec 11, 2015",
+        		"content": "Hello, World!"
+            },
+            {
+                "email": "person@example.com",
+                "createdAt": "later on 13 AM",
+                "content": "Ah,\r\nyes."
+            }
+        ]
+    },
+    {
+        "id": 7,
+		"subject": "New Online Travel Order Form Issues",
+		"createdAt": "Dec 10, 2015",
+        "createdBy": "anna.sandberg@rutgers.edu",
+		"folder": "inbox",
+		"status": {
+			"selected": false,
+			"unread" : false,
+			"repliedTo": true
+		},
+        "thread": [
+            {
+        		"email": "anna.sandberg@rutgers.edu",
+        		"createdAt": "Dec 10, 2015",
+        		"content": "Hello, World!"
+            },
+            {
+                "email": "person@example.com",
+                "createdAt": "later on 13 AM",
+                "content": "Ah,\r\nyes."
+            }
+        ]
+    }
+]

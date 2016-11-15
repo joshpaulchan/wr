@@ -1,0 +1,51 @@
+[
+    {
+        "id": 0,
+        "username": "admin",
+        "email": "admin@rutgers.edu",
+        "password": "admin",
+        "name": "Administration"
+    },
+    {
+        "id": 1,
+        "username": "EBurris",
+        "email": "eburris@rutgers.edu",
+        "password": "eburris",
+        "name": "Eve Burris"
+    },
+    {
+        "id": 2,
+        "username": "JWalker",
+        "email": "jcrotty@rutgers.edu",
+        "password": "jcrotty",
+        "name": "Jessica Walker"
+    },
+    {
+        "id": 3,
+        "username": "JChan",
+        "email": "jpc256@rutgers.edu",
+        "password": "jpc256",
+        "name": "Josh Chan"
+    },
+    {
+        "id": 4,
+        "username": "JKasa",
+        "email": "jkasa@rutgers.edu",
+        "password": "jkasa",
+        "name": "Jaya Kasa"
+    },
+    {
+        "id": 5,
+        "username": "DShepsis",
+        "email": "dfshepsis@gmail.edu",
+        "password": "dfshepsis",
+        "name": "Daniel Shepsis"
+    },
+    {
+        "id": 6,
+        "username": "JLeonardo",
+        "email": "jnl64@rutgers.edu",
+        "password": "jnl64",
+        "name": "Jonnelin Leonardo"
+    }
+]
