@@ -10,10 +10,7 @@ angular.module('wr.directives')
                 "show": "=",
                 "toHide": "="
             },
-            template: `<div class='modal-backdrop' ng-show='show' ng-class="{'modal-active': show}" ng-click='toHide()'>
-                            <div class='modal' ng-include='templateUrl' ng-click='$event.stopPropagation();'></div>
-                        </div>`,
-            link: function($scope, elem, attrs) {}
+            templateUrl: "client/app/shared/modal/modal.view.html"
         };
 });
 }());
