@@ -3,25 +3,25 @@
 "use strict";
 
 // Initialize app
-angular.module('wr', ['ui.router', 'wr.controllers', 'wr.services', 'wr.directives'])
+angular.module('wr', ['ui.router', 'wr.controllers', 'wr.services', 'wr.directives', 'wr.components'])
 .config(function($locationProvider, $stateProvider, $urlMatcherFactoryProvider) {
-    // FIXME: $locationProvider.html5Mode(true);
+    // FIXME locationProvider
+    // $locationProvider.html5Mode(true);
 
     // make trailing slashes optional
     $urlMatcherFactoryProvider.strictMode(false);
 
     $stateProvider
-        .state('conversations', {
+        .state('convos', {
             url: "/conversations",
             templateUrl: "client/app/templates/conversations.html",
             deepStateRedirect: true
         })
-        .state('conversations.conversation', {
+        .state('convos.convo', {
             url: "/{convoId}",
             views: {
                 convo: {
-                    templateUrl: "client/app/components/convo/convo.view.html",
-                    controller: "convo"
+                    template: "<convo/>"
                 }
             }
         });
@@ -31,4 +31,5 @@ angular.module('wr', ['ui.router', 'wr.controllers', 'wr.services', 'wr.directiv
 angular.module('wr.controllers', []);
 angular.module('wr.services', []);
 angular.module('wr.directives', []);
+angular.module('wr.components', []);
 }());
