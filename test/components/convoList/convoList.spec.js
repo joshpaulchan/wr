@@ -1,324 +1,173 @@
 // Written by Joshua Paul A. Chan
+describe("[controller] convoList", function() {
 
-// `convoList`
-// Controls the convo-list (conversation list pane), allowing for display of the
-// conversations and bulk/singular book-keeping operations upon conversations.
-//
-//
-// @attr    : query             : String            : the search query
-// @attr    : isSearch          : Boolean           : whether a search is being
-// performed or not
-// @attr    : filters           : Object            : the list of conversation
-// filters
-// @attr    : curFilter         : String            : the current filter being
-// used [ default : the first defined filter in `filters` ]
-// @attr    : curPage           : Number            : the current page being
-// displayed up to in the conversation list
-// @attr    : numItemsPerPage   : Number            : the number of
-// conversations to display per page
-// @attr    : convos            : Conversation[]    : the conversation objects
-// @attr    : selectedConvos    : String[]          : the ids of currently
-// selected conversation objects
-//
-// @method: loadConversations(pg)               : Loads the conversations from
-// the server using the conersation service.
-// @method: searchConvos()                      : Loads the conversations from
-// the server using the conersation service.
-// @method: loadNextPage()                      : Load the next page of
-// conversation items (either during regular browsing or search).
-// @method: byStatus(convo)                     : Works with `ng-repeat |
-// filter` to filter the shown conversations in the list.
-// @method: toggleSelect(convoId)               : Selects (or de-selects) an
-// item depending on whether it is currently being selected.
-// @method: selectAll()                         : Selects all the current
-// conversations in scope.
-// @method: deselectAll()                       : De-Selects all the
-// conversations currently selected.
-// @method: listButtonsDisabled()               : Checks whether the
-// conversation list items shoudl be disabled or not.
-// @method: openMarkModal()                     : Opens the 'Mark As' modal for
-// marking a conversation/several conversations as a certain status (i.e. read,
-// replied).
-// @method: closeMarkModal()                    : Closes the 'Mark As' modal for
-// marking a conversation/several conversations as a certain status (i.e. read,
-// replied).
-// @method: markConvos(convoIds, status)        : Uses the conversation list
-// service to mark the given conversations (convoIds) with the given status
-// (i.e. read/unread, unreplied/replied).
-// @method: openMoveModal()                     : Opens the 'Move To' modal for
-// selecting a folder (i.e inbox, trash, etc.) to move a conversation/several
-// conversations to.
-// @method: closeMoveModal()                    : Closes the 'Move To' modal for
-// selecting a folder (i.e inbox, trash, etc.) to move a conversation/several
-// conversations to.
-// @method: moveConvos(convoIds, dest)          : Uses the conversation list
-// service to move the given conversations to the specified destination folder.
-// @method: viewConvo(convoId)                  : Use stateProvider to show the
-// given conversation on screen
+    // before each, load the modules
+    beforeEach(angular.mock.module('ui.router'));
+    beforeEach(angular.mock.module('wr.services'));
+    beforeEach(angular.mock.module('wr.controllers'));
 
-// Test inner inteface
+    // var $convoListService;
+    // var deferred;
+    //
+    // // Mock services and spy on methods
+    // beforeEach(inject(function($q, _$convoListService_) {
+    //     deferred = $q.defer();
+    //     $convoListService = _$convoListService_;
+    //     // spyOn($convoListService, 'syncCall').and.callThrough();
+    //     // spyOn($convoListService, 'asyncCall').and.returnValue(deferred.promise);
+    // }));
 
-// TODO: Test all attributes exist and match expected default values
+    var convoList;
+    var scope;
 
-var query = "";
-var isSearch = false;
-var filters = {
-    "All": "@CONVERSATIONS__FILTER-ALL",
-    "Unread": "@CONVERSATIONS__FILTER-UNREAD",
-    "Unreplied": "@CONVERSATIONS__FILTER-UNREPLIED"
-};
-var curFilter = filters[Object.keys(filters)[0]];
-var curPage = 0;
-var numItemsPerPage = 25;
-var convos = [];
-var selectedConvos = [];
+    // Inject the $controller service to create instances of the controller (UsersController) we want to test
+    beforeEach(inject(function($rootScope, $controller) {
+        scope = $rootScope.$new();
+        spyOn(scope, '$emit');
+        convoList = $controller('convoList', {$scope: scope });
+    }));
 
-// TODO: Test all methods exist and return expected outputs
+    // Verify our controller exists
+    it('should be defined', function() {
+        expect(convoList).toBeDefined();
+    });
 
-// Test outside interface
+    // Test all attributes exist and match expected default values
+    describe('`query`', function() {
+        it('should be defined', function() {
+            expect(scope.query).toBeDefined();
+        });
 
-// TODO: Test expected intial behavior of loading conversations and inserting into dom
-// 1. must make GET req
-// 2. upon insertion, number of items must match numItemsPerPage
+        it('should be a string', function() {
+            expect(angular.isString(scope.query)).toBe(true);
+        });
 
-// TODO: Test searches can be perfomed
-// 1. text must be able to be typed and tracked
-// 2. upon successful submission, input must not clear
-// 3. upon successful submission, listed convos should change (probably)
-// 4. upon error, notification must be logged
+        it('should be "" by default', function() {
+            expect(scope.query).toBe("");
+        });
+    });
 
-// TODO: Items can be viewed
-// 1. An item can only be viewed by clicking on the body of the list item
-// 2. upon selection, the state will be changed
-// 3. upon error, log will be sent
+    describe('`isSearch`', function() {
+        it('should be defined', function() {
+            expect(scope.isSearch).toBeDefined();
+        });
 
-// TODO: Items can be selected
-// 1. An item can be selected by pressing the check button or clicking on it
-// 2. An item can be deselected after selecting via the same manner
-// 3. Multiple items can be selected at once
+        it('should be a boolean', function() {
+            expect(scope.isSearch === true || scope.isSearch === false).toBe(true);
+        });
 
-// TODO: List buttons are only available when a conversation is open or convos are selected
-// 1. only when 1 or or more items are selected/viewed do the buttons become enabled
+        it('should be false by default', function() {
+            expect(scope.isSearch).toBe(false);
+        });
+    });
 
-// TODO: items can be moved to different folders
-// gen basic convo object
-// 1. should generate a PUT req to move move item to different folder
-// 2. should work with multiple items, but 1 PUT req
+    describe('`curFilter`', function() {
+        it('should be defined', function() {
+            expect(scope.curFilter).toBeDefined();
+        });
 
-// TODO: items can be marked with different statuses
-// gen a basic convo object
-// 1. should generate a put req with the selected convos
-// 1. should generate 1 PUT req even with multiple items
+        it('should be a string', function() {
+            expect(angular.isString(scope.curFilter)).toBe(true);
+        });
 
-///////////////////////// DISPLAYING CONVERSATIONS /////////////////////////
+        // FIXME: default value for curFilter
+        it('should be "all" by default', function() {
+            expect(scope.curFilter.indexOf('ALL')).not.toBe(-1);
+        });
+    });
 
-// FIXME: `loadConversations(pg)`
-// Loads the conversations from the server using the conersation service.
-//
-// @pre     : the conversation list service must be initialized
-// @pre     : `pg` must be a non-negative integer
-// @pre     : `numItemsPerPage` must be a positive integer
-// @post    : [success] the `numItemsPerPage` will saved to the service,
-// allowing `loadNextPage` to be used instead
-// @post    : [success] the conversations will replace the current convos
-// @post    : [error] if no more items (pg > LAST_PAGE), do nothing
-// @post    : [error] if other error, error will be sent to error service to
-// display on page and log for analytics
-//
-// @param   : pg    : Number    : the page number of the converations to get
-// @return  : null
+    describe('`curPage`', function() {
+        it('should be defined', function() {
+            expect(scope.curPage).toBeDefined();
+        });
 
-// TODO: `searchConvos()`
-// Loads the conversations from the server using the conersation service.
-//
-// @pre     : the conversation list service must be initialized
-// @pre     : `ev` must be a valid event object
-// @pre     : `query` must be a non-empty String
-// @pre     : `numItemsPerPage` must be a positive integer
-// @post    : [success] the search results (if any) will replace the current
-// items in the list
-// @post    : [success] the `query` and`numItemsPerPage` will saved to the
-// service, allowing `loadNextPage` to be used instead for the next few
-// results
-// @post    : [error] if other error, error will be sent to error service to
-// display on page and log for analytics
-//
-// @param   : query : String    : the term(s) to search for in the conversations
-// @param   : ev    : Event     : the event that triggered this function
-// @return  : null
+        it('should be a number', function() {
+            expect(angular.isNumber(scope.curPage)).toBe(true);
+        });
 
+        it('should be 0 by default', function() {
+            expect(scope.curPage).toBe(0);
+        });
+    });
 
-// TODO: `loadNextPage()`
-// Load the next page of conversation items (either during regular browsing
-// or search).
-//
-// @pre     : the conversation list service must be initialized
-// @pre     : [success] Either a search through the conversations or a
-// conversation page load must have been completed previously (to save the
-// default number of pages and current page in the conversation list
-// service)
-// @post    : [success] the next page of conversations will be appended to
-// the current list of conversations
-// @post    : [error] the current conversation list will not be mutated in
-// any way
-// @post    : [error] if other error, error will be sent to error service to
-// display on page and log for analytics
-//
-// @param   : null
-// @return  : null
+    describe('`numItemsPerPage`', function() {
+        it('should be defined', function() {
+            expect(scope.numItemsPerPage).toBeDefined();
+        });
 
+        it('should be a number', function() {
+            expect(angular.isNumber(scope.numItemsPerPage)).toBe(true);
+        });
 
-// FIXME: `byStatus(convo)`
-// Works with `ng-repeat | filter` to filter the shown conversations in the
-// list.
-//
-// @pre     : `convo` should be a valid conversation object to filter
-// @post    : true will be returned if the convo object meets the current
-// showing criteria (i.e. is unread, unreplied/all), false otherwise
-//
-// @param   : convo     : Conversation  : the conversation item to judge
-// @return  : Boolean   : whether or not `convo` should be shown
+        it('should be 25 by default', function() {
+            expect(scope.numItemsPerPage).toBe(25);
+        });
+    });
 
+    describe('`convos`', function() {
+        it('should be defined', function() {
+            expect(scope.convos).toBeDefined();
+        });
 
-///////////////////////// SELECTING CONVERSATIONS /////////////////////////
+        it('should be an array', function() {
+            expect(angular.isArray(scope.convos)).toBe(true);
+        });
 
-// TODO: `toggleSelect(convoId)`
-// Selects (or de-selects) an item depending on whether it is currently
-// being selected.
-//
-// @pre     : `convoId` must be a valid Conversation id
-// @pre     : `ev` must be a valid Event object
-// @post    : if convo is not selected, `convoId` will be selected (put into
-// the the array of selected convos)
-// @post    : if convo is selected, `convoId` will be de-selected and
-// removed from the array of selected convos
-//
-// @param   : convoId   : the id of the conversation to select
-// @param   : ev        : event object that triggered this
-// @return  : null
+        it('should be [] by default', function() {
+            expect(scope.convos).toEqual([]);
+        });
+    });
 
-// TODO: `selectAll()`
-// Selects all the current conversations in scope.
-//
-// @pre     : null
-// @post    : all the conversations shown in the list will be selected
-//
-// @param   : null
-// @return  : null
+    describe('`selectedConvos`', function() {
+        it('should be defined', function() {
+            expect(scope.selectedConvos).toBeDefined();
+        });
 
-// TODO: `deselectAll()`
-// De-Selects all the conversations currently selected.
-//
-// @pre     : null
-// @post    : all currently selected conversations will be de-selected.
-//
-// @param   : null
-// @return  : null
+        it('should be an array', function() {
+            expect(angular.isArray(scope.selectedConvos)).toBe(true);
+        });
 
-// TODO: `listButtonsDisabled()`
-// Checks whether the conversation list items shoudl be disabled or not.
-//
-// @pre     : null
-// @post    : to be true, at least one conversation should be view or
-// selected
-// @post    : to be false, not a single conversation must be "open" or
-// selected
-//
-// @param   : null
-// @return  : Boolean   : whether the list buttons should be active or not
+        it('should be [] by default', function() {
+            expect(scope.selectedConvos).toEqual([]);
+        });
+    });
 
-////////////////////////// MARKING CONVERSATIONS //////////////////////////
+    // TODO: Test all methods exist and return expected outputs
+    describe('method specifications', function() {
+        // Test outside interface
 
-// TODO: `openMarkModal()`
-// Opens the 'Mark As' modal for marking a conversation/several
-// conversations as a certain status (i.e. read, replied).
-//
-// @pre     : at least one conversation must be selected
-// @pre     : no other modal (including the Mark modal) should be open
-// @post    : [success] the modal will be 'opened' and visible on screen
-//
-// @param   : null
-// @return  : null
+        // TODO: Test expected intial behavior of loading conversations and inserting into dom
+        // 1. must make GET req
+        // 2. upon insertion, number of items must match numItemsPerPage
 
-// TODO: `closeMarkModal()`
-// Closes the 'Mark As' modal for marking a conversation/several
-// conversations as a certain status (i.e. read, replied).
-//
-//
-// @post    : [success] the Mark modal will become invisible and inactive
-//
-// @param   : null
-// @return  : null
+        // TODO: Test searches can be perfomed
+        // 1. text must be able to be typed and tracked
+        // 2. upon successful submission, input must not clear
+        // 3. upon successful submission, listed convos should change (probably)
+        // 4. upon error, notification must be logged
 
-// TODO: `markConvos(convoIds, status)`
-// Uses the conversation list service to mark the given conversations
-// (convoIds) with the given status (i.e. read/unread, unreplied/replied).
-//
-// @pre     : `convoIds` must be an array of valid conversation ids
-// @pre     : `status` must be a valid string corresponding to a status a
-// conversation can be marked as
-// @post    : [success] the conversations will be set to the given status
-// @post    : [error] the conversations will all retain their current status
-// @post    : [error] a notification will be logged with the error
-//
-// @param   : convoIds  : String[]  : id(s) of conversations to change
-// the status of
-// @param   : status    : String    : the status to change the
-// conversation(s) to
-// @return  : null
+        // TODO: Items can be viewed
+        // 1. An item can only be viewed by clicking on the body of the list item
+        // 2. upon selection, the state will be changed
+        // 3. upon error, log will be sent
 
-/////////////////////////// MOVING CONVERSATIONS ///////////////////////////
+        // TODO: Items can be selected
+        // 1. An item can be selected by pressing the check button or clicking on it
+        // 2. An item can be deselected after selecting via the same manner
+        // 3. Multiple items can be selected at once
 
-// TODO: `openMoveModal()`
-// Opens the 'Move To' modal for selecting a folder (i.e inbox, trash, etc.)
-// to move a conversation/several conversations to.
-//
-// @pre     : at least one conversation must be selected
-// @pre     : no other modal (even the Move modal) should be open on screen
-// @post    : [success] the Mark modal will be opened and visible on screen
-//
-// @param   : null
-// @return  : null
+        // TODO: List buttons are only available when a conversation is open or convos are selected
+        // 1. only when 1 or or more items are selected/viewed do the buttons become enabled
 
-// TODO: `closeMoveModal()`
-// Closes the 'Move To' modal for selecting a folder (i.e inbox, trash,
-// etc.) to move a conversation/several conversations to.
-//
-// @post    : [success] the Move modal will be invisible and inactive
-//
-// @param   : null
-// @return  : null
+        // TODO: items can be moved to different folders
+        // gen basic convo object
+        // 1. should generate a PUT req to move move item to different folder
+        // 2. should work with multiple items, but 1 PUT req
 
-// TODO: `moveConvos(convoIds, dest)`
-// Uses the conversation list service to move the given conversations to the
-// specified destination folder.
-//
-// @pre     : `convoIds` must be an array of valid conversation ids
-// @pre     : `dest` must be a valid string corresponding to a destination
-// folder to move the conversations to
-// @post    : [success] the conversations will be moved to the given folder
-// @post    : [error] the conversations will stay in their current
-// respective folders
-// @post    : [error] a notification will be logged with the error
-//
-// @param   : convoIds  : String[]  : id(s) of conversations to change
-// the status of
-// @param   : dest      : String    : the folder to move the
-// conversations(s) to
-// @return  : null
+        // TODO: items can be marked with different statuses
+        // gen a basic convo object
+        // 1. should generate a put req with the selected convos
+        // 1. should generate 1 PUT req even with multiple items
 
-////////////////////////// VIEWING CONVERSATIONS ///////////////////////////
-
-// TODO: `viewConvo(convoId)`
-// Use stateProvider to show the given conversation on screen.
-//
-// @pre     : a valid conversation id must be given
-// @post    : [success] the conversation will be shown on screen via the
-// convoPane
-// @post    : [error] the currently viewed conversation will not change (if
-// any)
-// @post    : [error] an error notification will be logged and shown to the
-// user
-//
-// @param   : convoId   : String    : the id of the conversation to view
-// @return  : null
+    });
+});
