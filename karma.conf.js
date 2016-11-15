@@ -17,7 +17,7 @@ module.exports = function(config) {
         colors: true,
         browsers: [process.env.TRAVIS ? 'Firefox' : 'Chrome'],
         autoWatch: true,
-        plugins: ['karma-jasmine', 'karma-chrome-launcher', 'karma-spec-reporter'],
+        plugins: ['karma-jasmine', 'karma-chrome-launcher', 'karma-firefox-launcher', 'karma-spec-reporter'],
         specReporter: {
             maxLogLines: 5,         // limit number of lines logged per test
             suppressErrorSummary: true,  // do not print error summary
