@@ -1,5 +1,9 @@
 <header></header>
 <div class="panes horizontal-panes">
-    <div ng-include="'client/app/components/convoList/convoList.view.html'" ng-controller="convoList"></div>
-    <div ui-view name="convo">Select a conversation on the right to begin :)!</div>
+    <div class="pane convo-list-pane">
+        <convo-list></convo-list>
+    </div>
+    <div ui-view name="convo" class="pane convo-pane">
+        <p class="placeholder">Select a conversation on the left to begin :)!</p>
+    </div>
 </div>
