@@ -6,10 +6,11 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "angular": "1.4.x",
-    "angular-mocks": "1.4.x",
-    "jquery": "~2.1.1",
-    "pure": "~0.6.0",
-    "angular-route": "~1.4.8"
+    "angular-ui-router": "^0.3.2",
+    "overpass": "*",
+    "font-awesome": "^4.7.0"
+  },
+  "resolutions": {
+    "angular": "^1.5.8"
   }
 }
