@@ -73,12 +73,6 @@ angular.module('wr.controllers')
     $scope.convos = [];
     $scope.selectedConvos = [];
 
-    // Load messages when initialized
-    $scope.$apply(() => {
-        $scope.loadConversations($scope.curPage);
-        console.log("convos", $scope.convos);
-    });
-
     ///////////////////////// DISPLAYING CONVERSATIONS /////////////////////////
 
     // `loadConversations(pg)`
@@ -319,7 +313,7 @@ angular.module('wr.controllers')
     // @return  : null
     var markConvos = (convoIds, status) => {
         $convoListService
-            .updateConversations(convoIds, { status : status })
+            .updateConvos(convoIds, { status : status })
             .then((data) => {
                 // update view
                 $scope.convos = $scope.convos.map((convo) => {
@@ -385,7 +379,7 @@ angular.module('wr.controllers')
     // @return  : null
     var moveConvos = (convoIds, dest) => {
         $convoListService
-            .updateConversations(convoIds, { location : dest })
+            .updateConvos(convoIds, { location : dest })
             .then((data) => {
                 // update view
                 $scope.convos = $scope.convos.map((convo) => {
@@ -394,7 +388,7 @@ angular.module('wr.controllers')
                     }
                 });
             }, (err) => {
-                // log error and
+                // log error and notify user
                 console.error(err);
                 // FIXME: uncomment this when notificaiton service is implemented
                 // $notificationService.notify({
@@ -426,5 +420,8 @@ angular.module('wr.controllers')
         // navigate to view
         // $state.go('convos.convo', { convoId : convoId });
     };
+
+    // Load messages when initialized
+    $scope.loadConversations($scope.curPage);
 });
 }());
