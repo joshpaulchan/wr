@@ -21,6 +21,7 @@
   },
   "scripts": {
     "start": "http-server -a 0.0.0.0 -p 8080",
+    "postinstall": "bower install",
     "test": "node node_modules/karma/bin/karma start ./karma.conf.js",
     "test-single-run": "node node_modules/karma/bin/karma start ./karma.conf.js  --single-run"
   }
