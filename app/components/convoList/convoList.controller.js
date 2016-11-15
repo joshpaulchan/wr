@@ -74,10 +74,9 @@ angular.module('wr.controllers')
     $scope.selectedConvos = [];
 
     // Load messages when initialized
-    $scope.$on($convoListService.isReady, () => {
-        $scope.$apply(() => {
-            $scope.loadConversations($scope.curPage);
-        });
+    $scope.$apply(() => {
+        $scope.loadConversations($scope.curPage);
+        console.log("convos", $scope.convos);
     });
 
     ///////////////////////// DISPLAYING CONVERSATIONS /////////////////////////
@@ -114,7 +113,7 @@ angular.module('wr.controllers')
                 });
     };
 
-    // TODO: `searchConvos()`
+    // `searchConvos()`
     // Loads the conversations from the server using the conersation service.
     //
     // @pre     : the conversation list service must be initialized
@@ -123,9 +122,11 @@ angular.module('wr.controllers')
     // @pre     : `numItemsPerPage` must be a positive integer
     // @post    : [success] the search results (if any) will replace the current
     // items in the list
+    // @post    : [success] the `isSearch` flag will be set to true
     // @post    : [success] the `query` and`numItemsPerPage` will saved to the
     // service, allowing `loadNextPage` to be used instead for the next few
     // results
+    // @post    : [error] the `isSearch` flag will be set to false
     // @post    : [error] if other error, error will be sent to error service to
     // display on page and log for analytics
     //
@@ -133,7 +134,27 @@ angular.module('wr.controllers')
     // @param   : ev    : Event     : the event that triggered this function
     // @return  : null
     $scope.searchConvos = (query, ev) => {
-        // CODE IN HERE
+        $convoListService
+            .search(query, $scope.numItemsPerPage)
+            .then(
+                (conversations) => {
+                    // set search flag to true
+                    $scope.isSearch = true;
+                    // load search results into scope
+                    $scope.convos = conversations;
+                },
+                (err) => {
+                    // log error and notify user
+                    console.error(err);
+                    // TODO: notify error for searchConvos and truncate query
+                    // var formattedQuery = query;
+                    // $notificationService.notify({
+                    //     type: "error",
+                    //     text: `There was an error searching for '${formattedQuery}'.`
+                    // });
+                    // set search flag to false
+                    $scope.isSearch  = false;
+                });
     };
 
     // TODO: `loadNextPage()`
@@ -158,7 +179,7 @@ angular.module('wr.controllers')
         // CODE IN HERE
     };
 
-    // FIXME: `byStatus(convo)`
+    // `byStatus(convo)`
     // Works with `ng-repeat | filter` to filter the shown conversations in the
     // list.
     //
@@ -307,7 +328,7 @@ angular.module('wr.controllers')
                     }
                 });
             }, (err) => {
-                // log error and
+                // log error and notify user
                 console.error(err);
                 // FIXME: uncomment this when notificaiton service is implemented
                 // $notificationService.notify({
