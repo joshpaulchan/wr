@@ -8,18 +8,6 @@ body {
   font-family: Overpass, Segoe UI;
 }
 
-.app {
-    height: 100%;
-    width: 100%;
-}
-
-.panes {
-    display: flex;
-}
-
-.horizontal-panes {
-    flex-direction: row;
-}
 /********************************* TYPOGRAPHY *********************************/
 
 h1, h2, h3, h4, h5, h6, p, span, small, input, textarea {
@@ -64,4 +52,85 @@ button:disabled {
 button.button-clear {
 /*   TODO: use mix-blend mode to determine what color to make the text */
   background: transparent;
+}
+
+/*placeholders*/
+
+div[ui-view] { position: relative; }
+
+/*
+
+1. position it dead center
+2. reduce contrast
+3. make it unselectable
+*/
+div[ui-view] > .placeholder {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    display: block;
+
+    text-align: center;
+    color: #aaa;
+
+    -webkit-user-select: none; /* Chrome/Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+ */
+
+    /* Rules below not implemented in browsers yet */
+    -o-user-select: none;
+    user-select: none;
+}
+
+/* app & panes*/
+
+.app {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+.panes {
+    display: flex;
+}
+
+.horizontal-panes {
+    flex-direction: row;
+    flex: 1;
+}
+.pane {
+    padding: 0 2px;
+}
+.pane + .pane {
+    padding-left: 0;
+}
+
+/* > 11' laptops: phones */
+@media (min-width: 320px) {
+
+}
+
+/* > 11' laptops: tablets */
+@media (min-width: 680px) {
+    .convo-list-pane {
+        flex: 1
+    }
+
+    .convo-pane {
+        flex: 1
+    }
+}
+
+/* > 13' laptops: latops */
+@media (min-width: 1024px) {
+    .convo-list-pane {
+        flex: 2
+    }
+
+    .convo-pane {
+        flex: 3
+    }
 }

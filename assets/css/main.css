@@ -95,84 +95,10 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
-a {
-    text-decoration: none;
-    color: #1b98f8;
-}
-
-.body-footer {
-	/*background-color:  #333333;*/
-	color: #eee;
-    width: 100%;
-	text-align: center;
-    position: fixed;
-    bottom: 1em;
-}
-
-.heading-logo {
-    display: inline-block;
-    width: 225px;
-}
-
-.pure-menu-heading .title {
-    display: inline-block;
-    font-weight: 500;
-    font-family: Titillium Web;
-    margin-bottom: 0;
-}
-
 
 /* ==========================================================================
    Helper classes
    ========================================================================== */
-
-.text-left {
-	text-align: left;
-}
-
-.text-right {
-	text-align: right;
-}
-
-.text-center {
-	text-align: center;
-}
-
-.float-right {
-    float: right;
-}
-
-.float-left {
-    float: left;
-}
-
-.full-height {
-	height: 100vh;
-}
-
-.bg-rutgers-red {
-	background-color: #cc0033;
-}
-
-.center-horizontal {
-	margin: 0 auto;
-}
-
-.vertical-resizeable {
-    resize: vertical;
-}
-
-/*
- * Allows you to vertically center the box after this
- */
-
-.vertical-center {
-    position: relative;
-    top: 50vh;
-    -webkit-transform: translateY(-50%);
-    -moz-transform: translateY(-50%);
-    transform: translateY(-50%);
-}
 
 /*
  * Hide visually and from screen readers

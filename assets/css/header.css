@@ -1,0 +1,62 @@
+/********************************** $HEADER **********************************/
+
+/*
+
+1. stretch to 48px x 100%
+2. add side padding
+3. change bg color
+4. add bottom margin 2px
+*/
+.header {
+    /*position and layout*/
+    /*position: absolute;*/
+    /*top: 0;*/
+    margin-bottom: 2px;
+
+    /*size*/
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0 16px;
+    height: 48px;
+
+    /*colors*/
+    background-color: #c03;
+    color: #fff;
+
+    /*fonts*/
+}
+
+/*
+
+1. align together
+2. align center
+*/
+.header > * {
+    display: inline-block;
+    line-height: 48px;
+}
+
+/*
+
+1. resize img
+*/
+.header > img {
+    height: 48px;
+}
+
+/*
+
+1. remove margins
+3. change font color and size
+*/
+.header > h1 {
+    /*layout*/
+    margin: 0;
+
+    /*color*/
+    color: #fff;
+
+    /*font*/
+    font-size: 1.5em;
+    font-weight: 200;
+}
