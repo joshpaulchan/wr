@@ -1,6 +1,5 @@
-## convoList
-
-## Conversation Model
+# Conversations
+## Model
 
 <table>
 <thead>
@@ -30,13 +29,15 @@
         <td>id::String</td>
         <td>unique id reqpresenting a single conversation</td>
     </tr>
-    
+
 </tbody>
 </table>
 
-# Conversations API
+## API
 
 **Note** - all endpoints are JSON endpoints uneless otherwise specified.
+
+**Conversations (bulk operations)**
 
 <table>
 <thead>
@@ -66,8 +67,45 @@
             **body**
             <ul>
             <li>**ids** - ids of conversations to update to update</li>
-            <li>**options** - </li>
+            <li>**options** - JSON-encoded hash-map of valid key-value pairs to set for each given conversation</li>
             </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>**GET** `/conversation/{{id}}`</td>
+        <td>retrieve a conversation and its messages</td>
+        <td>
+            **id** - id of conversation to fetch
+        </td>
+    </tr>
+    <tr>
+        <td>**POST** `/conversation/{{id}}`</td>
+        <td>respond to a conversation (send an email)</td>
+        <td>
+            **id** - id of conversation to fetch
+            **body**
+            <ul>
+            <li>**message** - message to send</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>**PUT** `/conversation/{{id}}`</td>
+        <td>update a conversation</td>
+        <td>
+            **id** - id of conversation to update<br/>
+            **body**
+            <ul>
+            <li>**ids** - ids of conversations to update to update</li>
+            <li>**options** - JSON-encoded hash-map of valid key-value pairs to set for each given conversation</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>**DELETE** `/conversation/{{id}}`</td>
+        <td>delete a conversation</td>
+        <td>
+            **id** - id of conversation to delete
         </td>
     </tr>
 </tbody>
