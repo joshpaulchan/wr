@@ -23,5 +23,10 @@
     </div>
 </div>
 <ul class="list-items">
-    <convo-item ng-repeat="convo in convos | filter:byStatus track by convo.id" convo="convo" click="viewConvo" selected="selectedConvos.has(convo.id)"/>
+    <convo-item
+    ng-repeat="convo in convos | filter:byStatus track by convo.id"
+    convo="convo"
+    click="viewConvo"
+    select="toggleSelect"
+    selected="selectedConvos.has(convo.id)"/>
 </ul>
