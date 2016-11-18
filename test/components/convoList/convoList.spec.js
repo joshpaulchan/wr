@@ -123,12 +123,12 @@ describe("[controller] convoList", function() {
             expect(scope.selectedConvos).toBeDefined();
         });
 
-        it('should be an array', function() {
-            expect(angular.isArray(scope.selectedConvos)).toBe(true);
+        it('should be a Set', function() {
+            expect(scope.selectedConvos instanceof Set).toBe(true);
         });
 
-        it('should be [] by default', function() {
-            expect(scope.selectedConvos).toEqual([]);
+        it('should be empty by default', function() {
+            expect(scope.selectedConvos.size).toBe(0);
         });
     });
 
