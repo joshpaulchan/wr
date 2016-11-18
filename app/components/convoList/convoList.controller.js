@@ -71,7 +71,7 @@ angular.module('wr.controllers')
     $scope.curPage = 0;
     $scope.numItemsPerPage = 25;
     $scope.convos = [];
-    $scope.selectedConvos = [];
+    $scope.selectedConvos = new Set();
 
     ///////////////////////// DISPLAYING CONVERSATIONS /////////////////////////
 
@@ -96,6 +96,7 @@ angular.module('wr.controllers')
             .then(
                 (conversations) => {
                     $scope.convos = conversations;
+                    $scope.$apply();                // update angular
                 },
                 (err) => {
                     console.error(err);
@@ -214,16 +215,11 @@ angular.module('wr.controllers')
     $scope.toggleSelect = (convoId, ev) => {
         // prevent other event handlers on item from activating
         ev.stopPropagation();
-        // FIXME: how to save selected convos between conversation view?
-        // A: possibly save them in the convoListService - that should persist
-        var pos = -1;
-        for (var i = 0; i < $scope.selectedConvos.length; i++) {
-            if ($scope.selectedConvos[i] === convoId) { pos = i; break; }
-        }
-        if (pos === -1) {   // add it if doesn't exist
-            $scope.selectedConvos.push(convoId);
-        } else {            // remove it if it does
-            $scope.selectedConvos = $scope.selectedConvos.splice(pos, 1);
+
+        if ($scope.selectedConvos.has(convoId)) {   // remove if exists
+            $scope.selectedConvos.delete(convoId);
+        } else {                                    // add it if it doesn't
+            $scope.selectedConvos.add(convoId);
         }
     };
 
@@ -236,7 +232,7 @@ angular.module('wr.controllers')
     // @param   : null
     // @return  : null
     $scope.selectAll = () => {
-        $scope.selectedConvos = $scope.convos;
+        $scope.selectedConvos = new Set($scope.convos);
     };
 
     // `deselectAll()`
@@ -248,7 +244,7 @@ angular.module('wr.controllers')
     // @param   : null
     // @return  : null
     $scope.deselectAll = () => {
-        $scope.selectedConvos = [];
+        $scope.selectedConvos.clear();
     };
 
     // `listButtonsDisabled()`
@@ -263,7 +259,7 @@ angular.module('wr.controllers')
     // @param   : null
     // @return  : Boolean   : whether the list buttons should be active or not
     $scope.enableListButtons = () => {
-        return ($scope.selectedConvos.length > 0);
+        return ($scope.selectedConvos.size > 0);
     };
 
     ////////////////////////// MARKING CONVERSATIONS //////////////////////////
@@ -317,7 +313,7 @@ angular.module('wr.controllers')
             .then((data) => {
                 // update view
                 $scope.convos = $scope.convos.map((convo) => {
-                    if ($scope.selectedConvos.indexOf(convo.id) !== -1) {
+                    if ($scope.selectedConvos.has(convo.id)) {
                         convo.status = status;
                     }
                 });
@@ -383,7 +379,7 @@ angular.module('wr.controllers')
             .then((data) => {
                 // update view
                 $scope.convos = $scope.convos.map((convo) => {
-                    if ($scope.selectedConvos.indexOf(convo.id) !== -1) {
+                    if ($scope.selectedConvos.has(convo.id)) {
                         convo.location = dest;
                     }
                 });
@@ -415,10 +411,8 @@ angular.module('wr.controllers')
     // @param   : convoId   : String    : the id of the conversation to view
     // @return  : null
     $scope.viewConvo = (convoId) => {
-        // add to selected convos
-        $scope.selectedConvos.push(convoId);
-        // navigate to view
-        // $state.go('convos.convo', { convoId : convoId });
+        // add to selected convos if not already selected
+        $scope.selectedConvos.add(convoId);
     };
 
     // Load messages when initialized
