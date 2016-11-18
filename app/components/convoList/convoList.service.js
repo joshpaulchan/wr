@@ -49,7 +49,6 @@ angular.module('wr.services')
     // @return  : Promise   : resolves to conversations[] or error message str
     service.loadConvos = function(pg, numItemsPerPage) {
         return new Promise(function(resolve, reject) {
-            // CODE IN HERE
             resolve([]);
         });
     };
@@ -73,7 +72,6 @@ angular.module('wr.services')
     // @return  : Promise   : resolves to conversation[] or error message str
     service.search = function(query, numItemsPerPage) {
         return new Promise(function(resolve, reject) {
-            // CODE IN HERE
             resolve([]);
         });
     };
@@ -92,7 +90,6 @@ angular.module('wr.services')
     //
     // @return  : Promise   : resolves to conversation[] or error message str
     service.loadNext = function() {
-        // CODE IN HERE
         if (isSearch === true) {
             // load next page of search results
         } else {
