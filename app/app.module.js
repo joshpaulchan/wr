@@ -4,7 +4,7 @@
 
 // Import variables if present (from env.js) (thanks @jvandemo)
 var env = {};
-if(window){ Object.assign(env, window.__env); }
+if(window){ env = window.__env; }
 
 // Initialize app
 angular.module('wr', ['ui.router', 'wr.controllers', 'wr.services', 'wr.directives', 'wr.components'])
