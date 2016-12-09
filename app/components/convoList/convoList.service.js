@@ -17,18 +17,19 @@
 // @method  : updateConvos  : Promise   :
 //
 angular.module('wr.services')
-.service('$convoListService', function($http) {
+.service('$convoListService', function($http, __env) {
     var service = this;
-    service.apiURL = "";
+    service.apiURL = __env.apiUrl +'/conversations';
 
     // defaults
     service.query = "";
     service.isSearch = false;
     service.curPage = 0;
     service.curSearchPage = 0;
+    service.nextUrl = null;
     service.numItemsPerPage = 25;
 
-    // TODO: `loadConvos(pg, numItemsPerPage)`
+    // `loadConvos(pg, numItemsPerPage)`
     // Retrieves a page of the most recent conversations from the server.
     //
     // @pre     : `pg` must be a non-negative Number or null, if null will
@@ -49,7 +50,19 @@ angular.module('wr.services')
     // @return  : Promise   : resolves to conversations[] or error message str
     service.loadConvos = function(pg, numItemsPerPage) {
         return new Promise(function(resolve, reject) {
-            resolve([]);
+            $http
+                .get(service.apiURL, {
+                    params: {
+                        page : pg,
+                        n : numItemsPerPage
+                    }
+                })
+                .then((resp) => {
+                    service.isSearch = false;
+                    service.nextUrl = resp.data.next_page_url;
+                    resolve(resp.data.data);
+                })
+                .catch(reject);
         });
     };
 
@@ -72,11 +85,25 @@ angular.module('wr.services')
     // @return  : Promise   : resolves to conversation[] or error message str
     service.search = function(query, numItemsPerPage) {
         return new Promise(function(resolve, reject) {
-            resolve([]);
+            return new Promise(function(resolve, reject) {
+                $http
+                    .get(service.apiURL, {
+                        params: {
+                            q : query,
+                            n : numItemsPerPage
+                        }
+                    })
+                    .then((resp) => {
+                        service.isSearch = true;
+                        service.nextUrl = resp.data.next_page_url;
+                        resolve(resp.data.data);
+                    })
+                    .catch(reject);
+            });
         });
     };
 
-    // TODO: `loadNext()`
+    // `loadNext()`
     // Either 1) retrieves the next page following a .loadConversations(..), or
     // 2) retrieves the next page of serach results following a .search(..).
     //
@@ -90,11 +117,14 @@ angular.module('wr.services')
     //
     // @return  : Promise   : resolves to conversation[] or error message str
     service.loadNext = function() {
-        if (isSearch === true) {
-            // load next page of search results
-        } else {
-            // load next page of conversations
-        }
+        return new Promise(function(resolve, reject) {
+            $http.get(service.nextUrl)
+                .then((resp) => {
+                    service.nextUrl = resp.data.next_page_url;
+                    resolve(resp.data.data);
+                })
+                .catch(reject);
+        });
     };
 
     // TODO: `updateConvos(convoIds, opts)`
