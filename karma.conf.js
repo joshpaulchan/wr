@@ -11,7 +11,7 @@ module.exports = function(config) {
             'assets/bower_components/angular-ui-router/release/angular-ui-router.js',
             'assets/bower_components/angular-mocks/angular-mocks.js',
             'app/app.module.js',
-            'app/components/*/*.*.js',
+            'app/**/*.*.js',
             'test/**/*.spec.js'
         ],
         colors: true,
