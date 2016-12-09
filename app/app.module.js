@@ -2,9 +2,17 @@
 (function() {
 "use strict";
 
+// Import variables if present (from env.js) (thanks @jvandemo)
+var env = {};
+if(window){ Object.assign(env, window.__env); }
+
 // Initialize app
 angular.module('wr', ['ui.router', 'wr.controllers', 'wr.services', 'wr.directives', 'wr.components'])
-.config(function($locationProvider, $stateProvider, $urlMatcherFactoryProvider) {
+.constant('__env', env)
+.config(function($logProvider, $locationProvider, $stateProvider, $urlMatcherFactoryProvider, __env) {
+    // enable/disable angular debug
+    $logProvider.debugEnabled(__env.enableDebug);
+
     // FIXME locationProvider
     // $locationProvider.html5Mode(true);
 
