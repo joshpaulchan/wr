@@ -1,4 +1,4 @@
-### Angular ### 
+### Angular ###
 
 logs/*
 !.gitkeep
@@ -12,3 +12,6 @@ bower_components
 .bower-cache
 .bower-registry
 .bower-tmp
+
+env.*
+*.env
