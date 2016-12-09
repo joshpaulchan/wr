@@ -2,19 +2,24 @@
 (function() {
 "use strict";
 
-// TODO: build summary of the convoList service
 // `$convoListService` SERVICE
 // Serves the convoList by perfoming bulk operations on conversations.
 //
 // @pre     : networking libs must be initialized
+// @pre     : app must be configured with an `__env`
 //
-// @attr    : apiUrl        : String    : base API url of the resource
-// @attr    : query         : String    :
+// @attr    : apiUrl            : String    : base API url of the resource
+// @attr    : query             : String    : current query string
+// @attr    : isSearch          : Boolean   : whether a search was the last load performed or not
+// @attr    : curPage           : Number    : current page of conversations
+// @attr    : curSearchPage     : Number    : current page of search results
+// @attr    : nextUrl           : String    : url of the next page of conversations/search results to load
+// @attr    : numItemsPerPage   : Number    : number of items to load per page for a search/load
 //
-// @method  : loadConvos    : Promise   :
-// @method  : search        : Promise   :
-// @method  : loadNext      : Promise
-// @method  : updateConvos  : Promise   :
+// @method  : loadConvos    : Promise   : Retrieves a page of the most recent conversations from the server.
+// @method  : search        : Promise   : Retrieves a page of conversations related to the given query.
+// @method  : loadNext      : Promise   : Either 1) retrieves the next page following a .loadConversations(..), or 2) retrieves the next page of serach results following a .search(..).
+// @method  : updateConvos  : Promise   : Updates the given conversations with the given options on the server.
 //
 angular.module('wr.services')
 .service('$convoListService', function($http, __env) {
@@ -58,6 +63,8 @@ angular.module('wr.services')
                     }
                 })
                 .then((resp) => {
+                    service.curPage = pg;
+                    service.numItemsPerPage = numItemsPerPage;
                     service.isSearch = false;
                     service.nextUrl = resp.data.next_page_url;
                     resolve(resp.data.data);
@@ -66,7 +73,7 @@ angular.module('wr.services')
         });
     };
 
-    // TODO: `search(query, numItemsPerPage)`
+    // `search(query, numItemsPerPage)`
     // Retrieves a page of conversations related to the given query.
     //
     // @pre     : `query` must be a non-empty String
@@ -94,6 +101,8 @@ angular.module('wr.services')
                         }
                     })
                     .then((resp) => {
+                        service.curSearchPage = 1;
+                        service.numItemsPerPage = numItemsPerPage;
                         service.isSearch = true;
                         service.nextUrl = resp.data.next_page_url;
                         resolve(resp.data.data);
@@ -109,6 +118,7 @@ angular.module('wr.services')
     //
     // @pre     : `numItemsPerPage` must be a positive number or null, if null
     // will default to 25
+    // @pre     : `service.nextUrl` must be a valid url and not null
     // @pre     : if `isSearch` is truthy, will load next page of search results
     // @pre     : if `isSearch` is falsey, will load next page of conversations
     // @post    : [success] increments the current page
@@ -117,14 +127,18 @@ angular.module('wr.services')
     //
     // @return  : Promise   : resolves to conversation[] or error message str
     service.loadNext = function() {
-        return new Promise(function(resolve, reject) {
-            $http.get(service.nextUrl)
-                .then((resp) => {
-                    service.nextUrl = resp.data.next_page_url;
-                    resolve(resp.data.data);
-                })
-                .catch(reject);
-        });
+        if (service.nextUrl) {
+            return new Promise(function(resolve, reject) {
+                $http.get(service.nextUrl)
+                    .then((resp) => {
+                        if (service.isSearch) { service.curSearchPage += 1; }
+                        else { service.curPage += 1; }
+                        service.nextUrl = resp.data.next_page_url;
+                        resolve(resp.data.data);
+                    })
+                    .catch(reject);
+            });
+        }
     };
 
     // TODO: `updateConvos(convoIds, opts)`
