@@ -72,6 +72,7 @@ angular.module('wr.controllers')
     $scope.numItemsPerPage = 25;
     $scope.convos = [];
     $scope.selectedConvos = new Set();
+    var selectedConvo = null;
 
     ///////////////////////// DISPLAYING CONVERSATIONS /////////////////////////
 
@@ -402,6 +403,8 @@ angular.module('wr.controllers')
     // @pre     : a valid conversation id must be given
     // @post    : [success] the conversation will be shown on screen via the
     // convoPane
+    // @post    : [success] the currently selected conversation will be
+    // 'de-selected'
     // @post    : [success] the conversation will be 'selected'
     // @post    : [error] the currently viewed conversation will not change (if
     // any)
@@ -411,8 +414,11 @@ angular.module('wr.controllers')
     // @param   : convoId   : String    : the id of the conversation to view
     // @return  : null
     $scope.viewConvo = (convoId) => {
+        if (selectedConvo === convoId) { return; }
+        if (selectedConvo) { $scope.selectedConvos.delete(selectedConvo); }
         // add to selected convos if not already selected
-        $scope.selectedConvos.add(convoId);
+        selectedConvo = convoId;
+        $scope.selectedConvos.add(selectedConvo);
     };
 
     // Load messages when initialized
