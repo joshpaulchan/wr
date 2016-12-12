@@ -1,0 +1,53 @@
+<div class="convo-header">
+    <div class="convo-details">
+        <h1>{{$ctrl.convo.subject}}</h1>
+        <p>started by <strong>{{$ctrl.convo.emailFrom}}</strong> on <strong>{{$ctrl.convo.created_at}}</strong></p>
+    </div>
+    <table class="convo-it-details">
+        <tbody>
+            <tr>
+                <td><p>User Agent:</p></td>
+                <td><p>{{$ctrl.convo.userAgent}}</p></td>
+            </tr>
+            <tr>
+                <td><p>Browser:</p></td>
+                <td><p>{{$ctrl.convo.browser}}</p></td>
+            </tr>
+            <tr>
+                <td><p>OS:</p></td>
+                <td><p>{{$ctrl.convo.os}}</p></td>
+            </tr>
+            <tr>
+                <td><p>IP Address:</p></td>
+                <td><p>{{$ctrl.convo.ip}}</p></td>
+            </tr>
+            <tr>
+                <td><p>Referrer:</p></td>
+                <td><p><a href="{{$ctrl.convo.referrer}}">{{$ctrl.convo.referrer}}</a></p></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="convo-actions">
+        <label>
+      <select>
+        <option>open</option>
+        <option>closed</option>
+      </select>
+    </label>
+        <button class="button-clear">FORWARD</button>
+    </div>
+</div>
+<ul class="messages">
+    <message
+        ng-repeat="msg in $ctrl.convo.messages"
+        sender="msg.emailFrom"
+        sentAt="msg.created_at"
+        body="msg.body"
+    />
+</ul>
+<div class="convo-footer">
+    <textarea placeholder="Type a response or insert a template..."></textarea>
+    <div class="button-group">
+        <button class="button-clear">REPLY</button>
+    </div>
+</div>
