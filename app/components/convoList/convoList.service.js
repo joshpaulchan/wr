@@ -24,7 +24,7 @@
 angular.module('wr.services')
 .service('$convoListService', function($http, __env) {
     var service = this;
-    service.apiURL = __env.apiUrl +'/conversations';
+    service.apiURL = __env.apiUrl + '/conversations';
 
     // defaults
     service.query = "";
