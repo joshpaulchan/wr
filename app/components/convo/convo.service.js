@@ -77,7 +77,12 @@ angular.module('wr.services')
     // @return  : Promise   : resolves to Message or error message str
     service.replyToConvo = function(id, message) {
         return new Promise(function(resolve, reject) {
-
+            resolve({
+                id: new Date(),
+                created_at : new Date(),
+                emailFrom : 'you',
+                body : message
+            });
         });
     };
 
@@ -99,7 +104,7 @@ angular.module('wr.services')
     // @return  : Promise   : resolve to success Object or error message str
     service.forwardToEmail = function(id, email, message) {
         return new Promise(function(resolve, reject) {
-
+            resolve({});
         });
     };
 
