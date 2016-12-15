@@ -6,6 +6,11 @@
 //
 angular.module('wr.components')
 .component('message', {
-    templateUrl: 'client/app/components/message/message.view.html'
+    bindings : {
+        sender  : "<",
+        sentAt  : "<",
+        body    : "<",
+    },
+    templateUrl: 'client/app/components/message/message.view.html',
 });
 }());
