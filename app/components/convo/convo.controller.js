@@ -12,13 +12,23 @@ angular.module('wr.controllers')
 
     ////////////////////////// LOADING A CONVERATION //////////////////////////
 
+    // `loadConversation(pg)`
+    // Load the conversation from the server using the conversation service.
+    //
+    // @pre     : the conversation service must be initialized
+    // @post    : [success] the conversation will be loaded into the view
+    // @post    : [error] if error, error will be sent to error service to
+    // display on page and log for analytics
+    //
+    // @param   : id    : Number    : the id of the conversation to retrieve
+    // @return  : null
     var loadConversation = function(id) {
         $convoService
             .loadConvo(id)
             .then(
                 (conversation) => {
                     $ctrl.convo = conversation;
-                    $scope.$apply();
+                    // $scope.$apply();
                 },
                 (err) => {
                     console.error("[conversation]", err);
@@ -28,6 +38,13 @@ angular.module('wr.controllers')
                     //     text: `There was an error loading conversation ${id} from the server.`
                     // });
                 });
+    };
+
+    ///////////////////////////////// REPLYING /////////////////////////////////
+
+    //
+    $scope.replyDisabled = function() {
+
     };
 
     // Load conversation when initialized
