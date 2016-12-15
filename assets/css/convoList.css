@@ -62,7 +62,7 @@ ul.list-items {
   margin: 0;
   padding: 0;
 
-  height: calc(100vh - 114px - 2px - 48px);
+  height: calc(100vh - 96px - 2px - 48px);
 
   overflow-y: auto;
   overflow-x: hidden;

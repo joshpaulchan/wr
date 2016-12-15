@@ -92,7 +92,7 @@ ul.messages {
 li.message {
     background: white;
     padding: 1em;
-    margin-bottom: 1em;
+    margin-bottom: 2px;
 }
 
 li.message>div.message-header {
