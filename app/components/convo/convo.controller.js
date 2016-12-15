@@ -28,7 +28,7 @@ angular.module('wr.controllers')
             .then(
                 (conversation) => {
                     $ctrl.convo = conversation;
-                    // $scope.$apply();
+                    $scope.$apply();
                 },
                 (err) => {
                     console.error("[conversation]", err);
@@ -44,6 +44,10 @@ angular.module('wr.controllers')
 
     //
     $scope.replyDisabled = function() {
+
+    };
+
+    $scope.reply = function() {
 
     };
 
