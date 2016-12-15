@@ -1,29 +1,29 @@
 <div class="convo-header">
     <div class="convo-details">
-        <h1 ng-bind="$ctrl.convo.subject || 'Subject'"></h1>
-        <p>started by <strong ng-bind="$ctrl.convo.emailFrom || 'Person'"></strong> on <strong ng-bind="$ctrl.convo.created_at || 'Date'"></strong></p>
+        <h1 ng-bind="convo.subject || 'Subject'"></h1>
+        <p>started by <strong ng-bind="convo.emailFrom || 'Person'"></strong> on <strong ng-bind="convo.created_at || 'Date'"></strong></p>
     </div>
     <table class="convo-it-details">
         <tbody>
             <tr>
                 <td><p>User Agent:</p></td>
-                <td><p ng-bind="$ctrl.convo.userAgent || 'User Agent'"></p></td>
+                <td><p ng-bind="convo.userAgent || 'User Agent'"></p></td>
             </tr>
             <tr>
                 <td><p>Browser:</p></td>
-                <td><p ng-bind="$ctrl.convo.browser || 'Web Browser'"></p></td>
+                <td><p ng-bind="convo.browser || 'Web Browser'"></p></td>
             </tr>
             <tr>
                 <td><p>OS:</p></td>
-                <td><p ng-bind="$ctrl.convo.os || 'Operating System'"></p></td>
+                <td><p ng-bind="convo.os || 'Operating System'"></p></td>
             </tr>
             <tr>
                 <td><p>IP Address:</p></td>
-                <td><p ng-bind="$ctrl.convo.ip || 'IP Address'"></p></td>
+                <td><p ng-bind="convo.ip || 'IP Address'"></p></td>
             </tr>
             <tr>
                 <td><p>Referrer:</p></td>
-                <td><p><a href="{{$ctrl.convo.referrer || '/'}}" ng-bind="$ctrl.convo.referrer || 'http://urwebrsv.rutgers.edu/'"></a></p></td>
+                <td><p><a href="{{convo.referrer || '/'}}" ng-bind="convo.referrer || 'http://urwebrsv.rutgers.edu/'"></a></p></td>
             </tr>
         </tbody>
     </table>
@@ -33,15 +33,18 @@
 </div>
 <ul class="messages">
     <message
-        ng-repeat="msg in $ctrl.convo.messages track by msg.id"
+        ng-repeat="msg in convo.messages track by msg.id"
         sender="msg.emailFrom"
         sentAt="msg.created_at"
         body="msg.body"
     />
 </ul>
 <div class="convo-footer">
-    <textarea placeholder="Type a response or insert a template..."></textarea>
+    <textarea placeholder="Type a response or insert a template..." ng-model="response.message"></textarea>
     <div class="button-group">
-        <button class="button-clear">REPLY</button>
+        <button
+            class="button-clear"
+            ng-disabled="replyDisabled(response.message)"
+            ng-click="doReply(convo.id, response.message)">REPLY</button>
     </div>
 </div>
