@@ -132,15 +132,6 @@ div.convo-footer {
     overflow: hidden;
 }
 
-div.convo-footer>textarea {
-    border: 0;
-    width: 100%;
-    max-width: 100%;
-    min-height: 4em;
-    max-height: 20em;
-    resize: vertical;
-}
-
 div.convo-footer>div.button-group {
     float: right;
 }
