@@ -4,11 +4,67 @@ message-box {
     height: 100%;
 }
 
-message-box > textarea {
+/*
+
+Toolbar
+
+1. remove padding
+2. inline-block the bars
+*/
+
+message-box .ta-toolbar {
+    /*padding: 0;*/
+}
+
+.ta-toolbar .btn-group {
+    display: inline-block;
+    margin-right: 1em;
+
+    margin-top: 2px;
+}
+
+.ta-toolbar .btn-group > .btn {
+    min-width: 32px;
+    height:32px;
+}
+
+/*
+
+Editor
+
+1. Constrain size to min 8 lines max 20 lines
+2. Add 1em margin top to space from toolbar
+3. Remove all indentation/padding, offset is done by container
+*/
+
+.ta-editor, .form-content {
+    position: relative;
     border: 0;
+    margin: 1em 0 0 0;
+    padding: 0;
+
     width: 100%;
-    max-width: 100%;
-    min-height: 4em;
+
+    min-height: 8em;
     max-height: 20em;
-    resize: vertical;
+
+    overflow-y: auto;
+}
+
+.form-content > .ta-bind {
+    padding: 0;
+    margin: 0;
+    min-height: inherit;
+    height: 100%;
+    max-width: 100%;
+    outline: 0;
+}
+
+.form-content p, .form-content span,
+.form-content h1, .form-content h2, .form-content h3, .form-content h4, .form-content h5 {
+    margin: 0 0 1em 0;
+
+    white-space: pre;
+    /*word-break: break-all;*/
+    /*word-wrap: break-word;*/
 }
