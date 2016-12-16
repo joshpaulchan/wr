@@ -9,7 +9,8 @@
     "overpass": "*",
     "font-awesome": "^4.7.0",
     "angular-mocks": "^1.5.8",
-    "angular-ui-router": "^0.3.2"
+    "angular-ui-router": "^0.3.2",
+    "textAngular": "^1.5.16"
   },
   "devDependencies": {
     "angular-mocks": "latest"
