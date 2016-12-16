@@ -2,7 +2,7 @@
 (function() {
 "use strict";
 
-// `convoItem`
+// `convo`
 //
 angular.module('wr.components')
 .component('convo', {
