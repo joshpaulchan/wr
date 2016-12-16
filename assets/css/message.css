@@ -1,0 +1,42 @@
+.message {
+    background: white;
+    padding: 1em;
+    margin-bottom: 2px;
+}
+
+.message > .message-header {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 1em;
+}
+
+.message-header > span {
+    font-size: 12px;
+}
+
+.message-header > .sender { float: left; }
+
+.message > p {
+    margin: 0;
+    text-indent: 1em;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 27px;
+}
+
+.message-header > .date {
+    float: right;
+    text-align: right;
+}
+
+.convo-footer {
+    box-sizing: border-box;
+    background: white;
+    padding: 1em;
+    width: 100%;
+    overflow: hidden;
+}
+
+.convo-footer > .button-group {
+    float: right;
+}

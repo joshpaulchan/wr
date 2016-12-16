@@ -37,31 +37,33 @@ div.convo-details>p {
 div.convo-header>table.convo-it-details {
     border-collapse: collapse;
     table-layout: fixed;
-    width: 768px;
+    width: 100%;
     margin-top: 1em;
+    text-align: left;
 }
 
-table.convo-it-details tr td {
-    width: 87.52%;
-}
-
-table.convo-it-details tr td:nth-child(1) {
-    padding-right: 2.08%;
-    width: 12.48%;
-}
-
-table.convo-it-details tr td>p {
+table.convo-it-details tr th p, table.convo-it-details tr td p {
+    vertical-align: top;
     margin: 0;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    font-size: 14px;
-    line-height: 15px;
+    padding: 0;
 }
 
-table.convo-it-details tr td:nth-child(1)>p {
-    font-weight: bold;
-    text-align: right;
+table.convo-it-details tr:nth-child(1) th { width: 12%; min-width: 96px; }
+/*table.convo-it-details tr:nth-child(1) td { width: 84%; }*/
+
+table.convo-it-details tr th > .title {
+    /*min-width: 96px;*/
+    font-size: 0.8em;
+    font-weight: 600;
+}
+
+table.convo-it-details tr td > .value {
+    text-overflow: ellipsis;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    word-break: break-all;
+    font-size: 0.8em;
+    line-height: 1em;
 }
 
 div.convo-header>div.convo-actions {
@@ -87,51 +89,4 @@ ul.messages {
     padding-top: 1em;
     list-style: none;
     overflow-y: auto;
-}
-
-li.message {
-    background: white;
-    padding: 1em;
-    margin-bottom: 2px;
-}
-
-li.message>div.message-header {
-    position: relative;
-    overflow: hidden;
-    margin-bottom: 1em;
-}
-
-div.message-header>span {
-    font-size: 12px;
-}
-
-div.message-header>span.sender {
-    float: left;
-}
-
-li.message>p {
-    margin: 0;
-    text-indent: 1em;
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 27px;
-}
-
-div.message-header>span.date {
-    float: right;
-    text-align: right;
-}
-
-div.convo-footer {
-    /*   position: absolute; */
-    /*bottom: 0;*/
-    box-sizing: border-box;
-    background: white;
-    padding: 1em;
-    width: 100%;
-    overflow: hidden;
-}
-
-div.convo-footer>div.button-group {
-    float: right;
 }

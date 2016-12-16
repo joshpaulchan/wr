@@ -6,24 +6,24 @@
     <table class="convo-it-details">
         <tbody>
             <tr>
-                <td><p>User Agent:</p></td>
-                <td><p ng-bind="convo.userAgent || 'User Agent'"></p></td>
+                <th><p class="title">User Agent:</p></th>
+                <td><p class="value" ng-bind="convo.userAgent || 'User Agent'"></p></td>
             </tr>
             <tr>
-                <td><p>Browser:</p></td>
-                <td><p ng-bind="convo.browser || 'Web Browser'"></p></td>
+                <th><p class="title">Browser:</p></th>
+                <td><p class="value" ng-bind="convo.browser || 'Web Browser'"></p></td>
             </tr>
             <tr>
-                <td><p>OS:</p></td>
-                <td><p ng-bind="convo.os || 'Operating System'"></p></td>
+                <th><p class="title">OS:</p></th>
+                <td><p class="value" ng-bind="convo.os || 'Operating System'"></p></td>
             </tr>
             <tr>
-                <td><p>IP Address:</p></td>
-                <td><p ng-bind="convo.ip || 'IP Address'"></p></td>
+                <th><p class="title">IP Address:</p></th>
+                <td><p class="value" ng-bind="convo.ip || 'IP Address'"></p></td>
             </tr>
             <tr>
-                <td><p>Referrer:</p></td>
-                <td><p><a href="{{convo.referrer || '/'}}" ng-bind="convo.referrer || 'http://urwebrsv.rutgers.edu/'"></a></p></td>
+                <th><p class="title">Referrer:</p></th>
+                <td><p class="value"><a href="{{convo.referrer || '/'}}" ng-bind="convo.referrer || 'http://urwebrsv.rutgers.edu/'"></a></p></td>
             </tr>
         </tbody>
     </table>
