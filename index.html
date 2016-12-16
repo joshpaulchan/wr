@@ -12,9 +12,6 @@
     <link href="assets/bower_components/overpass/Webfonts/recommended.css" rel="stylesheet" type="text/css" media="none" onload="this.media='all';"/>
     <link href="assets/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" media="none" onload="this.media='all';"/>
 
-    <script src="assets/bower_components/angular/angular.js"></script>
-    <script src="assets/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-
     <!---                              SHARED                              --->
     <link rel="stylesheet" type="text/css" href="assets/css/main.css">
     <link rel="stylesheet" type="text/css" href="assets/css/base.css">
@@ -23,15 +20,22 @@
     <link rel="stylesheet" type="text/css" href="assets/css/footer.css">
     <link rel="stylesheet" type="text/css" href="assets/css/card.css">
 
+    <!---                            COMPONENTS                            --->
+    <!-- <link rel="stylesheet" type="text/css" href="assets/css/loginPane.css"> -->
+    <link rel="stylesheet" type="text/css" href="assets/css/convoList.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/convoItem.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/convo.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/messageBox.css">
+
+    <script src="assets/bower_components/angular/angular.js"></script>
+    <script src="assets/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+
     <!-- angular core -->
     <script src="env.js"></script>
     <script src="app/app.module.js"></script>
 
     <!-- contenteditable -->
     <script src="app/shared/contenteditable/contenteditable.directive.js"></script>
-
-    <!-- card -->
-    <!-- <script src="app/shared/card/card.directive.js"></script> -->
 
     <!-- modal -->
     <script src="app/shared/modal/modal.directive.js"></script>
@@ -42,11 +46,9 @@
     <!-- footer -->
     <script src="app/shared/footer/footer.directive.js"></script>
 
-    <!---                            COMPONENTS                            --->
-    <!-- <link rel="stylesheet" type="text/css" href="assets/css/loginPane.css"> -->
-    <link rel="stylesheet" type="text/css" href="assets/css/convoList.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/convoItem.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/convo.css">
+    <!-- message-box -->
+    <script src="app/shared/messageBox/messageBox.controller.js"></script>
+    <script src="app/shared/messageBox/messageBox.component.js"></script>
 
     <!-- login-pane -->
     <!-- <script src="app/shared/auth/auth.service.js"></script> -->
@@ -64,7 +66,6 @@
     <script src="app/components/convo/convo.service.js"></script>
     <script src="app/components/convo/convo.controller.js"></script>
     <script src="app/components/convo/convo.component.js"></script>
-
 
     <!-- message -->
     <script src="app/components/message/message.component.js"></script>
