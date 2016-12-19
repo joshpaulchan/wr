@@ -8,7 +8,7 @@ angular.module('wr.components')
 .component('message', {
     bindings : {
         sender  : "<",
-        sentAt  : "<",
+        sent    : "<",
         body    : "<",
     },
     templateUrl: 'client/app/components/message/message.view.html',

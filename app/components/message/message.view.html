@@ -1,8 +1,8 @@
 <li class="message">
     <div class="message-header">
         <span class="sender"><strong>{{$ctrl.sender}}</strong> said:</span>
-        <span class="date">{{$ctrl.sentAt}}</span>
+        <span class="date">{{$ctrl.sent}}</span>
     </div>
-    <p>{{$ctrl.body}}</p>
+    <p ng-bind-html="::$ctrl.body"></p>
     <!-- <p ng-repeat="pg in $ctrl.body">{{pg}}</p> -->
 </li>
