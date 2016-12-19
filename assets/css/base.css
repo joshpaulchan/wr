@@ -18,6 +18,8 @@ h1, h2, h3, h4, h5, h6, p, span, small, input, textarea {
 p, span, small, textarea {
   font-weight: 400;
   font-size: 16px;
+  word-break: break-word;
+  word-wrap: break-word;
 }
 
 small {

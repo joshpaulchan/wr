@@ -51,6 +51,10 @@ Editor
     overflow-y: auto;
 }
 
+/*
+
+1. make text flow
+*/
 .form-content > .ta-bind {
     padding: 0;
     margin: 0;
@@ -63,8 +67,4 @@ Editor
 .form-content p, .form-content span,
 .form-content h1, .form-content h2, .form-content h3, .form-content h4, .form-content h5 {
     margin: 0 0 1em 0;
-
-    white-space: pre;
-    /*word-break: break-all;*/
-    /*word-wrap: break-word;*/
 }
