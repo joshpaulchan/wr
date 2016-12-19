@@ -12,7 +12,7 @@ li.list-item {
 }
 
 li.list-item.selected {
-  background: rgba(255, 255, 255, 0.25);
+  background: transparent;
   color: white;
 }
 
