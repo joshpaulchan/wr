@@ -33,7 +33,7 @@ angular.module('wr.services')
     service.loadConvo = function(id) {
         return new Promise(function(resolve, reject) {
             $http
-                .get(service.apiURL + `/${id}`)
+                .get(`${service.apiURL}/${id}`)
                 .then((resp) => {
                     resolve(resp.data);
                 })
@@ -77,12 +77,14 @@ angular.module('wr.services')
     // @return  : Promise   : resolves to Message or error message str
     service.replyToConvo = function(id, message) {
         return new Promise(function(resolve, reject) {
-            resolve({
-                id: new Date(),
-                created_at : new Date(),
-                emailFrom : 'you',
-                body : message
-            });
+            $http
+                .post(`${service.apiURL}/${id}`, {
+                    message : message
+                })
+                .then((resp) => {
+                    resolve(resp.data);
+                })
+                .catch(reject);
         });
     };
 
