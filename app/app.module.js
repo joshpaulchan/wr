@@ -7,10 +7,10 @@ var env = {};
 if(window){ env = window.__env; }
 
 // Initialize app
-angular.module('wr', ['ui.router', 'textAngular', 'wr.controllers', 'wr.services', 'wr.directives', 'wr.components'])
+angular.module('wr', ['ui.router', 'textAngular', 'angularModalService', 'wr.controllers', 'wr.services', 'wr.directives', 'wr.components'])
 .constant('__env', env)
 .constant('__token', 'SECRET-YEET') // FIXME: switch token to true php session token
-.config(function($logProvider, $locationProvider, $stateProvider, $httpProvider, $urlMatcherFactoryProvider, __env, __token) {
+.config(function($logProvider, $locationProvider, $stateProvider, $urlRouterProvider, $httpProvider, $urlMatcherFactoryProvider, __env, __token) {
     // enable/disable angular debug
     $logProvider.debugEnabled(__env.enableDebug);
 
@@ -21,6 +21,15 @@ angular.module('wr', ['ui.router', 'textAngular', 'wr.controllers', 'wr.services
     $urlMatcherFactoryProvider.strictMode(false);
 
     $stateProvider
+        .state('app', {
+            url: "/",
+            abstract: true,
+        })
+        .state('login', {
+            url: "/login",
+            templateUrl: "client/app/templates/login.html",
+            deepStateRedirect: true
+        })
         .state('convos', {
             url: "/conversations",
             templateUrl: "client/app/templates/conversations.html",
@@ -34,6 +43,8 @@ angular.module('wr', ['ui.router', 'textAngular', 'wr.controllers', 'wr.services
                 }
             }
         });
+
+    $urlRouterProvider.when('/', '/login');
 
     // automatically attach token to outgoing requests
     $httpProvider.defaults.headers.common['X-CSRF-TOKEN'] = __token;
