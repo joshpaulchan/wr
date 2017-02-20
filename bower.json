@@ -11,7 +11,8 @@
     "angular-mocks": "^1.5.8",
     "angular-ui-router": "^0.3.2",
     "textAngular": "^1.5.16",
-    "angular-modal-service": "^0.10.1"
+    "angular-modal-service": "^0.10.1",
+    "Ionicons": "ionicons#^2.0.1"
   },
   "devDependencies": {
     "angular-mocks": "latest"
