@@ -10,6 +10,7 @@ angular.module('wr.directives')
                 "show": "=",
                 "toHide": "="
             },
+            replace: true,
             transclude: true,
             templateUrl: "client/app/shared/card/card.view.html"
         };
