@@ -1,62 +1,49 @@
 /********************************** $HEADER **********************************/
 
-/*
-
-1. stretch to 48px x 100%
-2. add side padding
-3. change bg color
-4. add bottom margin 2px
-*/
 .header {
-    /*position and layout*/
-    /*position: absolute;*/
-    /*top: 0;*/
-    margin-bottom: 2px;
+  position: relative;
 
-    /*size*/
-    box-sizing: border-box;
-    width: 100%;
-    padding: 0 16px;
-    height: 48px;
+  box-sizing: border-box;
+  width: 100vw;
+  height: 4rem;
 
-    /*colors*/
-    background-color: #c03;
-    color: #fff;
-
-    /*fonts*/
+  background: #c03;
 }
+
+.header-logo {
+  position: absolute;
+  left: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/** HEADER/BUTTONS **/
 
 /*
 
-1. align together
-2. align center
 */
-.header > * {
-    display: inline-block;
-    line-height: 48px;
+.header-buttons {
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: Roboto;
+
+  color: white;
 }
 
-/*
 
-1. resize img
-*/
-.header > img {
-    height: 48px;
-}
-
-/*
-
-1. remove margins
-3. change font color and size
-*/
-.header > h1 {
-    /*layout*/
-    margin: 0;
-
-    /*color*/
-    color: #fff;
-
-    /*font*/
-    font-size: 1.5em;
-    font-weight: 200;
+.header-buttons > li {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
 }
