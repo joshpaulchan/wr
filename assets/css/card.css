@@ -15,7 +15,7 @@ Bc of card-trail and card-lead, can't put background on the card itself
 
   min-height: 1rem;
 
-  background-color: var(--white);
+  background-color: #fff;
 }
 
 .card-trail, .card-lead {
