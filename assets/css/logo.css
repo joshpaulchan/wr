@@ -1,0 +1,55 @@
+/** LOGO **/
+
+/*
+
+- Make inline-block
+- Shrink height to 48px
+- set font-family
+
+*/
+.logo {
+  box-sizing: border-box;
+  height: 48px;
+
+  font-family: Roboto;
+
+  white-space: nowrap;
+}
+
+/*
+- align logo image and texts
+
+*/
+.logo-img, .logo-text {
+  display: inline-block;
+  line-height: 1rem;
+}
+
+/*
+Fix image dimensions to make edges kiss.
+*/
+.logo-img {
+  height: 3rem;
+}
+
+/*
+Align inner items to top to allow box positioning
+
+*/
+.logo-text {
+  display: inline-block;
+  vertical-align: top;
+  text-align: left;
+
+  position: relative;
+  top: 0.25rem;
+  left: 0.25rem;
+}
+
+.logo-text-line {
+  display: block;
+
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--white);
+}
