@@ -145,3 +145,13 @@ div[ui-view] > .placeholder {
 .icon--lg { width: 3rem; height: 3rem; font-size: 3rem; }
 .icon--md { width: 2rem; height: 2rem; font-size: 2rem; }
 .icon--sm { width: 1rem; height: 1rem; font-size: 1rem; }
+
+/********************************* $UTILITIES *********************************/
+
+.spacer {
+  display: inline-block;
+  width: 1rem;
+}
+
+.spacer--md { width: 2rem; }
+.spacer--lg { width: 3rem; }
