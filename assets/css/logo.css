@@ -11,8 +11,6 @@
   box-sizing: border-box;
   height: 48px;
 
-  font-family: Roboto;
-
   white-space: nowrap;
 }
 
@@ -50,6 +48,7 @@ Align inner items to top to allow box positioning
   display: block;
 
   font-weight: 700;
+  font-family: Roboto;
   font-size: 1rem;
   color: white;
 }
