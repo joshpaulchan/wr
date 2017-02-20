@@ -1,15 +1,49 @@
-<div class='card login-card card-round card-shadow vertical-center'>
-	<div class='tapestry'>
-		<img class='tapestry-logo' src='img/logo.png' alt='Rutgers University' />
-		<h1 class='tapestry-title'>Web Response</h1>
-	</div>
-	<form class='card-form'>
-		<span class='error'>{{errorMsg}}</span>
-		<input type='text' placeholder='username' ng-model="username"/>
-		<input type='password' placeholder='password' ng-model="pw"/>
-		<button ng-click="logIn()">Login</button>
-	</form>
-	<div class='card-footer text-center'>
-		<a href='#'>Apply For Access</a>
-	</div>
+<!-- box -->
+<div class="box login-box box--center">
+  <!-- card -->
+  <div class="card">
+    <!-- card lead -->
+    <div class="card-lead">
+      <!-- logo -->
+      <div class="logo">
+        <div class="logo-img">
+          <img src='http://urwebsrv.rutgers.edu/temp/webresp/img/logo.png' alt='Rutgers University' height="48px"/>
+        </div>
+        <div class="logo-text">
+          <span class="logo-text-line">WEB</span>
+          <span class="logo-text-line">RESPONSE</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-body">
+      <form>
+        <label>
+          <i class="ion-android-person icon icon--sm icon--dark"></i>
+          <input type="email" placeholder="netid@rutgers.edu"/>
+        </label>
+
+        <label>
+          <i class="ion-android-lock icon icon--sm icon--dark"></i>
+          <input type="password" placeholder="password"/>
+        </label>
+
+        <label>
+          <span class="spacer spacer--md"></span>
+          <input type="password" placeholder="confirm password"/>
+        </label>
+      </form>
+    </div>
+    <div class="card-footer">
+      <div class="btn-group at-right">
+        <button class="btn--clear btn--tight">LOGIN</button>
+      </div>
+    </div>
+
+    <!-- card trail -->
+    <div class="card-trail">
+      <a class="btn light btn--clear btn--sm btn--tight" href="">REGISTER</a>
+    </div>
+
+  </div>
 </div>
