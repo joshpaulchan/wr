@@ -25,10 +25,18 @@ angular.module('wr', ['ui.router', 'textAngular', 'angularModalService', 'wr.con
             url: "/",
             abstract: true,
         })
-        .state('login', {
+        .state('auth', {
+            url: "",
+            templateUrl: "client/app/templates/bare.html",
+            abstract: true,
+        })
+        .state('auth.login', {
             url: "/login",
-            templateUrl: "client/app/templates/login.html",
-            deepStateRedirect: true
+            templateUrl: "client/app/components/login/login.view.html",
+        })
+        .state('auth.register', {
+            url: "/register",
+            templateUrl: "client/app/templates/bare.html",
         })
         .state('convos', {
             url: "/conversations",
@@ -42,6 +50,11 @@ angular.module('wr', ['ui.router', 'textAngular', 'angularModalService', 'wr.con
                     template: "<convo/>"
                 }
             }
+        })
+        .state('settings', {
+            url: "/settings",
+            templateUrl: "client/app/templates/bare.html",
+            deepStateRedirect: true
         });
 
     $urlRouterProvider.when('/', '/login');
