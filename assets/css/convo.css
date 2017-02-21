@@ -76,7 +76,7 @@ div.convo-header>div.convo-actions {
     line-height: 16px;
 }
 
-div.convo-actions>button {
+div.convo-actions> button {
     position: absolute;
     right: 0;
 }
@@ -89,4 +89,20 @@ ul.messages {
     padding-top: 1em;
     list-style: none;
     overflow-y: auto;
+}
+
+.convo-footer {
+    box-sizing: border-box;
+    background: white;
+    padding: 1em;
+    width: 100%;
+    overflow: hidden;
+}
+
+.convo-footer-actions {
+    position: relative;
+    box-sizing: border-box;
+    height: 16px;
+    line-height: 16px;
+    width: 100%;
 }

@@ -28,15 +28,3 @@
     float: right;
     text-align: right;
 }
-
-.convo-footer {
-    box-sizing: border-box;
-    background: white;
-    padding: 1em;
-    width: 100%;
-    overflow: hidden;
-}
-
-.convo-footer > .button-group {
-    float: right;
-}
