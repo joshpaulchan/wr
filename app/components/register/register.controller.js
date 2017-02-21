@@ -62,8 +62,8 @@ angular.module('wr.controllers')
                     $scope.registerData.password = "";
                     $scope.registerData.confirmPassword = "";
 
-                    // redirect to /conversations
-                    $state.go('registerConfirm');
+                    // redirect to `/register-confirm`
+                    $state.go('auth.register-confirm');
                 },
                 (err) => {
                     console.error("[login]", err);
