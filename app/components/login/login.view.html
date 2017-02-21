@@ -8,18 +8,18 @@
         <form class="stacked">
             <label class="full-width">
                 <i class="ion-android-person icon icon--sm icon--dark"></i>
-                <input type="email" placeholder="netid@rutgers.edu"/>
+                <input ng-model="loginData.email" type="email" placeholder="netid@rutgers.edu" name="email"/>
             </label>
 
             <label class="full-width">
                 <i class="ion-android-lock icon icon--sm icon--dark"></i>
-                <input type="password" placeholder="password"/>
+                <input ng-model="loginData.password" type="password" placeholder="password" name="password"/>
             </label>
         </form>
     </div>
     <div class="card-footer">
         <div class="button-group at-right">
-            <button class="btn--clear btn--tight" ng-click="doLogin()">LOGIN</button>
+            <button class="btn--clear btn--tight" ng-click="doLogin($event)">LOGIN</button>
             <span class="spacer"></span>
         </div>
     </div>
