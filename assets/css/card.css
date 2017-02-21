@@ -24,11 +24,19 @@ Bc of card-trail and card-lead, can't put background on the card itself
   background: transparent;
 }
 
+.card-header, .card-lead {
+    margin-bottom: -1px;
+}
+
 .card-header, .card-trail { padding-top: 1rem; }
 
 .card-body {
   box-sizing: border-box;
   padding: 1rem 0;
+}
+
+.card-footer, .card-trail {
+    margin-top: -1px;
 }
 
 .card-footer, .card-lead { padding-bottom: 1rem; }
