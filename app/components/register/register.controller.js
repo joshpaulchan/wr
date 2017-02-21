@@ -67,7 +67,6 @@ angular.module('wr.controllers')
                 },
                 (err) => {
                     console.error("[login]", err);
-                    // FIXME: Show register issue
                     $scope.registerData.error = true;
                     $scope.registerData.errorMsg = err.message;
                     $scope.$apply();

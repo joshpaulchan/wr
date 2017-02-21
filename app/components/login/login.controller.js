@@ -55,9 +55,9 @@ angular.module('wr.controllers')
                 },
                 (err) => {
                     console.error("[login]", err);
-                    // FIXME: Show login issue in
-                    $scope.error = false;
-                    $scope.errorMsg = err.message;
+                    $scope.loginData.error = true;
+                    $scope.loginData.errorMsg = err.message;
+                    $scope.$apply();
             });
     };
 
