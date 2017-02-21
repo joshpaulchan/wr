@@ -122,7 +122,7 @@ button:disabled, .btn:disabled {
   color: rgba(0, 0, 0, 0.75);
 }
 
-.button-clear {
+.btn--clear {
 /*   TODO: use mix-blend mode to determine what color to make the text */
   background: transparent;
 }
