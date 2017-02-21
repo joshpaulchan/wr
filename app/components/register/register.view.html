@@ -5,6 +5,7 @@
     </div>
 
     <div class="card-body">
+        <p class="centered danger" ng-if="registerData.error">{{registerData.errorMsg}}</p>
         <form class="stacked">
             <label class="full-width">
                 <i class="ion-android-person icon icon--sm icon--dark"></i>

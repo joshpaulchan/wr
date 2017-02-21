@@ -235,6 +235,8 @@ div[ui-view] > .placeholder {
 
 /********************************* $UTILITIES *********************************/
 
+.centered { text-align: center; }
+
 .spacer {
   display: inline-block;
   width: 1rem;
@@ -244,6 +246,7 @@ div[ui-view] > .placeholder {
 .spacer--lg { width: 3rem; }
 
 .light { color: white; }
+.danger { color: #e45; }
 
 .bg-red { background-color: #c03; }
 
