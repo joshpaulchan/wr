@@ -10,6 +10,9 @@
 // @attr    : loginData             : Object    : container for login data
 // @attr    : loginData.email       : String    : email of user attempting login
 // @attr    : loginData.password    : String    : pw of user attempting login
+// @attr    : loginData.error       : Boolean   : whether an error has occurred
+// @attr    : loginData.errorMsg    : String    : message stating what the error
+// is, if any
 //
 // @method  : doLogin() : null  : Attempts to log user into web-response with
 // the data submitted via scope.
