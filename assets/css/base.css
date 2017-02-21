@@ -9,18 +9,19 @@ body {
   height: 100vh;
   width: 100vw;
   font-size: 16px;
+  white-space: nowrap;
 
   font-family: Overpass, Segoe UI;
 }
 
 /******************************** $TYPOGRAPHY ********************************/
 
-h1, h2, h3, h4, h5, h6, p, span, small, input, textarea {
+h1, h2, h3, h4, h5, h6, p, span, small {
   font-family: Overpass;
   color: #4A4A4A;
 }
 
-p, span, small, textarea {
+p, span, small {
   font-weight: 400;
   font-size: 16px;
   word-break: break-word;
@@ -40,28 +41,99 @@ h3, h4, h5, h6 {
   font-weight: 700;
 }
 
+/*********************************** $FORMS ***********************************/
+
+form {
+  display: flex;
+  width: 100%;
+}
+
+.stacked {
+    flex-direction: column;
+}
+
+.full-width {
+  box-sizing: border-box;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 1rem;
+}
+
+.full-width > input[type="text"],
+.full-width > input[type="password"],
+.full-width > input[type="email"] {
+  flex: 1;
+  box-sizing: border-box;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  outline: 0;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  height: 2rem;
+  line-height: 2rem;
+  font-size: 1rem;
+
+  transition: border 0.3s;
+}
+
+.full-width > input[type="text"]:focus,
+.full-width > input[type="password"]:focus,
+.full-width > input[type="email"]:focus {
+  border-bottom: 2px solid #ddd;
+}
+
 /********************************** $BUTTONS **********************************/
 
+/*
+Main button class.
+
+Button should be an inline-block.
+Text should be heavy and undecorated, spaced.
+The cursor should change to a pointer.
+
+*/
 button, .btn {
-  background: #ccc;
-  border: 0;
+    display: inline-block;
 
-  font-family: Roboto, sans-serif;
-  font-size: 12px;
-  letter-spacing: 0.25px;
-  font-weight: 700;
-  text-transform: uppercase;
+    margin: 0 2px;
+    box-sizing: border-box;
+    border: 0;
+
+    font-family: Roboto, sans-serif;
+    font-weight: 700;
+    /*font-size: 0.75rem;*/
+    letter-spacing: 1px;
+    text-transform: uppercase;
+
+    outline: 0;
+    text-decoration: none;
+
+    background: #ccc;
+    color: black;
+
+    cursor: pointer;
 }
 
-button:disabled {
-  /*color: rgba(0, 0, 0, 0.75);*/
+button:disabled, .btn:disabled {
+  color: rgba(0, 0, 0, 0.75);
 }
 
-button.button-clear {
+.button-clear {
 /*   TODO: use mix-blend mode to determine what color to make the text */
   background: transparent;
 }
 
+.btn-group {
+    position: absolute;
+}
+
+.at-right {
+    right: 1rem;
+}
 /*placeholders*/
 
 div[ui-view] { position: relative; }
@@ -168,3 +240,7 @@ div[ui-view] > .placeholder {
 
 .spacer--md { width: 2rem; }
 .spacer--lg { width: 3rem; }
+
+.bg-red { background-color: #c03; }
+
+.full-screen { width: 100vw; height: 100vh; }
