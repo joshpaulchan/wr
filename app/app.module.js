@@ -38,6 +38,10 @@ angular.module('wr', ['ui.router', 'textAngular', 'angularModalService', 'wr.con
             url: "/register",
             template: "<register />",
         })
+        .state('auth.register-confirm', {
+            url: "/register-confirm",
+            templateUrl: "client/app/components/registerConfirm/registerConfirm.view.html",
+        })
         .state('convos', {
             url: "/conversations",
             templateUrl: "client/app/templates/conversations.html",
