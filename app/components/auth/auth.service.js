@@ -80,7 +80,7 @@ angular.module('wr.services')
     // Submits a user registration application to the server.
     //
     // @pre     : `email` must be a valid unique email
-    // @pre     : `pw` must be the intended password
+    // @pre     : `pw` must be the intended password and non-empty
     // @pre     : `pw` must be a copy of the intended password
     //
     // @post    : [success] the `null` value will be returned
@@ -98,6 +98,12 @@ angular.module('wr.services')
             if (pw !== confirmPw) {
                 return reject({
                     message: "Passwords do not match."
+                });
+            }
+
+            if (pw.trim().length === 0) {
+                return reject({
+                    message: "Password fields must not be empty."
                 });
             }
 
