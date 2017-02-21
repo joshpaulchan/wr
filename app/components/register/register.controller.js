@@ -49,11 +49,11 @@ angular.module('wr.controllers')
 
         // Check if registration
         $authService
-            .register({
-                email: $scope.registerData.email,
-                password: $scope.registerData.password,
-                confirmPassword: $scope.registerData.confirmPassword
-            })
+            .register(
+                $scope.registerData.email,
+                $scope.registerData.password,
+                $scope.registerData.confirmPassword
+            )
             .then(
                 (resp) => {
                     // Clear the fields

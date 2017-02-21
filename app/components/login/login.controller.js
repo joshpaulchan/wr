@@ -42,10 +42,7 @@ angular.module('wr.controllers')
         ev.preventDefault();
 
         $authService
-            .login({
-                email: $scope.loginData.email,
-                password: $scope.loginData.password
-            })
+            .login($scope.loginData.email, $scope.loginData.password)
             .then(
                 (resp) => {
                     // Clear the fields
