@@ -104,7 +104,7 @@ angular.module('wr.services')
             $http
                 .post(`${service.apiURL}/register`, {
                     email : email,
-                    password : password,
+                    password : pw,
                 })
                 .then(resolve)
                 .catch(reject);
@@ -115,7 +115,7 @@ angular.module('wr.services')
     // Checks whether the user is logged in or not.
     //
     // @return  : Promise   : resolves to true if user is logged in, false
-    // otherwise    
+    // otherwise
     service.isLoggedIn = () => {
         return new Promise(function(resolve, reject) {
             resolve(!!sessionStorage.getItem('wr-user'));
