@@ -243,6 +243,8 @@ div[ui-view] > .placeholder {
 .spacer--md { width: 2rem; }
 .spacer--lg { width: 3rem; }
 
+.light { color: white; }
+
 .bg-red { background-color: #c03; }
 
 .full-screen { width: 100vw; height: 100vh; }
