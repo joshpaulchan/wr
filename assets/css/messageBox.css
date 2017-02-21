@@ -14,6 +14,7 @@ Toolbar
 
 message-box .ta-toolbar {
     /*padding: 0;*/
+    white-space: normal;
 }
 
 .ta-toolbar .btn-group {
@@ -21,6 +22,7 @@ message-box .ta-toolbar {
     margin-right: 1em;
 
     margin-top: 2px;
+
 }
 
 .ta-toolbar .btn-group > .btn {
