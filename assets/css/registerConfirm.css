@@ -1,3 +1,9 @@
 .register-confirm-card {
   width: 17rem;
 }
+
+.register-confirm-card > .card-body {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    text-align: center;
+}
