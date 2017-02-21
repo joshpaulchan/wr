@@ -26,6 +26,7 @@ p, span, small {
   font-size: 16px;
   word-break: break-word;
   word-wrap: break-word;
+  white-space: normal;
 }
 
 small {
@@ -105,7 +106,7 @@ button, .btn {
 
     font-family: Roboto, sans-serif;
     font-weight: 700;
-    /*font-size: 0.75rem;*/
+    font-size: 0.75rem;
     letter-spacing: 1px;
     text-transform: uppercase;
 
@@ -119,7 +120,7 @@ button, .btn {
 }
 
 button:disabled, .btn:disabled {
-  color: rgba(0, 0, 0, 0.75);
+  color: rgba(0, 0, 0, 0.5);
 }
 
 .btn--clear {
@@ -127,8 +128,8 @@ button:disabled, .btn:disabled {
   background: transparent;
 }
 
-.btn-group {
-    position: absolute;
+.button-group {
+    /*position: absolute;*/
 }
 
 .at-right {
@@ -182,6 +183,7 @@ div[ui-view] > .placeholder {
 }
 .pane {
     padding: 0 2px;
+    overflow: hidden;
 }
 .pane + .pane {
     padding-left: 0;
