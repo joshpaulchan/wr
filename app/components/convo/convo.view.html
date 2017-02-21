@@ -28,7 +28,7 @@
         </tbody>
     </table>
     <div class="convo-actions">
-        <button class="button-clear">FORWARD</button>
+        <button class="btn--clear">FORWARD</button>
     </div>
 </div>
 <ul class="messages">
@@ -41,10 +41,12 @@
 </ul>
 <div class="convo-footer">
     <message-box placeholder="Type a response or insert a template..." message="response.message"></message-box>
-    <div class="button-group">
-        <button
-            class="button-clear"
-            ng-disabled="replyDisabled(response.message)"
-            ng-click="doReply(convo.id, response.message)">REPLY</button>
+    <div class="convo-footer-actions">
+        <div class="button-group at-right">
+            <button
+                class="btn--clear"
+                ng-disabled="replyDisabled(response.message)"
+                ng-click="doReply(convo.id, response.message)">REPLY</button>
+        </div>
     </div>
 </div>

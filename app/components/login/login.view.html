@@ -15,21 +15,17 @@
                 <i class="ion-android-lock icon icon--sm icon--dark"></i>
                 <input type="password" placeholder="password"/>
             </label>
-
-            <label class="full-width">
-                <span class="spacer spacer--md"></span>
-                <input type="password" placeholder="confirm password"/>
-            </label>
         </form>
     </div>
     <div class="card-footer">
-        <div class="btn-group at-right">
-            <button class="btn--clear btn--tight">LOGIN</button>
+        <div class="button-group at-right">
+            <button class="btn--clear btn--tight" ng-click="doLogin()">LOGIN</button>
+            <span class="spacer"></span>
         </div>
     </div>
 
     <!-- card trail -->
     <div class="card-trail">
-        <a class="btn light btn--clear btn--sm btn--tight" href="">REGISTER</a>
+        <a class="btn btn--clear btn--sm btn--tight" ui-sref="auth.register">REGISTER</a>
     </div>
 </card>
