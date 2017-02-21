@@ -4,7 +4,7 @@
 
 // Import variables if present (from env.js) (thanks @jvandemo)
 var env = {};
-if(window){ env = window.__env; }
+if (window) { env = window.__env; }
 
 // Initialize app
 angular.module('wr', ['ui.router', 'textAngular', 'angularModalService', 'wr.controllers', 'wr.services', 'wr.directives', 'wr.components'])
@@ -32,11 +32,11 @@ angular.module('wr', ['ui.router', 'textAngular', 'angularModalService', 'wr.con
         })
         .state('auth.login', {
             url: "/login",
-            templateUrl: "client/app/components/login/login.view.html",
+            template: "<login />",
         })
         .state('auth.register', {
             url: "/register",
-            templateUrl: "client/app/templates/bare.html",
+            template: "<register />",
         })
         .state('convos', {
             url: "/conversations",
@@ -50,7 +50,7 @@ angular.module('wr', ['ui.router', 'textAngular', 'angularModalService', 'wr.con
                     template: "<convo/>"
                 }
             }
-        })
+        }) // TODO: Settings page
         .state('settings', {
             url: "/settings",
             templateUrl: "client/app/templates/bare.html",
