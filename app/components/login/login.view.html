@@ -6,16 +6,18 @@
 
     <div class="card-body">
         <p class="centered danger" ng-if="loginData.error">{{loginData.errorMsg}}</p>
-        <form class="stacked">
+        <form class="stacked" ng-submit="doLogin($event)">
             <label class="full-width">
                 <i class="ion-android-person icon icon--sm icon--dark"></i>
-                <input ng-model="loginData.email" type="email" placeholder="netid@rutgers.edu" name="email"/>
+                <input ng-model="loginData.email" type="email" placeholder="netid@rutgers.edu" name="email" required/>
             </label>
 
             <label class="full-width">
                 <i class="ion-android-lock icon icon--sm icon--dark"></i>
-                <input ng-model="loginData.password" type="password" placeholder="password" name="password"/>
+                <input ng-model="loginData.password" type="password" placeholder="password" name="password" required/>
             </label>
+
+            <input type="submit" class="hidden"/>
         </form>
     </div>
     <div class="card-footer">

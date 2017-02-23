@@ -6,21 +6,23 @@
 
     <div class="card-body">
         <p class="centered danger" ng-if="registerData.error">{{registerData.errorMsg}}</p>
-        <form class="stacked">
+        <form class="stacked" ng-submit="doRegister($event)">
             <label class="full-width">
                 <i class="ion-android-person icon icon--sm icon--dark"></i>
-                <input ng-model="registerData.email" name="email" type="email" placeholder="netid@rutgers.edu"/>
+                <input ng-model="registerData.email" name="email" type="email" placeholder="netid@rutgers.edu" required/>
             </label>
 
             <label class="full-width">
                 <i class="ion-android-lock icon icon--sm icon--dark"></i>
-                <input ng-model="registerData.password" name="password" type="password" placeholder="password"/>
+                <input ng-model="registerData.password" name="password" type="password" placeholder="password" required/>
             </label>
 
             <label class="full-width">
                 <span class="spacer spacer--md"></span>
-                <input ng-model="registerData.confirmPassword" name="confiromPassword" type="password" placeholder="confirm password"/>
+                <input ng-model="registerData.confirmPassword" name="confirmPassword" type="password" placeholder="confirm password" required/>
             </label>
+
+            <input type="submit" class="hidden"/>
         </form>
     </div>
     <div class="card-footer">
