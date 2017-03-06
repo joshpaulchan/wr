@@ -51,12 +51,12 @@ angular.module('wr.controllers')
                     $scope.loginData.password = "";
 
                     // redirect to /conversations
-                    $state.go('conversations');
+                    $state.go('convos');
                 },
                 (err) => {
                     console.error("[login]", err);
                     $scope.loginData.error = true;
-                    $scope.loginData.errorMsg = err.message;
+                    $scope.loginData.errorMsg = err.data.message || "Error logging in.";
                     $scope.$apply();
             });
     };
