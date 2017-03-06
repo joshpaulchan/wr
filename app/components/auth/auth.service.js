@@ -42,8 +42,9 @@ angular.module('wr.services')
     service.login = (email, pw) => {
         return new Promise(function(resolve, reject) {
             $http
-                .get(`${service.apiURL}/login`, {
-
+                .post(`${service.apiURL}/login`, {
+                    email : email,
+                    password : pw
                 })
                 .then((resp) => {
                     // save user session in sessionStorage
