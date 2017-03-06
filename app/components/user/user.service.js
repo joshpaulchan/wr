@@ -62,7 +62,7 @@ angular.module('wr.services')
                     service.curApprovedPage = pg;
                     service.nextApprovedUrl = resp.data.next_page_url;
                     service.numItemsPerPage = numItemsPerPage;
-                    resolve(resp.data.data);
+                    resolve(resp.data);
                 })
                 .catch(reject);
         });
