@@ -54,7 +54,12 @@ angular.module('wr', ['ui.router', 'textAngular', 'angularModalService', 'wr.con
                     template: "<convo/>"
                 }
             }
-        }) // TODO: Settings page
+        })
+        .state('users', {
+            url: "/users",
+            template : "<users />"
+        })
+         // TODO: Settings page
         .state('settings', {
             url: "/settings",
             templateUrl: "client/app/templates/bare.html",
@@ -65,6 +70,9 @@ angular.module('wr', ['ui.router', 'textAngular', 'angularModalService', 'wr.con
 
     // automatically attach token to outgoing requests
     $httpProvider.defaults.headers.common['X-CSRF-TOKEN'] = __token;
+
+    // JSON
+    $httpProvider.defaults.headers.common['Content-Type'] = "application/json";
 });
 
 // Initialize modules
