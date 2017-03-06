@@ -7,7 +7,7 @@ var env = {};
 if (window) { env = window.__env; }
 
 // Initialize app
-angular.module('wr', ['ui.router', 'textAngular', 'angularModalService', 'wr.controllers', 'wr.services', 'wr.directives', 'wr.components'])
+angular.module('wr', ['ui.router', 'textAngular', 'angularModalService', 'wr.controllers', 'wr.services', 'wr.directives', 'wr.components', 'wr.pages'])
 .constant('__env', env)
 .constant('__token', 'SECRET-YEET') // FIXME: switch token to true php session token
 .config(function($logProvider, $locationProvider, $stateProvider, $urlRouterProvider, $httpProvider, $urlMatcherFactoryProvider, __env, __token) {
@@ -80,4 +80,5 @@ angular.module('wr.controllers', []);
 angular.module('wr.services', []);
 angular.module('wr.directives', []);
 angular.module('wr.components', []);
+angular.module('wr.pages', []);
 }());
