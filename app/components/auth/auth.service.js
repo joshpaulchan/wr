@@ -48,7 +48,7 @@ angular.module('wr.services')
                 })
                 .then((resp) => {
                     // save user session in sessionStorage
-                    sessionStorage.setItem('wr-user', resp.data);
+                    sessionStorage.setItem('wr-user', JSON.stringify(resp.data));
                     resolve(resp.data);
                 })
                 .catch(reject);
@@ -127,6 +127,15 @@ angular.module('wr.services')
         return new Promise(function(resolve, reject) {
             resolve(!!sessionStorage.getItem('wr-user'));
         });
+    };
+
+    // `getUser()`
+    // Retrieves the currently logged in user.
+    //
+    // @return  : Object    : returns the currently logged-in user's object, if
+    // loggedin, otherwise null
+    service.getUser = () => {
+        return JSON.parse(sessionStorage.getItem('wr-user') || null);
     };
 
     return service;
