@@ -138,6 +138,69 @@ angular.module('wr.services')
         return JSON.parse(sessionStorage.getItem('wr-user') || null);
     };
 
+
+    // `escalateUser(id)`
+    // Escalates a regular user to admin status.
+    //
+    // @pre     : [success] the user submitting the request must be an admin
+    // @post    : [success] the user will be an admin
+    // @post    : [error] the user's status will not change
+    // @post    : [error] the promise will reject to an error message
+    //
+    // @param   : id    : Number    : the id of the user to be escalated
+    // @return  : Promise   : resolves to object with 'error' key false if
+    // successful, true otherwise
+    service.escalateUser = (id) => {
+        return new Promise(function(resolve, reject) {
+            $http
+                .post(`${service.apiURL}/escalate/${id}`)
+                .then(resolve)
+                .catch(reject);
+        });
+    };
+
+    // `deescalateUser(id)`
+    // De-escalates an admin user to regular user status.
+    //
+    // @pre     : [success] the user submitting the request must be an admin
+    // @pre     : [success] the user submitting the request must be an admin
+    // @post    : [success] the user will be a regular user
+    // @post    : [error] the user's status will not change
+    // @post    : [error] the promise will reject to an error message
+    //
+    // @param   : id    : Number    : the id of the user to be deescalated
+    // @return  : Promise   : resolves to object with 'error' key false if
+    // successful, true otherwise
+    service.deescalateUser = (id) => {
+        return new Promise(function(resolve, reject) {
+            $http
+                .post(`${service.apiURL}/deescalate/${id}`)
+                .then(resolve)
+                .catch(reject);
+        });
+    };
+
+    // `approveUser(id)`
+    // Approves an applicant and makes them a regular user.
+    //
+    // @pre     : [success] the user submitting the request must be an admin
+    // @pre     : [success] the user submitting the request must be an admin
+    // @post    : [success] the user will be a regular user
+    // @post    : [error] the user's status will not change
+    // @post    : [error] the promise will reject to an error message
+    //
+    // @param   : id    : Number    : the id of the user to approve
+    // @return  : Promise   : resolves to object with 'error' key false if
+    // successful, true otherwise
+    service.approveUser = (id) => {
+        return new Promise(function(resolve, reject) {
+            $http
+                .post(`${service.apiURL}/approve/${id}`)
+                .then(resolve)
+                .catch(reject);
+        });
+    };
+
     return service;
 }]);
 }());
