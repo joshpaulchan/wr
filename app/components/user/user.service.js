@@ -14,8 +14,9 @@
 // @attr    : nextApprovedUrl   : String    : url of the next page of approved users
 // @attr    : numItemsPerPage   : Number    : number of items to load per page for a search/load
 //
-// @method  : loadApprovedUsers     : Promise   : Retrieves a page of the approved users from the server.
-// @method  : loadUnapprovedUsers   : Promise   : Retrieves a page of the unapproved users from the server.
+// @method  : loadUsers             : Promise   : Retrieves a page of users from the server.
+// @method  : loadApprovedUsers     : Promise   : Retrieves a page of approved users from the server.
+// @method  : loadUnapprovedUsers   : Promise   : Retrieves a page of unapproved users from the server.
 // @method  : loadNext              : Promise   : Either 1) retrieves the next page following a .loadConversations(..), or 2) retrieves the next page of serach results following a .search(..).
 // @method  : loadUser              : Promise   : Retrieves a specific user from the server.
 //
@@ -32,6 +33,40 @@ angular.module('wr.services')
     service.numItemsPerPage = 25;
 
     ///////////////////////////////// LOADING /////////////////////////////////
+
+    // `loadUsers(pg, numItemsPerPage)`
+    // Retrieves a page of users from the server.
+    //
+    // @pre     : `pg` must be a non-negative Number or null, if null will
+    // default to 0
+    // @pre     : `numItemsPerPage` must be a positive Number or null, if null
+    // will default to 25
+    // @post    : if given, `pg` will set `curPage` so `loadNext` can be used
+    // @post    : if given, `numItemsPerPage` will set `numItemsPerPage` so
+    // `loadNext` can be used
+    // @post    : [success] returned promise will resolve to users[]
+    // @post    : [error] returned promise will reject to an error message
+    //
+    // @param   : pg                : Number    : the page number to load
+    // (assuming numItemsPerPage is the number of items in a page) [ default=0 ]
+    // @param   : numItemsPerPage   : Number    : the number of items per page [
+    // default=25 ]
+    // @return  : Promise   : resolves to users[] or error message str
+    service.loadUsers = function(pg, numItemsPerPage) {
+        return new Promise(function(resolve, reject) {
+            $http
+                .get(service.apiURL, {
+                    params: {
+                        page : pg,
+                        n : numItemsPerPage
+                    }
+                })
+                .then((resp) => {
+                    resolve(resp.data.data);
+                })
+                .catch(reject);
+        });
+    };
 
     // `loadApprovedUsers(pg, numItemsPerPage)`
     // Retrieves a page of approved users from the server.
