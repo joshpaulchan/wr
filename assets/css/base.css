@@ -126,6 +126,15 @@ button:disabled, .btn:disabled {
   color: rgba(0, 0, 0, 0.5);
 }
 
+.btn--outline {
+  background-color: transparent;
+  outline: 2px solid #333;
+  color: #333;
+}
+
+.btn--outline.btn--success { outline-color: #4c4; color: #4c4; }
+.btn--outline.btn--danger { outline-color: #c03; color: #c03; }
+
 .btn--clear {
 /*   TODO: use mix-blend mode to determine what color to make the text */
   background: transparent;
