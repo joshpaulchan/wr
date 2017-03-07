@@ -7,22 +7,15 @@
     overflow: hidden;
 }
 
-div.list-header {
-    margin: 0;
-    padding: 16px;
-    background: white;
-    overflow: hidden;
-}
-
-form.search-bar {
+.search-bar {
     display: flex;
 }
 
-form.search-bar>i {
+.search-bar > i {
     margin-right: 16px;
 }
 
-form.search-bar>input[type="search"] {
+.search-bar > input[type="search"] {
     flex: 1;
     border: 0;
     margin: 0;
@@ -30,42 +23,4 @@ form.search-bar>input[type="search"] {
     background: transparent;
     height: 32px;
     line-height: 32px;
-}
-
-div.list-actions {
-    margin-top: 1em;
-    box-sizing: border-box;
-    position: relative;
-    height: 16px;
-    line-height: 16px;
-    width: 100%;
-}
-
-div.list-actions>* {
-    position: absolute;
-}
-
-div.list-actions>select {
-    left: 0;
-}
-
-div.list-actions>div.button-group {
-    right: 0;
-}
-
-ul.list-items {
-    box-sizing: border-box;
-    display: block;
-    position: relative;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    flex: 1;
-    /*height: calc(100vh - 96px - 2px - 48px);*/
-    overflow-y: auto;
-    overflow-x: hidden;
-}
-
-ul.list-items::-webkit-scrollbar {
-    display: none;
 }

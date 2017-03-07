@@ -1,89 +1,27 @@
-li.list-item {
-  position: relative;
-/*   break into blocks of 5x8 = 40 */
-  width: 100%;
-  margin-top: 2px;
-/*   3 blocks */
-  height: 48px;
-  font-size: 16px;
-  line-height: 48px;
-  vertical-align: middle;
-  background: white;
+.list-item > span {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    margin-left: 2.5%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
-li.list-item.selected {
-  background: transparent;
-  color: white;
+.list-item > .email {
+    /*   11 / 40 */
+    width: 27.5%;
 }
 
-li.list-item > label {
-  position: static;
-  display: inline-block;
-  margin: 0;
-/*   1/40 */
-  margin-left: 2.5%;
-  padding: 0;
-  vertical-align: top;
+.list-item > .title {
+    /*   13 / 40 */
+    width: 32.5%;
+    font-weight: 600;
 }
 
-li.list-item > label > input[type="checkbox"] {
-  margin: 0;
-  padding: 0;
-  width: 16px;
-  height: 16px;
-  vertical-align: middle;
-}
-
-li.list-item > label > input[type="checkbox"]:not(:checked) {
-  visibility: hidden;
-}
-
-li.list-item:hover > label > input[type="checkbox"]:not(:checked) {
-  visibility: visible;
-}
-
-li.list-item::after {
-  position: absolute;
-  top: 0;
-  right: 0;
-  content: "";
-  display: block;
-  width: 2.5%;
-  height: 100%;
-  z-index: 1;
-}
-
-li.list-item.unreplied::after {
-  background: #FFDB34;
-}
-
-li.list-item.unread::after {
-  background: #349AFF;
-}
-
-li.list-item > span {
-  margin: 0; padding: 0;
-  display: inline-block;
-  height: 100%;
-  margin-left: 2.5%;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-li.list-item > .email {
-/*   11 / 40 */
-  width: 27.5%;
-}
-
-li.list-item > .title {
-/*   13 / 40 */
-  width: 32.5%;
-  font-weight: 600;
-}
-
-li.list-item > .date {
-/*   7 / 40 */
-  width: 17.5%;
-  text-align: right;
+.list-item > .date {
+    /*   7 / 40 */
+    width: 17.5%;
+    text-align: right;
 }
