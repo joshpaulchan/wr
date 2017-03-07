@@ -10,6 +10,7 @@
 angular.module('wr.controllers')
 .controller('approvedUserList', function($scope, $authService, $userService) {
     // DEFAULTS
+    var $ctrl = this;
 
     // Check if a user is an admin or not
     //
@@ -22,6 +23,7 @@ angular.module('wr.controllers')
     // @param   : u     : Object    : user object to check approval status
     // @return  : bool  : true if the user has approval, false otherwise
     var isApproved = (u) => u.approved === true;
+    $ctrl.isApproved =  (u) => { return isApproved(u); };
 
     var curUserIsAdmin = isAdmin($authService.getUser());
 

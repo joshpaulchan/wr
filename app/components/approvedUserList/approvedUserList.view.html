@@ -3,7 +3,7 @@
 </div>
 <ul class="list-items">
     <user-item
-    ng-repeat="user in $ctrl.users track by user.id"
+    ng-repeat="user in $ctrl.users | filter : $ctrl.isApproved track by user.id"
     user="user"
     buttons="actions"/>
 </ul>
