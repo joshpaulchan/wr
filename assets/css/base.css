@@ -405,3 +405,7 @@ li.list-item.unread::before {
 /* padding control */
 
 .pa0 { padding: 0; }
+
+/* margin control */
+
+.ma0 { margin: 0; }
