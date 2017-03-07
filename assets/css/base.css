@@ -59,22 +59,24 @@ form {
 
   display: flex;
   align-items: center;
-
-  padding: 0 1rem;
 }
 
 .full-width > input[type="text"],
 .full-width > input[type="password"],
-.full-width > input[type="email"] {
+.full-width > input[type="email"],
+.full-width > input[type="search"] {
   flex: 1;
   box-sizing: border-box;
-  border: 0;
-  border-bottom: 2px solid transparent;
-  outline: 0;
   margin: 0;
   padding: 0;
-  background: transparent;
+
+  outline: 0;
+  border: 0;
+  border-bottom: 2px solid transparent;
+
   height: 2rem;
+
+  background: transparent;
   line-height: 2rem;
   font-size: 1rem;
 
@@ -83,8 +85,9 @@ form {
 
 .full-width > input[type="text"]:focus,
 .full-width > input[type="password"]:focus,
-.full-width > input[type="email"]:focus {
-  border-bottom: 2px solid #ddd;
+.full-width > input[type="email"]:focus,
+.full-width > input[type="search"]:focus {
+  border-color: #ddd;
 }
 
 /********************************** $BUTTONS **********************************/
@@ -369,6 +372,7 @@ li.list-item.unread::before {
 .icon {
   color: white;
   margin-right: 1rem;
+  text-align: center;
 }
 
 .icon--dark { color: #333; }
