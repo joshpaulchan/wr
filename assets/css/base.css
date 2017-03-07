@@ -400,3 +400,8 @@ li.list-item.unread::before {
 .bg-red { background-color: #c03; }
 
 .full-screen { width: 100vw; height: 100vh; }
+
+
+/* padding control */
+
+.pa0 { padding: 0; }
