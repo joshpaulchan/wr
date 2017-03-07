@@ -14,8 +14,10 @@
 // @attr    : nextApprovedUrl   : String    : url of the next page of approved users
 // @attr    : numItemsPerPage   : Number    : number of items to load per page for a search/load
 //
-// @method  : loadUsers    : Promise   : Retrieves a page of the most recent users from the server.
-// @method  : loadNext      : Promise   : Either 1) retrieves the next page following a .loadConversations(..), or 2) retrieves the next page of serach results following a .search(..).
+// @method  : loadApprovedUsers     : Promise   : Retrieves a page of the approved users from the server.
+// @method  : loadUnapprovedUsers   : Promise   : Retrieves a page of the unapproved users from the server.
+// @method  : loadNext              : Promise   : Either 1) retrieves the next page following a .loadConversations(..), or 2) retrieves the next page of serach results following a .search(..).
+// @method  : loadUser              : Promise   : Retrieves a specific user from the server.
 //
 angular.module('wr.services')
 .service('$userService', function($http, __env) {
@@ -28,6 +30,8 @@ angular.module('wr.services')
     service.nextApprovedUrl = null;
     service.nextUnapprovedUrl = null;
     service.numItemsPerPage = 25;
+
+    ///////////////////////////////// LOADING /////////////////////////////////
 
     // `loadApprovedUsers(pg, numItemsPerPage)`
     // Retrieves a page of approved users from the server.
@@ -107,8 +111,9 @@ angular.module('wr.services')
     };
 
     // `loadNext()`
-    // Either 1) retrieves the next page following a .loadConversations(..), or
-    // 2) retrieves the next page of serach results following a .search(..).
+    // Either 1) retrieves the next page following a .loadApprovedUsers(..), or
+    // 2) retrieves the next page of serach results following a
+    // .loadUnapprovedUsers(..).
     //
     // @pre     : `numItemsPerPage` must be a positive number or null, if null
     // will default to 25
@@ -119,7 +124,7 @@ angular.module('wr.services')
     // @post    : [success] returned promise will resolve to users[]
     // @post    : [error] returned promise will reject to an error message
     //
-    // @return  : Promise   : resolves to conversation[] or error message str
+    // @return  : Promise   : resolves to user[] or error message str
     service.loadNext = function() {
         if (service.nextUrl) {
             return new Promise(function(resolve, reject) {
