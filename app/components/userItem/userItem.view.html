@@ -2,15 +2,13 @@
     <span class="email">{{$ctrl.user.email}}</span>
     <span ng-if="($ctrl.user.admin === true)"><i class="icon ion-android-star warning"></i></span>
     <div class="list-item__edge edge--right">
-        <div class="button-group at-right">
-            <button
-                ng-repeat="btn in $ctrl.buttons"
-                ng-if="btn.show($ctrl.user)"
-                class="{{btn.class}}"
-                ng-click="btn.action($ctrl.user)">
-                {{btn.text}}
-            </button>
-            <button class="btn--clear" ng-click="$ctrl.openRemoveModal()"><i class="icon ion-android-close"></i></button>
-        </div>
+        <button
+            ng-repeat="btn in $ctrl.buttons"
+            ng-if="btn.show($ctrl.user)"
+            class="{{btn.class}}"
+            ng-click="btn.action($ctrl.user)">
+            {{btn.text}}
+        </button>
+        <button class="btn--clear" ng-click="$ctrl.openRemoveModal()"><span class="icon icon--dark">&times;</span></button>
     </div>
 </li>
