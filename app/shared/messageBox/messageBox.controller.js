@@ -5,7 +5,7 @@
 angular.module('wr.controllers')
 .controller('messageBox', function($scope, textAngularManager) {
     var $ctrl = this;
-    
+
     //////////////////////////////// TEMPLATES ////////////////////////////////
 
     $ctrl.openTemplateModal = function() {
@@ -26,7 +26,6 @@ angular.module('wr.controllers')
     //     // $delegate is the taOptions we are decorating
     //     // register the tool with textAngular
     //     taRegisterTool('colourRed', {
-    //         iconclass: "fa fa-square red",
     //         action: function(){
     //             this.$editor().wrapSelection('forecolor', 'red');
     //         }
@@ -37,7 +36,7 @@ angular.module('wr.controllers')
     // });
     try {
         textAngularManager.addTool('insertTemplate', {
-            display: "<button><i class='fa fa-file-text'></i>Template</button>",
+            display: "<button><i class='ion-document-text icon--sm'></i> Template</button>",
             action: $ctrl.openTemplateModal
         });
     } catch (e) { }
