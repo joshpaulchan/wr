@@ -8,27 +8,41 @@
 // @pre     : the user must be logged-in
 //
 angular.module('wr.controllers')
-.controller('approvedUserList', function($scope, $userService) {
+.controller('approvedUserList', function($scope, $authService, $userService) {
     // DEFAULTS
+
+    // Check if a user is an admin or not
+    //
+    // @param   : u     : Object    : user object to check admin status
+    // @return  : bool  : true if the user is an admin, false otherwise
+    var isAdmin = (u) => u.admin === true;
+
+    // Check if a user has been approved to use web response or not
+    //
+    // @param   : u     : Object    : user object to check approval status
+    // @return  : bool  : true if the user has approval, false otherwise
+    var isApproved = (u) => u.approved === true;
+
+    var curUserIsAdmin = isAdmin($authService.getUser());
+
     $scope.actions = [
         {
             text: "REVOKE ADMIN",
-            class: "ay-lmao",
-            show: (user) => { return true; },
-            action: (user) => { revokeAdmin(user.id); }
+            class: "btn--outline btn--danger",
+            show: (user) => { return curUserIsAdmin && isApproved(user) && isAdmin(user); },
+            action: (user) => { revokeAdmin(user); }
         },
         {
             text: "GRANT ADMIN",
-            class: "ay-lmao?",
-            show: (user) => { return (user.admin === false); },
-            action: (user) => { grantAdmin(user.id); }
+            class: "btn--outline btn--success",
+            show: (user) => { return  curUserIsAdmin && isApproved(user) && !isAdmin(user); },
+            action: (user) => { grantAdmin(user); }
         }
     ];
 
     /////////////////////////////// REVOKE ADMIN ///////////////////////////////
 
-    /*
-    // TODO: `revokeAdmin(user)`
+    // `revokeAdmin(user)`
     // Revokes the admin status of the target user.
     //
     // @pre     : the user submitting this request must be an admin herself
@@ -40,14 +54,28 @@ angular.module('wr.controllers')
     // @param   : user  : Object  : user object whose permissions are being
     // revoked
     // @return  : null
-    */
     var revokeAdmin = (user) => {
         // CODE IN HERE
+        console.log(`Revoking admin status for: ${user.email}.`);
+
+        $authService.deescalateUser(user.id)
+            .then(
+                (resp) => {
+                    user.admin = false;
+                    $scope.$apply();
+                }, (err) => {
+                    console.error(err);
+                    // FIXME: uncomment when notification service is implemented
+                    // $notificationService.notify({
+                    //     type: "error",
+                    //     text: "There was an error revoking the admin status of the user."
+                    // });
+                });
     };
 
     /////////////////////////////// GRANT ADMIN ///////////////////////////////
 
-    // TODO: `grantAdmin(user)`
+    // `grantAdmin(user)`
     // Grants admin status to the target user.
     //
     // @pre     : the user submitting this request must be an admin herself
@@ -61,6 +89,20 @@ angular.module('wr.controllers')
     // @return  : null
     var grantAdmin = (user) => {
         // CODE IN HERE
+        console.log(`Granting admin status for: ${user.email}.`);
+        $authService.escalateUser(user.id)
+            .then(
+                (resp) => {
+                    user.admin = true;
+                    $scope.$apply();
+                }, (err) => {
+                    console.error(err);
+                    // FIXME: uncomment when notification service is implemented
+                    // $notificationService.notify({
+                    //     type: "error",
+                    //     text: "There was an error revoking the admin status of the user."
+                    // });
+                });
     };
 });
 }());
