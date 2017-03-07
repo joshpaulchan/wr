@@ -133,9 +133,9 @@ angular.module('wr.services')
     // Retrieves the currently logged in user.
     //
     // @return  : Object    : returns the currently logged-in user's object, if
-    // loggedin, otherwise null
+    // loggedin, otherwise {}
     service.getUser = () => {
-        return JSON.parse(sessionStorage.getItem('wr-user') || null);
+        return JSON.parse(sessionStorage.getItem('wr-user')) || {};
     };
 
 
