@@ -45,7 +45,8 @@ angular.module('wr', ['ui.router', 'textAngular', 'angularModalService', 'wr.con
         .state('convos', {
             url: "/conversations",
             templateUrl: "client/app/templates/conversations.html",
-            deepStateRedirect: true
+            deepStateRedirect: true,
+            requireAuth: true
         })
         .state('convos.convo', {
             url: "/{convoId}",
@@ -53,27 +54,48 @@ angular.module('wr', ['ui.router', 'textAngular', 'angularModalService', 'wr.con
                 convo: {
                     template: "<convo/>"
                 }
-            }
+            },
+            requireAuth: true
         })
         .state('users', {
             url: "/users",
-            template : "<users />"
+            template : "<users />",
+            requireAuth: true
         })
          // TODO: Settings page
         .state('settings', {
             url: "/settings",
             templateUrl: "client/app/templates/bare.html",
-            deepStateRedirect: true
+            deepStateRedirect: true,
+            requireAuth: true
         });
 
     $urlRouterProvider.when('/', '/login');
+    $urlRouterProvider.otherwise('/login');
 
     // automatically attach token to outgoing requests
     $httpProvider.defaults.headers.common['X-CSRF-TOKEN'] = __token;
 
     // JSON
     $httpProvider.defaults.headers.common['Content-Type'] = "application/json";
-});
+})
+.run(['$rootScope', '$state', '$authService', function($rootScope, $state, $authService) {
+
+    $rootScope.$on('$stateChangeStart', (evt, toState, toParams, fromState, fromParams) => {
+
+        if (toState.requireAuth) {
+            $authService.isLoggedIn()
+                .then((loggedIn) => {
+                    // redirect if un authenticated
+                    if (!loggedIn) {
+                        $state.go('auth.login');
+                        evt.preventDefault();
+                    }
+                });
+        }
+    });
+
+}]);
 
 // Initialize modules
 angular.module('wr.controllers', []);
