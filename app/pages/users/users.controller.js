@@ -11,7 +11,7 @@ angular.module('wr.controllers')
 
     $scope.curPage = 0;
 
-    ///////////////////////// DISPLAYING USERS /////////////////////////
+    ///////////////////////////// DISPLAYING USERS /////////////////////////////
 
     // `loadConversations(pg)`
     // Loads the conversations from the server using the conersation service.
@@ -28,9 +28,9 @@ angular.module('wr.controllers')
     //
     // @param   : pg    : Number    : the page number of the converations to get
     // @return  : null
-    $scope.loadApprovedUsers = (pg) => {
+    $scope.loadUsers = (pg) => {
         $userService
-            .loadApprovedUsers(pg, $scope.numItemsPerPage)
+            .loadUsers(pg, $scope.numItemsPerPage)
             .then(
                 (users) => {
                     $scope.users = users;
@@ -68,23 +68,7 @@ angular.module('wr.controllers')
         // CODE IN HERE
     };
 
-    ///////////////////////////// APPROVING USERS /////////////////////////////
-
-    // TODO: `approveUser()`
-    // Opens the 'Move To' modal for selecting a folder (i.e inbox, trash, etc.)
-    // to move a conversation/several conversations to.
-    //
-    // @pre     : at least one conversation must be selected
-    // @pre     : no other modal (even the Move modal) should be open on screen
-    // @post    : [success] the Mark modal will be opened and visible on screen
-    //
-    // @param   : null
-    // @return  : null
-    $scope.approveUser = (user) => {
-        // CODE IN HERE
-    };
-
     // Load messages when initialized
-    $scope.loadApprovedUsers($scope.curPage);
+    $scope.loadUsers($scope.curPage);
 });
 }());
