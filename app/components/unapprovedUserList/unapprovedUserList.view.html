@@ -1,0 +1,9 @@
+<div class="list-header">
+    <h1>Unapproved Users</h1>
+</div>
+<ul class="list-items">
+    <user-item
+    ng-repeat="user in $ctrl.users track by user.id"
+    user="user"
+    buttons="actions"/>
+</ul>
