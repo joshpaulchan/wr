@@ -35,7 +35,7 @@
     <message
         ng-repeat="msg in convo.messages track by msg.id"
         sender="msg.emailFrom"
-        sent="msg.created_at"
+        sent="msg.createdAt | date : 'MMM d, h:mm a'"
         body="msg.body"
     />
 </ul>
