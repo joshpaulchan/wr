@@ -1,6 +1,6 @@
 <li
 class="list-item"
-ng-class="{unread : $ctrl.convo.unread, unreplied: $ctrl.convo.unreplied}"
+ng-class="{ unread : $ctrl.convo.unread, unreplied: $ctrl.convo.unreplied }"
 ng-click="$ctrl.click($ctrl.convo.id)"
 ui-sref="convos.convo({ convoId : $ctrl.convo.id})"
 ui-sref-active="selected">
@@ -9,5 +9,5 @@ ui-sref-active="selected">
     </label>
     <span class="email">{{$ctrl.convo.emailFrom}}</span>
     <span class="title">{{$ctrl.convo.subject}}</span>
-    <span class="date">{{$ctrl.convo.created_at}}</span>
+    <span class="date">{{$ctrl.convo.createdAt | date:short }}</span>
 </li>

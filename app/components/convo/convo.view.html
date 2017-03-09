@@ -1,7 +1,7 @@
 <div class="convo-header">
     <div class="convo-details">
         <h1 ng-bind="convo.subject || 'Subject'"></h1>
-        <p>started by <strong ng-bind="convo.emailFrom || 'Person'"></strong> on <strong ng-bind="convo.created_at || 'Date'"></strong></p>
+        <p>started by <strong ng-bind="convo.emailFrom || 'Person'"></strong> on <strong ng-bind="convo.createdAt | date: 'medium'"></strong></p>
     </div>
     <table class="convo-it-details">
         <tbody>
