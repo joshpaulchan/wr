@@ -121,7 +121,23 @@ angular.module('wr.services')
     // @return  : Object    : formatted conversatio object
     var formatConvo = (c) => {
         return Object.assign({}, c, {
-            createdAt : new Date(c.createdAt)
+            createdAt   : new Date(c.createdAt),
+            messages    : c.messages.map(formatMessage)
+        });
+    };
+
+    // `formatMessage(m)`
+    // Formats the given message object for JS datatypes.
+    //
+    // @pre     : `m` must be an object
+    // @post    : `m` will be un=modified
+    // @post    : a transformed copy of `m` will be returned
+    //
+    // @param   : Object    : m : message object to format
+    // @return  : Object    : formatted message object
+    var formatMessage = (m) => {
+        return Object.assign({}, m, {
+            createdAt : new Date(m.createdAt)
         });
     };
 
