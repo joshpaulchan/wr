@@ -35,7 +35,7 @@ angular.module('wr.services')
             $http
                 .get(`${service.apiURL}/${id}`)
                 .then((resp) => {
-                    resolve(resp.data);
+                    resolve(formatConvo(resp.data));
                 })
                 .catch(reject);
         });
@@ -107,6 +107,21 @@ angular.module('wr.services')
     service.forwardToEmail = function(id, email, message) {
         return new Promise(function(resolve, reject) {
             resolve({});
+        });
+    };
+
+    // `formatConvo(c)`
+    // Formats the given conversation object for JS datatypes.
+    //
+    // @pre     : `c` must be an object
+    // @post    : `c` will be un=modified
+    // @post    : a transformed copy of `c` will be returned
+    //
+    // @param   : Object    : c : conversation object to format
+    // @return  : Object    : formatted conversatio object
+    var formatConvo = (c) => {
+        return Object.assign({}, c, {
+            createdAt : new Date(c.createdAt)
         });
     };
 

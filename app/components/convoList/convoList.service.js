@@ -67,7 +67,7 @@ angular.module('wr.services')
                     service.numItemsPerPage = numItemsPerPage;
                     service.isSearch = false;
                     service.nextUrl = resp.data.next_page_url;
-                    resolve(resp.data.data);
+                    resolve(resp.data.data.map(formatConvo));
                 })
                 .catch(reject);
         });
@@ -105,7 +105,7 @@ angular.module('wr.services')
                         service.numItemsPerPage = numItemsPerPage;
                         service.isSearch = true;
                         service.nextUrl = resp.data.next_page_url;
-                        resolve(resp.data.data);
+                        resolve(map(resp.data.data, formatConvo));
                     })
                     .catch(reject);
             });
@@ -156,6 +156,21 @@ angular.module('wr.services')
     service.updateConvos = function(convoIds, opts) {
         return new Promise(function(resolve, reject) {
             resolve([]);
+        });
+    };
+
+    // `formatConvo(c)`
+    // Formats the given conversation object for JS datatypes.
+    //
+    // @pre     : `c` must be an object
+    // @post    : `c` will be un=modified
+    // @post    : a transformed copy of `c` will be returned
+    //
+    // @param   : Object    : c : conversation object to format
+    // @return  : Object    : formatted conversatio object
+    var formatConvo = (c) => {
+        return Object.assign({}, c, {
+            createdAt : new Date(c.createdAt)
         });
     };
 
