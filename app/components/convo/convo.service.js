@@ -60,7 +60,7 @@ angular.module('wr.services')
         });
     };
 
-    // TODO: `replyToConvo(id, message)`
+    // `replyToConvo(id, message)`
     // Replies to the given conversation with a new message, creates it and
     // emails it to the other participant in the conversation.
     //
@@ -78,11 +78,12 @@ angular.module('wr.services')
     service.replyToConvo = function(id, message) {
         return new Promise(function(resolve, reject) {
             $http
-                .post(`${service.apiURL}/${id}`, {
-                    message : message
+                .post(`${service.apiURL}/reply/${id}`, {
+                    body : message
                 })
                 .then((resp) => {
-                    resolve(resp.data);
+                    var messages = resp.data.messages;
+                    resolve(messages[messages.length - 1]);
                 })
                 .catch(reject);
         });
