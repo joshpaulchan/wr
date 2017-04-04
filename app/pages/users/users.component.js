@@ -6,7 +6,7 @@
 //
 angular.module('wr.pages')
 .component('users', {
-    templateUrl: 'client/app/pages/users/users.view.html',
+    templateUrl: __env.clientUrl + '/app/pages/users/users.view.html',
     controller: 'users'
 });
 }());

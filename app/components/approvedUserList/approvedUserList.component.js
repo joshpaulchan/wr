@@ -9,7 +9,7 @@ angular.module('wr.components')
     bindings: {
         "users" : "<"
     },
-    templateUrl: 'client/app/components/approvedUserList/approvedUserList.view.html',
+    templateUrl: __env.clientUrl + '/app/components/approvedUserList/approvedUserList.view.html',
     controller: "approvedUserList"
 });
 }());

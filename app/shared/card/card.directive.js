@@ -2,7 +2,7 @@
 "use strict";
 
 angular.module('wr.directives')
-    .directive('card', function() {
+    .directive('card', ['__env', function(__env) {
         return {
             restrict: "E",
             scope: {
@@ -12,7 +12,7 @@ angular.module('wr.directives')
             },
             replace: true,
             transclude: true,
-            templateUrl: "client/app/shared/card/card.view.html"
+            templateUrl: __env.clientUrl + "/app/shared/card/card.view.html"
         };
-});
+}]);
 }());

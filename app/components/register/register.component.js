@@ -7,6 +7,6 @@
 angular.module('wr.components')
 .component('register', {
     controller: 'register',
-    templateUrl: 'client/app/components/register/register.view.html',
+    templateUrl: __env.clientUrl + '/app/components/register/register.view.html',
 });
 }());

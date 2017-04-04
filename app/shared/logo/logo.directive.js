@@ -2,12 +2,12 @@
 "use strict";
 
 angular.module('wr')
-.directive('logo', function() {
+.directive('logo', ['__env', function(__env) {
     return {
         replace: true,
         restrict: 'E',
-        templateUrl: "client/app/shared/logo/logo.view.html"
+        templateUrl: __env.clientUrl + "/app/shared/logo/logo.view.html"
     };
-});
+}]);
 
 })();

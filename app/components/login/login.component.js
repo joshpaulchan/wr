@@ -7,6 +7,6 @@
 angular.module('wr.components')
 .component('login', {
     controller: 'login',
-    templateUrl: 'client/app/components/login/login.view.html',
+    templateUrl: __env.clientUrl + '/app/components/login/login.view.html',
 });
 }());

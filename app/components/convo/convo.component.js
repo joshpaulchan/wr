@@ -6,7 +6,7 @@
 //
 angular.module('wr.components')
 .component('convo', {
-    templateUrl: 'client/app/components/convo/convo.view.html',
+    templateUrl: __env.clientUrl + '/app/components/convo/convo.view.html',
     controller: 'convo'
 });
 }());

@@ -11,6 +11,6 @@ angular.module('wr.components')
         sent    : "<",
         body    : "<",
     },
-    templateUrl: 'client/app/components/message/message.view.html',
+    templateUrl: __env.clientUrl + '/app/components/message/message.view.html',
 });
 }());

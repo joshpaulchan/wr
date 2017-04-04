@@ -10,6 +10,6 @@ angular.module('wr.components')
         user : '<',
         buttons : '<'
     },
-    templateUrl: 'client/app/components/userItem/userItem.view.html',
+    templateUrl: __env.clientUrl + '/app/components/userItem/userItem.view.html',
 });
 }());

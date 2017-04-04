@@ -2,7 +2,7 @@
 "use strict";
 
 angular.module('wr.directives')
-    .directive('modal', function() {
+    .directive('modal', ['__env', function(__env) {
         return {
             restrict: "E",
             scope: {
@@ -10,7 +10,7 @@ angular.module('wr.directives')
                 "show": "=",
                 "toHide": "="
             },
-            templateUrl: "client/app/shared/modal/modal.view.html"
+            templateUrl: __env.clientUrl + "/app/shared/modal/modal.view.html"
         };
-});
+}]);
 }());

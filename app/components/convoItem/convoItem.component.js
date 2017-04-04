@@ -12,6 +12,6 @@ angular.module('wr.components')
         select : '=',
         selected : '='
     },
-    templateUrl: 'client/app/components/convoItem/convoItem.view.html',
+    templateUrl: __env.clientUrl + '/app/components/convoItem/convoItem.view.html',
 });
 }());

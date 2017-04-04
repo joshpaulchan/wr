@@ -2,12 +2,12 @@
 "use strict";
 
 angular.module('wr')
-.directive('header', function() {
+.directive('header', ['__env', function() {
     return {
         replace: true,
         restrict: 'E',
-        templateUrl: "client/app/shared/header/header.view.html"
+        templateUrl: __env.clientUrl + "/app/shared/header/header.view.html"
     };
-});
+}]);
 
 })();

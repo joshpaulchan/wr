@@ -6,7 +6,7 @@
 //
 angular.module('wr.components')
 .component('convoList', {
-    templateUrl: 'client/app/components/convoList/convoList.view.html',
+    templateUrl: __env.clientUrl + '/app/components/convoList/convoList.view.html',
     controller: 'convoList'
 });
 }());

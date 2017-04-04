@@ -4,7 +4,7 @@
 
 angular.module('wr.components')
 .component('messageBox', {
-    templateUrl: 'client/app/shared/messageBox/messageBox.view.html',
+    templateUrl: __env.clientUrl + '/app/shared/messageBox/messageBox.view.html',
     controller: 'messageBox',
     bindings: {
         placeholder : "@",

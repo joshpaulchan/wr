@@ -2,12 +2,12 @@
 "use strict";
 
 angular.module('wr')
-.directive('footer', function() {
+.directive('footer', ['__env', function(__env) {
     return {
         replace: true,
         restrict: 'E',
-        templateUrl: "client/app/shared/footer/footer.view.html"
+        templateUrl: __env.clientUrl + "/app/shared/footer/footer.view.html"
     };
-});
+}]);
 
 })();
