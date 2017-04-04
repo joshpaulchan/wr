@@ -1,5 +1,39 @@
-<card class="register-card">
+<div class="list-header">
+    <h1>Profile</h1>
+</div>
+
+<!-- email -->
+<card>
+    <div class="card-body"><strong>Change Email</strong></div>
     <div class="card-body">
-        <h1>Profile</h1>
+        <form class="stacked">
+            <label class="full-width">
+                Email:
+                <input type="email" required validate/>
+            </label>
+        </form>
+    </div>
+</card>
+
+<!-- password -->
+<card>
+    <div class="card-body"><strong>Change Password</strong></div>
+    <div class="card-body">
+        <form class="stacked">
+            <label class="full-width">
+                Old Password:
+                <input type="password" required/>
+            </label>
+            <label class="full-width">
+                New Password:
+                <input type="password" required/>
+            </label>
+            <label class="full-width">
+                New Password:
+                <input type="password" required/>
+            </label>
+
+            <input type="submit" class="hidden"/>
+        </form>
     </div>
 </card>
