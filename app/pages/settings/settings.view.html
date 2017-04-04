@@ -1,0 +1,26 @@
+<header></header>
+<div class="panes horizontal-panes">
+    <!-- settings list -->
+    <div class="pane">
+        <div class="list-header">
+            <h1>Settings</h1>
+        </div>
+        <ul class="list-items">
+            <li
+            class="list-item"
+            ui-sref="settings.profile"
+            ui-sref-active="selected">
+                <span>Profile</span>
+            </li>
+            <li
+            class="list-item"
+            ui-sref="settings.templates"
+            ui-sref-active="selected">
+                <span>Templates</span>
+            </li>
+        </ul>
+    </div>
+
+    <!-- settings content -->
+    <div class="pane" ui-view></div>
+</div>
