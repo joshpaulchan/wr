@@ -53,6 +53,31 @@ form {
     flex-direction: column;
 }
 
+input[type] {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+    outline: 0;
+    border: 0;
+    border-bottom: 2px solid transparent;
+
+    height: 2rem;
+
+    background: transparent;
+    line-height: 2rem;
+    font-size: 1rem;
+
+    transition: border 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="search"]:focus {
+  border-color: #ddd;
+}
+
 .full-width {
   box-sizing: border-box;
   width: 100%;
@@ -66,29 +91,8 @@ form {
 .full-width > input[type="email"],
 .full-width > input[type="search"] {
   flex: 1;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-
-  outline: 0;
-  border: 0;
-  border-bottom: 2px solid transparent;
-
-  height: 2rem;
-
-  background: transparent;
-  line-height: 2rem;
-  font-size: 1rem;
-
-  transition: border 0.3s;
 }
 
-.full-width > input[type="text"]:focus,
-.full-width > input[type="password"]:focus,
-.full-width > input[type="email"]:focus,
-.full-width > input[type="search"]:focus {
-  border-color: #ddd;
-}
 
 /********************************** $BUTTONS **********************************/
 
