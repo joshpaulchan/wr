@@ -47,3 +47,5 @@
   margin: 0;
   padding: 0;
 }
+
+.header-tab--active > .icon { color: rgba(255, 255, 255, 0.8); }
