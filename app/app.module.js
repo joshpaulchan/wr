@@ -27,7 +27,7 @@ angular.module('wr', ['ui.router', 'textAngular', 'angularModalService', 'wr.con
         })
         .state('auth', {
             url: "",
-            templateUrl: "client/app/templates/bare.html",
+            templateUrl: __env.clientUrl + "/app/templates/bare.html",
             abstract: true,
         })
         .state('auth.login', {
@@ -40,11 +40,11 @@ angular.module('wr', ['ui.router', 'textAngular', 'angularModalService', 'wr.con
         })
         .state('auth.register-confirm', {
             url: "/register-confirm",
-            templateUrl: "client/app/components/registerConfirm/registerConfirm.view.html",
+            templateUrl: __env.clientUrl + "/app/components/registerConfirm/registerConfirm.view.html",
         })
         .state('convos', {
             url: "/conversations",
-            templateUrl: "client/app/templates/conversations.html",
+            templateUrl: __env.clientUrl + "/app/templates/conversations.html",
             deepStateRedirect: true,
             requireAuth: true
         })
@@ -62,11 +62,20 @@ angular.module('wr', ['ui.router', 'textAngular', 'angularModalService', 'wr.con
             template : "<users />",
             requireAuth: true
         })
-         // TODO: Settings page
         .state('settings', {
-            url: "/settings",
-            templateUrl: "client/app/templates/bare.html",
-            deepStateRedirect: true,
+            url: "",
+            templateUrl: __env.clientUrl + "/app/pages/settings/settings.view.html",
+            abstract: true,
+            requireAuth: true
+        })
+        .state('settings.profile', {
+            url: "/profile",
+            template: "<profile />",
+            requireAuth: true
+        })
+        .state('settings.templates', {
+            url: "/templates",
+            template: "<templates />",
             requireAuth: true
         });
 
