@@ -6,34 +6,69 @@ describe("[controller] convoList", function() {
     beforeEach(angular.mock.module('wr.services'));
     beforeEach(angular.mock.module('wr.controllers'));
 
-    // var $convoListService;
-    // var deferred;
-    //
-    // // Mock services and spy on methods
-    // beforeEach(inject(function($q, _$convoListService_) {
-    //     deferred = $q.defer();
-    //     $convoListService = _$convoListService_;
-    //     // spyOn($convoListService, 'syncCall').and.callThrough();
-    //     // spyOn($convoListService, 'asyncCall').and.returnValue(deferred.promise);
-    // }));
-
-    var convoList;
+    var $service;
+    var deferred;
+    var ctrlr;
     var scope;
 
+    var convoList = [{
+        id: 1,
+        name: 'Jane',
+        role: 'Designer',
+        location: 'New York',
+        twitter: 'gijane'
+    }, {
+        id: 2,
+        name: 'Bob',
+        role: 'Developer',
+        location: 'New York',
+        twitter: 'billybob'
+    }, {
+        id: 3,
+        name: 'Jim',
+        role: 'Developer',
+        location: 'Chicago',
+        twitter: 'jimbo'
+    }, {
+        id: 4,
+        name: 'Bill',
+        role: 'Designer',
+        location: 'LA',
+        twitter: 'dabill'
+    }];
+
     // Inject the $controller service to create instances of the controller (UsersController) we want to test
-    beforeEach(inject(function($rootScope, $controller) {
+    // Mock services and spy on methods
+    beforeEach(inject(function($rootScope, $controller,  _$convoListService_) {
         scope = $rootScope.$new();
         spyOn(scope, '$emit');
-        convoList = $controller('convoList', {$scope: scope });
+
+        ctrlr = $controller('convoList', { $scope: scope });
+        $service = _$convoListService_;
+
+        // spyOn($convoListService, 'syncCall').and.callThrough();
+        spyOn($service, 'loadConvos').and.callFake(function() {
+            return convoList;
+        });
+        spyOn($service, 'search').and.callFake(function() {
+            return convoList;
+        });
+        spyOn($service, 'updateConvos').and.callFake(function() {
+            return convoList;
+        });
+        spyOn($service, 'loadNext').and.callFake(function() {
+            return convoList;
+        });
+
     }));
 
     // Verify our controller exists
     it('should be defined', function() {
-        expect(convoList).toBeDefined();
+        expect(ctrlr).toBeDefined();
     });
 
     // Test all attributes exist and match expected default values
-    describe('`query`', function() {
+    describe('.query', function() {
         it('should be defined', function() {
             expect(scope.query).toBeDefined();
         });
@@ -47,7 +82,7 @@ describe("[controller] convoList", function() {
         });
     });
 
-    describe('`isSearch`', function() {
+    describe('.isSearch', function() {
         it('should be defined', function() {
             expect(scope.isSearch).toBeDefined();
         });
@@ -61,7 +96,7 @@ describe("[controller] convoList", function() {
         });
     });
 
-    describe('`curFilter`', function() {
+    describe('.curFilter', function() {
         it('should be defined', function() {
             expect(scope.curFilter).toBeDefined();
         });
@@ -76,7 +111,7 @@ describe("[controller] convoList", function() {
         });
     });
 
-    describe('`curPage`', function() {
+    describe('.curPage', function() {
         it('should be defined', function() {
             expect(scope.curPage).toBeDefined();
         });
@@ -90,7 +125,7 @@ describe("[controller] convoList", function() {
         });
     });
 
-    describe('`numItemsPerPage`', function() {
+    describe('.numItemsPerPage', function() {
         it('should be defined', function() {
             expect(scope.numItemsPerPage).toBeDefined();
         });
@@ -104,7 +139,7 @@ describe("[controller] convoList", function() {
         });
     });
 
-    describe('`convos`', function() {
+    describe('.convos', function() {
         it('should be defined', function() {
             expect(scope.convos).toBeDefined();
         });
@@ -118,7 +153,7 @@ describe("[controller] convoList", function() {
         });
     });
 
-    describe('`selectedConvos`', function() {
+    describe('.selectedConvos', function() {
         it('should be defined', function() {
             expect(scope.selectedConvos).toBeDefined();
         });
@@ -133,19 +168,27 @@ describe("[controller] convoList", function() {
     });
 
     // TODO: Test all methods exist and return expected outputs
-    describe('method specifications', function() {
-        // Test outside interface
 
+    describe('on load', function() {
         // TODO: Test expected intial behavior of loading conversations and inserting into dom
         // 1. must make GET req
         // 2. upon insertion, number of items must match numItemsPerPage
 
+        it('should load the conversations on initial load', function() {
+            expect($service.loadConvos).toHaveBeenCalled();
+        });
+    });
+
+    describe('searching', function() {
         // TODO: Test searches can be perfomed
         // 1. text must be able to be typed and tracked
         // 2. upon successful submission, input must not clear
         // 3. upon successful submission, listed convos should change (probably)
         // 4. upon error, notification must be logged
+    });
 
+
+    describe('conversations', function() {
         // TODO: Items can be viewed
         // 1. An item can only be viewed by clicking on the body of the list item
         // 2. upon selection, the state will be changed
@@ -168,6 +211,5 @@ describe("[controller] convoList", function() {
         // gen a basic convo object
         // 1. should generate a put req with the selected convos
         // 1. should generate 1 PUT req even with multiple items
-
     });
 });
