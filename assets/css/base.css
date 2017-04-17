@@ -196,6 +196,7 @@ div[ui-view] > .placeholder {
 
 .horizontal-panes {
     flex-direction: row;
+    height: 100%;
 }
 .pane {
     padding: 0 2px;
