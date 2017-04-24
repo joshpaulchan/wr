@@ -7,11 +7,13 @@
 // conversations and bulk/singular book-keeping operations upon conversations.
 //
 angular.module('wr.controllers')
-.controller('convo', function($scope, $state, $convoService) {
+.controller('convo', ['$scope', '$state', '$convoService', 'ModalService', function($scope, $state, $convoService, ModalService) {
     $scope.convo = {};
     $scope.response = {
         message : ""
     };
+
+    $scope.modalOpen = false;
 
     ////////////////////////// LOADING A CONVERATION //////////////////////////
 
@@ -95,7 +97,7 @@ angular.module('wr.controllers')
 
     //////////////////////////////// FORWARDING ////////////////////////////////
 
-    // TODO: `openForwardModal()`
+    // `openForwardModal()`
     // Opens the modal for selecting the user to forward the conversation to.
     //
     // @pre     : the forwarding modal must be available
@@ -104,10 +106,26 @@ angular.module('wr.controllers')
     //
     // @return  : null
     $scope.openForwardModal = function() {
-        // CODE HERE
+
+        if ($scope.modalOpen === false) {
+            $scope.modalOpen = true;
+            ModalService.showModal({
+                template: "<forward onclose='close' convo-id='id'/>",
+                inputs: { id: $scope.convo.id },
+                controller: function(close, id, $scope) {
+                    $scope.close = close;
+                    $scope.id = id;
+                },
+            }).then(function(modal) {
+                // show modal
+
+                // attach close handler
+                modal.close.then($scope.closeForwardModal);
+            });
+        }
     };
 
-    // TODO: `closeForwardModal()`
+    //  `closeForwardModal()`
     // Closes the modal for selecting the user to forward the conversation to.
     //
     // @pre     : the forwarding modal must be available
@@ -115,31 +133,11 @@ angular.module('wr.controllers')
     // @post    : the forwarding modal will be closed and invisible on the page
     //
     // @return  : null
-    $scope.closeForwardModal = function() {
-        // CODE HERE
-    };
-
-    // TODO: `forwardConversation(id, email, message)`
-    // Forwards the given conversation to the given email.
-    //
-    // @pre     : the conversation service must be initialized
-    // @post    : [success] the conversation, in its entirety, will be emailed
-    // to the other user
-    // @post    : [success] a notification will pop up confirming the success of
-    // the action
-    // @post    : [error] if error, error will be sent to error service to
-    // display on page and log for analytics
-    //
-    // @param   : id        : Number    : the id of the conversation to retrieve
-    // @param   : email     : String    : the email of the person to forward the
-    // conversation to
-    // @param   : message   : String    : The message to forward with
-    // @return  : null
-    var forwardConversation = function(id, email, message) {
-        // CODE HERE
+    $scope.closeForwardModal = function(result) {
+        $scope.modalOpen = false;
     };
 
     // Load conversation when initialized
     loadConversation($state.params.convoId);
-});
+}]);
 }());
