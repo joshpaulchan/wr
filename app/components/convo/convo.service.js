@@ -89,12 +89,13 @@ angular.module('wr.services')
         });
     };
 
-    // TODO: `forwardToEmail(email)`
+    // `forwardToEmail(email)`
     // Forwards the given conversation to a given email with a forwarding
     // message.
     //
     // @pre     : `id` must be  a valid Conversation id
     // @pre     : `email` must be a valid email
+    // @pre     : `message` is an optional string
     // @post    : [success] the conversation in its entirety will be forwarded
     // to the person with the given email, with the given message as the body of
     // the email
@@ -107,7 +108,13 @@ angular.module('wr.services')
     // @return  : Promise   : resolve to success Object or error message str
     service.forwardToEmail = function(id, email, message) {
         return new Promise(function(resolve, reject) {
-            resolve({});
+            $http
+                .post(`${service.apiURL}/forward/${id}`, {
+                    forwardTo : email,
+                    body : message || ""
+                })
+                .then(resp => resolve({ error: resp.data.error }))
+                .catch(reject);
         });
     };
 
@@ -123,6 +130,7 @@ angular.module('wr.services')
     var formatConvo = (c) => {
         return Object.assign({}, c, {
             createdAt   : new Date(c.createdAt),
+            referrer    : decodeURIComponent(c.referrer),
             messages    : c.messages.map(formatMessage)
         });
     };
