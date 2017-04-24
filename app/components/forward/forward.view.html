@@ -1,0 +1,33 @@
+<div class="modal modal-backdrop modal-active full-screen">
+    <div class="box box--center">
+        <card class="card forward-card">
+
+            <div class="card-body">
+                <strong>Forward</strong>
+            </div>
+
+            <div class="card-body">
+                <p class="centered danger" ng-if="forwardData.error">{{forwardData.errorMsg}}</p>
+                <form class="stacked" ng-submit="$ctrl.doForward($event)">
+                    <label class="full-width">
+                        <i class="ion-android-mail icon icon--sm icon--dark"></i>
+                        <input ng-model="forwardData.email" name="email" type="email" placeholder="joe@james.com" required validate/>
+                    </label>
+                    <label class="full-width">
+                        <i class="ion-android-create icon icon--sm icon--dark"></i>
+                        <textarea ng-model="forwardData.message" name="message" placeholder="Enter a message..."></textarea>
+                    </label>
+                    <input type="submit" class="hidden" />
+                </form>
+            </div>
+
+            <div class="card-footer">
+                <div class="button-group at-right">
+                    <button class="btn--clear btn--tight" ng-click="$ctrl.closeModal()">Cancel</button>
+                    <button class="btn--clear btn--tight" ng-click="$ctrl.doForward($event)">Forward</button>
+                    <span class="spacer"></span>
+                </div>
+            </div>
+        </card>
+    </div>
+</div>
