@@ -1,9 +1,4 @@
-<li
-class="list-item"
-ng-class="{ unread : $ctrl.convo.unread, unreplied: $ctrl.convo.unreplied }"
-ng-click="$ctrl.click($ctrl.convo.id)"
-ui-sref="convos.convo({ convoId : $ctrl.convo.id})"
-ui-sref-active="selected">
+<li class="list-item" ng-class="{ unread : $ctrl.convo.unread, unreplied: $ctrl.convo.unreplied }" ng-click="$ctrl.click($ctrl.convo)" ui-sref="convos.convo({ convoId : $ctrl.convo.id})" ui-sref-active="selected">
     <label>
       <input type="checkbox" value="$ctrl.convo.id" ng-click="$ctrl.select($ctrl.convo.id, $event)" ng-checked="$ctrl.selected"/>
     </label>

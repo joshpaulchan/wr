@@ -413,11 +413,12 @@ angular.module('wr.controllers')
     //
     // @param   : convoId   : String    : the id of the conversation to view
     // @return  : null
-    $scope.viewConvo = (convoId) => {
-        if (selectedConvo === convoId) { return; }
+    $scope.viewConvo = (convo) => {
+        if (selectedConvo === convo.id) { return; }
         if (selectedConvo) { $scope.selectedConvos.delete(selectedConvo); }
         // add to selected convos if not already selected
-        selectedConvo = convoId;
+        selectedConvo = convo.id;
+        convo.unread = false;
         $scope.selectedConvos.add(selectedConvo);
     };
 
