@@ -2,63 +2,17 @@
 (function() {
 "use strict";
 
-// // object.watch
-// if (!Object.prototype.watch) {
-// 	Object.defineProperty(Object.prototype, "watch", {
-// 		  enumerable: false
-// 		, configurable: true
-// 		, writable: false
-// 		, value: function (prop, handler) {
-// 			var
-// 			  oldval = this[prop]
-// 			, newval = oldval
-// 			, getter = function () {
-// 				return newval;
-// 			}
-// 			, setter = function (val) {
-// 				oldval = newval;
-// 				return newval = handler.call(this, prop, oldval, val);
-// 			}
-// 			;
-//
-// 			if (delete this[prop]) { // can't watch constants
-// 				Object.defineProperty(this, prop, {
-// 					  get: getter
-// 					, set: setter
-// 					, enumerable: true
-// 					, configurable: true
-// 				});
-// 			}
-// 		}
-// 	});
-// }
-//
-// // object.unwatch
-// if (!Object.prototype.unwatch) {
-// 	Object.defineProperty(Object.prototype, "unwatch", {
-// 		  enumerable: false
-// 		, configurable: true
-// 		, writable: false
-// 		, value: function (prop) {
-// 			var val = this[prop];
-// 			delete this[prop]; // remove accessors
-// 			this[prop] = val;
-// 		}
-// 	});
-// }
-
 // `forward`
 // Controls the conversation forwarding modal
 //
-// @attr    : loginData             : Object    : container for login data
-// @attr    : loginData.to          : String    : recipient of
-// @attr    : loginData.message     : String    : pw of user attempting login
-// @attr    : loginData.error       : Boolean   : whether an error has occurred
-// @attr    : loginData.errorMsg    : String    : message stating what the error
+// @attr    : forwardData             : Object    : container for forward data
+// @attr    : forwardData.email       : String    : email to forward to
+// @attr    : forwardData.message     : String    : message to include for forwarding
+// @attr    : forwardData.error       : Boolean   : whether an error has occurred
+// @attr    : forwardData.errorMsg    : String    : message stating what the error
 // is, if any
 //
-// @method  : doLogin() : null  : Attempts to log user into web-response with
-// the data submitted via scope.
+// @method  : doForward() : null  : Attempts to forward message to user
 angular.module('wr.controllers')
 .controller('forward', ['$scope', '$convoService', function($scope, $convoService) {
     var $ctrl = this;
@@ -122,6 +76,5 @@ angular.module('wr.controllers')
     };
 
     $ctrl.closeModal = function(res) { $ctrl.onclose(res, 250); };
-
 }]);
 }());
