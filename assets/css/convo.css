@@ -10,7 +10,7 @@ convo {
     box-sizing: border-box;
     width: 100%;
     /*min-width: 320px;*/
-    /*padding: 0 2px;*/
+    padding: 2px 0;
     height: 100%;
 }
 
