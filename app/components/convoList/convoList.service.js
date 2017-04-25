@@ -92,23 +92,21 @@ angular.module('wr.services')
     // @return  : Promise   : resolves to conversation[] or error message str
     service.search = function(query, numItemsPerPage) {
         return new Promise(function(resolve, reject) {
-            return new Promise(function(resolve, reject) {
-                $http
-                    .get(service.apiURL, {
-                        params: {
-                            q : query,
-                            n : numItemsPerPage
-                        }
-                    })
-                    .then((resp) => {
-                        service.curSearchPage = 1;
-                        service.numItemsPerPage = numItemsPerPage;
-                        service.isSearch = true;
-                        service.nextUrl = resp.data.next_page_url;
-                        resolve(map(resp.data.data, formatConvo));
-                    })
-                    .catch(reject);
-            });
+            $http
+                .get(service.apiURL, {
+                    params: {
+                        q : query,
+                        n : numItemsPerPage
+                    }
+                })
+                .then((resp) => {
+                    service.curSearchPage = 1;
+                    service.numItemsPerPage = numItemsPerPage;
+                    service.isSearch = true;
+                    service.nextUrl = resp.data.next_page_url;
+                    resolve(resp.data.data.map(formatConvo));
+                })
+                .catch(reject);
         });
     };
 

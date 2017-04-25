@@ -1,7 +1,8 @@
 <div class="list-header">
-    <form class="full-width" ng-submit="searchConvos()">
+    <form class="full-width" ng-submit="searchConvos(query, $event)">
         <i class="icon ion-search icon--md icon--dark" aria-hidden="true"></i>
         <input type="search" placeholder="Search for messages..." ng-model="query" />
+        <input type="submit" class="hidden"/>
     </form>
     <div class="list-actions">
         <select ng-model="curFilter">

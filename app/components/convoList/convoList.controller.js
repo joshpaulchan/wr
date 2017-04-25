@@ -138,6 +138,7 @@ angular.module('wr.controllers')
                     $scope.isSearch = true;
                     // load search results into scope
                     $scope.convos = conversations;
+                    $scope.$apply();
                 },
                 (err) => {
                     // log error and notify user
