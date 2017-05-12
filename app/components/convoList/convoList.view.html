@@ -7,7 +7,7 @@
     <div class="list-actions">
         <select ng-model="curFilter">
           <option
-          ng-repeat="option in Object.keys(filters)"
+          ng-repeat="option in filterNames"
           value="{{filters[option]}}"
           >{{option}}</option>
         </select>
@@ -31,3 +31,12 @@
     select="toggleSelect"
     selected="selectedConvos.has(convo.id)"/>
 </ul>
+<div class="list-footer">
+    <nav class="pagination">
+        <a ng-show="curPage > 0" ng-click="loadConversations(curPage - 1)" class="pagination__action">Previous</a>
+        <ul class="pagination__list">
+            <li class="pagination__item" ng-repeat="link in pageLinks track by link" ng-click="loadConversations(link)" ng-class="{'active' : curPage == link }">{{link + 1}}</li>
+        </ul>
+        <a ng-show="hasNextPage()" ng-click="loadConversations(curPage + 1)" class="pagination__action">Next</a>
+    </nav>
+</div>

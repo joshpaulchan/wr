@@ -6,3 +6,51 @@
     padding: 2px;
     overflow: hidden;
 }
+
+.list-footer {
+    text-align: center;
+    background: white;
+}
+
+.pagination {
+    display: inline-block;
+}
+
+.pagination__list {
+    display: inline-block;
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+
+    vertical-align: middle;
+
+}
+
+.pagination__action {
+    display: inline-block;
+
+    line-height: 32px;
+    height: 32px;
+}
+
+.pagination__list::after {
+    clear: both;
+}
+
+.pagination__item {
+    float: left;
+
+    box-sizing: border-box;
+    min-width: 32px;
+    height: 32px;
+    line-height: 32px;
+
+    border-radius: 6px;
+
+    text-align: center;
+}
+
+.pagination__item.active {
+    background-color: #c03;
+    color: white;
+}

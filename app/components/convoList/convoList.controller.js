@@ -60,6 +60,12 @@
 // given conversation on screen
 angular.module('wr.controllers')
 .controller('convoList', function($scope, $state, $convoListService) {
+    //////////////////////////////// utilities ////////////////////////////////
+
+    // `makePaginationList(num)`
+    // Returns an array of 5 numbers with num as the center (or lowest)
+    var makePaginationList = n => [-1, 0, 1].map(i => i+n).filter(i => i>-1);
+
     $scope.query = "";
     $scope.isSearch = false;
     $scope.filters = {
@@ -67,14 +73,19 @@ angular.module('wr.controllers')
         "Unread": "@CONVERSATIONS__FILTER-UNREAD",
         "Unreplied": "@CONVERSATIONS__FILTER-UNREPLIED"
     };
+    $scope.filterNames = Object.keys($scope.filters);
     $scope.curFilter = $scope.filters[Object.keys($scope.filters)[0]];
     $scope.curPage = 0;
+    $scope.pageLinks = makePaginationList($scope.curPage);
+    $scope.atEnd = false;
     $scope.numItemsPerPage = 25;
     $scope.convos = [];
     $scope.selectedConvos = new Set();
     var selectedConvo = null;
 
     ///////////////////////// DISPLAYING CONVERSATIONS /////////////////////////
+
+    $scope.hasNextPage = () => $convoListService.nextUrl !== null;
 
     // `loadConversations(pg)`
     // Loads the conversations from the server using the conersation service.
@@ -97,6 +108,9 @@ angular.module('wr.controllers')
             .then(
                 (conversations) => {
                     $scope.convos = conversations;
+                    $scope.curPage = pg;
+                    $scope.pageLinks = makePaginationList($scope.curPage);
+                    if (!$scope.hasNextPage()) { $scope.pageLinks.pop();}
                     $scope.$apply();                // update angular
                 },
                 (err) => {
@@ -152,28 +166,6 @@ angular.module('wr.controllers')
                     // set search flag to false
                     $scope.isSearch  = false;
                 });
-    };
-
-    // TODO: `loadNextPage()`
-    // Load the next page of conversation items (either during regular browsing
-    // or search).
-    //
-    // @pre     : the conversation list service must be initialized
-    // @pre     : [success] Either a search through the conversations or a
-    // conversation page load must have been completed previously (to save the
-    // default number of pages and current page in the conversation list
-    // service)
-    // @post    : [success] the next page of conversations will be appended to
-    // the current list of conversations
-    // @post    : [error] the current conversation list will not be mutated in
-    // any way
-    // @post    : [error] if other error, error will be sent to error service to
-    // display on page and log for analytics
-    //
-    // @param   : null
-    // @return  : null
-    $scope.loadNextPage = () => {
-        // CODE IN HERE
     };
 
     // `byStatus(convo)`
@@ -422,6 +414,8 @@ angular.module('wr.controllers')
         convo.unread = false;
         $scope.selectedConvos.add(selectedConvo);
     };
+
+
 
     // Load messages when initialized
     $scope.loadConversations($scope.curPage);
